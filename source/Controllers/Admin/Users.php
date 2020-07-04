@@ -44,9 +44,7 @@ class Users extends Admin
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
-            //$users = (new User())->find("first_name LIKE '%' :s '%' OR email LIKE '%' :s '%'", "status=1&s={$search}&s={$search}");
-            //$users = (new User())->find("MATCH(first_name) AGAINST(:s)", "s={$search}");
-            $users = (new User())->find("MATCH(first_name) AGAINST(:s)", "s={$search}");
+            $users = (new User())->find("MATCH(first_name, last_name, email) AGAINST(:s)", "s={$search}");
             if (!$users->count()) {
                 flash("info", "
                     <i class='icon fas fa-info'></i> Oops! Sua pesquisa não retornou resultados!

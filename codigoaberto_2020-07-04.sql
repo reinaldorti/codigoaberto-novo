@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.4.11-MariaDB)
 # Database: codigoaberto
-# Generation Time: 2020-07-04 18:07:25 +0000
+# Generation Time: 2020-07-04 18:15:29 +0000
 # ************************************************************
 
 
@@ -87,6 +87,8 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`),
   KEY `posts_category_foreign` (`category`),
   KEY `posts_author_foreign` (`author`),
+  FULLTEXT KEY `title` (`title`,`subtitle`,`content`),
+  FULLTEXT KEY `title_2` (`title`,`subtitle`,`content`),
   CONSTRAINT `posts_author_foreign` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `posts_category_foreign` FOREIGN KEY (`category`) REFERENCES `categories` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
