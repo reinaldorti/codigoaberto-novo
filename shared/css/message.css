@@ -1,0 +1,37 @@
+.message {
+    display: block;
+    padding: 10px;
+    border-left-width: 32px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.message.success {
+    color: #FFF;
+    background: #28A745;
+}
+
+.message.info {
+    color: #FFF;
+    background: #2CA2B8;
+}
+
+.message.alert {
+    color: #FFF;
+    background: #FAC108;
+}
+
+.message.error {
+    color: #FFF;
+    background: #DC3545;
+}
+
+.message a {
+    font-weight: 800;
+    color: inherit;
+}

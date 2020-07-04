@@ -1,0 +1,100 @@
+.about_area{
+    padding-top: 150px;
+    padding-bottom: 150px;
+    background: #FDF9F6;
+    @media #{$mobile_device} {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    @media #{$tablet_device} {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    @media #{$mid_device} {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .section_title{
+        p{
+            color: #575757;
+        }
+    }
+    .about_info{
+        padding-left: 68px;
+        @media #{$mobile_device}{
+            padding-left: 0;
+        }
+        @media #{$tablet_device}{
+            padding-left: 0;
+        }
+        .opening_hour{
+            font-family: $font1;
+            font-size: 30px;
+            font-weight: 400;
+            color: #252219;
+            margin-bottom: 55px;
+            margin-top: 37px;
+            span{
+                font-family: $font2;
+                color: #252219;
+                font-size: 20px;
+                margin-left: 6px;
+                display: inline-block;
+            }
+        }
+    }
+    .about_thumbs{
+        position: relative;
+        @include justify-content(flex-end);
+        @media #{$tablet_device} {
+            // display: block !important;
+            @include justify-content(flex-start);
+            margin-top: 30px;
+        }
+        @media #{$mobile_device} {
+            margin-bottom: 30px;
+        }
+        img{
+            width: 100%;
+        }
+        .large_img_1{
+            padding-right: 156px;
+            @media #{$mobile_device} {
+                padding-right: 40px;
+            }
+            @media #{$tablet_device} {
+                padding-right: 0px;
+            }
+            @media #{$mid_device} {
+                padding-right: 100px;
+            }
+        }
+        .small_img_1{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            border-top: 15px solid #ffffff;
+            border-left: 15px solid #ffffff;
+            top: 80px;
+            @media #{$mobile_device} {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                border-top: 15px solid
+                #ffffff;
+                border-left: 15px solid
+                #ffffff;
+                top: auto;
+                width: 50%;
+                height: 60%;
+            }
+            @media #{$tablet_device}{
+                bottom: -30px;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

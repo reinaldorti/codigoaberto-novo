@@ -1,0 +1,139 @@
+.prising_area{
+    position: relative;
+    background: #fdf9f6;
+    padding-top: 144px;
+    padding-bottom: 100px;
+    z-index: 0;
+    &::after{
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: '';
+        background-image: url(../img/banner/prise_bg.png);
+        height: 100%;
+        width: 100%;
+        opacity: .04;
+        z-index: -1;
+    }
+    .prise_title{
+        h4{
+            font-size: 25px;
+            color: #eb592d;
+            margin-bottom: 35px;
+        }
+    }
+    .single_service{
+        margin-bottom: 50px;
+        .service_inner{
+            .thumb{
+                img{
+                    width: 60px;
+                    height: 60px;
+                    @include border-radius(50%);
+                    overflow: hidden;
+                }
+            }
+        }
+        .hair_style_info{
+            padding-left: 20px;
+            .prise{
+                margin-bottom: 5px;
+                position: relative;
+                &::before{
+                    position: absolute;
+                    height: 1px;
+                    content: '';
+                    border-bottom: 1px dashed#d7d4d1;
+                    bottom: 7px;
+                    left: 29%;
+                    right: 12%;
+                }
+                span{
+                    font-size: 16px;
+                    color: #222222;
+                    font-family: $font1;
+                }
+            }
+            p{
+                font-size: 16px;
+                color: #7f7f7f;
+                font-weight: 400;
+                margin-bottom: 0;
+            }
+        }
+    }
+    .prising_active{
+        @media #{$mobile_device}{
+            display: block !important;
+        }
+        .single_prising{
+            overflow: hidden;
+            -webkit-box-flex: 45%;
+            -ms-flex: 45% 0 0px;
+                flex: 45% 0 0;
+                @media #{$mobile_device}{
+                    -webkit-box-flex: 100%;
+                    -ms-flex: 100% 0 0px;
+                        flex: 100% 0 0;
+                }
+           .service_inner{
+            // flex: 10% 0 0;
+            float: left;
+            overflow: hidden;
+           }
+           .hair_style_info{
+            // flex: 90% 0 0;
+            overflow: hidden;
+           }
+        }
+    }
+
+
+    .owl-carousel .owl-nav div.owl-next {
+        left: auto;
+        right: 0;
+    }
+    .owl-carousel .owl-nav div.owl-prev {
+        left: auto;
+        right: 54px;
+    }
+    .owl-carousel .owl-nav div {
+        left: 0;
+        background: #000;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        @include border-radius(4px);
+        border: 1px solid #ddc4c4;
+        background: #fff;
+        font-size: 14px;
+        color: #f39b80 !important;
+        left: auto;
+        top: -96px;
+        right: 10px;
+		-webkit-transform: translateY(0%);
+			-ms-transform: translateY(0%);
+				transform: translateY(0%);
+    }
+    .owl-carousel .owl-nav div {
+        color: #7E8D9A;
+        &:hover{
+            background: #F91842;
+            border-color: #eb592d;
+            color: #fff  !important;
+        }
+    }
+    .owl-carousel .owl-nav div.owl-prev i {
+
+        position: relative;
+        right: 1px;
+        top: -1px;
+    }
+    .owl-carousel .owl-nav div.owl-next i {
+
+        position: relative;
+        right: 0;
+        top: -1px;
+    }
+}

@@ -1,0 +1,79 @@
+.make_apppointment_area{
+    padding-top: 150px;
+    padding-bottom: 120px;
+    background: #fdf9f6;
+    @media #{$mobile_device} {
+        padding-top: 60px;
+        padding-bottom: 30px;
+    }
+    .appoint_ment_form{
+        margin-bottom: 30px;
+        form{
+            .single_field{
+                margin-bottom: 32px;
+                input,textarea{
+                    width: 100%;
+                    border: 0;
+                    padding-bottom: 3px;
+                    border-bottom: 1px solid #c1c1c1;
+                    padding-left: 10px;
+                    height: 50px;
+                    font-family: $font2;
+                    color: #000;
+                    background: transparent ;
+                    &::placeholder{
+                        color: #96989a;
+                        font-weight: 400;
+                        font-family: $font2;
+                    }
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                textarea{
+                    resize: none;
+                    margin-top: 41px;
+                    padding: 11px 20px 14px 10px;
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+
+            button{
+                transition: .3s;
+                cursor: pointer;
+            }
+            p{
+                margin-top: 17px;
+                margin-bottom: 40px;
+                font-size: 16px;
+                font-weight: 400;
+                color: #464444;
+                line-height: 30px;
+            }
+        }
+    }
+
+    // appointMent_info 
+    .appointMent_info{
+       .single_appontment{
+        margin-bottom: 36px;
+           h4{
+                font-size: 18px;
+                color: #4a4948;
+                font-weight: 400;
+           }
+           p{
+               font-size: 16px;
+               line-height: 30px;
+               color: #7f7f7f;
+               font-weight: 400;
+               margin-bottom: 0;
+               span{
+                   flex: 50% 0 0;
+               }
+           }
+       } 
+    }
+}

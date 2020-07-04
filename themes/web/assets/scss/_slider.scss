@@ -1,0 +1,109 @@
+.slider_bg_1{
+    background-image: url(../img/banner/banner.png);
+}
+.slider_area{
+    position: relative;
+    z-index: 3;
+    .single_slider{
+        height: 725px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+
+        @media #{$mobile_device} {
+            height: 600px;
+        }
+        @media #{$tablet_device} {
+            height: 600px;
+        }
+        @media #{$mid_device} {
+            height: 550px;
+        }
+        @media #{$large_device} {
+            height: 600px;
+        }
+        @media #{$large_device_2} {
+            height: 600px;
+        }
+        .slider_text{
+            position: relative;
+            z-index: 6;
+            h3{
+             color: #ffffff;
+             font-family: $font1;
+             font-size: 75px;
+             font-weight: 200;
+             margin-bottom: 4px;
+             line-height: 85px;
+             span{
+                font-weight: 800;
+             }
+             @media #{$mobile_device} {
+               font-size: 40px;
+               line-height: 50px;
+            }
+             @media #{$tablet_device} {
+               font-size: 45px;
+               line-height: 55px;
+            }
+             @media #{$mid_device} {
+               font-size: 60px;
+               line-height: 70px;
+            }
+            }
+            p{
+                font-size: 16px;
+                font-weight: 400;
+                color: #ffffff;
+                margin-bottom: 0;
+                margin-top: 0;
+                line-height: 32px;
+                display: inline-block;
+                margin-bottom: 50px;
+                margin-top: 12px;
+                br{
+                    @media #{$mobile_device} {
+                        display: none;
+                    }
+                    @media #{$tablet_device} {
+                        display: none;
+                    }
+                }
+            }
+        }
+    } 
+    .dog_thumb{
+        position: absolute;
+        bottom: 0;
+        right: 15%;
+        bottom: -94px;
+        z-index: 1;
+        @media #{$mid_device}{
+            right: 0;
+            text-align: right;
+        }
+        @media #{$large_device}{
+            right: 10%;
+            text-align: right;
+        }
+        @media #{$large_device_2}{
+            right: 10%;
+            text-align: right;
+        }
+        img{
+            max-width: 100%;
+            @media #{$mobile_device} {
+                max-width: 80%;
+            }
+            @media #{$mid_device} {
+                max-width: 80%;
+            }
+            @media #{$large_device} {
+                max-width: 80%;
+            }
+            @media #{$large_device_2} {
+                max-width: 80%;
+            }
+        }
+    }
+}
+  

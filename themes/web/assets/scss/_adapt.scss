@@ -1,0 +1,61 @@
+.adapt_area{
+    padding-bottom: 90px;
+    padding-top: 125px;
+    @media #{$mobile_device} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    @media #{$tablet_device} {
+        padding-top: 100px;
+        padding-bottom: 10px;
+    }
+    .adapt_help{
+        @media #{$mobile_device} {
+            padding-bottom: 60px;
+        }
+        @media #{$tablet_device} {
+            margin-bottom: 40px;
+        }
+        .section_title{
+            p{
+                color: #66666f;
+                line-height: 28px;
+                font-size: 16px;
+                margin-bottom: 54px;
+                margin-top: 30px;
+            }
+        }
+    }
+    .adapt_about{
+        .single_adapt{
+            margin-bottom: 40px;
+            box-shadow: 0px 16px 35px 0px rgba(0, 0, 2, 0.08);
+            border-radius: 14px;
+            background: #fff;
+            padding: 40px 40px 33px 40px;
+            img{
+
+            }
+            .adapt_content{
+                h3{
+                    font-size: 60px;
+                    font-weight: 700;
+                    font-family: $font1;
+                    color: #383737;
+                    display: inline-block;
+                    margin-bottom: 2px;
+                    margin-top: 22px;
+                    line-height: 1;
+                }
+                p{
+                    font-size: 20px;
+                    color: #808080;
+                    font-weight: 400;
+                    font-family: $font2;
+                    display: block;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
