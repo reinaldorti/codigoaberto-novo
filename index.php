@@ -89,3 +89,10 @@ if ($router->error()) {
 }
 
 ob_flush();
+
+if (!file_exists('.htaccess')):
+    $htaccesswrite = "RewriteEngine On\r\nOptions All -Indexes\r\n\r\n# ROUTER WWW Redirect.\r\nRewriteCond %{HTTP_HOST} !^www\. [NC]\r\nRewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]\r\n\r\n# ROUTER HTTPS Redirect\r\nRewriteCond %{HTTP:X-Forwarded-Proto} !https\r\nRewriteCond %{HTTPS} off\r\nRewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]\r\n\r\n# ROUTER URL Rewrite\r\nRewriteCond %{SCRIPT_FILENAME} !-f\r\nRewriteCond %{SCRIPT_FILENAME} !-d\r\nRewriteRule ^(.*)$ index.php?route=/$1";
+    $htaccess = fopen('.htaccess', "w");
+    fwrite($htaccess, str_replace("'", '"', $htaccesswrite));
+    fclose($htaccess);
+endif;

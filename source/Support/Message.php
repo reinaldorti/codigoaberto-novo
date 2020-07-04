@@ -2,6 +2,10 @@
 
 namespace Source\Support;
 
+/**
+ * Class Message
+ * @package Source\Support
+ */
 class Message
 {
     /**

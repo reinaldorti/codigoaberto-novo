@@ -9,6 +9,10 @@ use Source\Models\User;
 use Source\Support\Message;
 use Source\Support\Pager;
 
+/**
+ * Class Blog
+ * @package Source\Controllers\Admin
+ */
 class Blog extends Admin
 {
 

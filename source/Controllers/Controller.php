@@ -9,7 +9,6 @@ use Source\Support\Seo;
 
 /**
  * Class Controller
- *
  * @package Source\Controllers
  */
 class Controller

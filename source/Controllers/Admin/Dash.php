@@ -5,6 +5,10 @@ namespace Source\Controllers\Admin;
 use Source\Models\Post;
 use Source\Models\User;
 
+/**
+ * Class Dash
+ * @package Source\Controllers\Admin
+ */
 class Dash extends Admin
 {
 

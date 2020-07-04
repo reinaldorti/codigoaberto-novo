@@ -7,6 +7,10 @@ use Source\Models\User;
 use Source\Support\Email;
 use Source\Support\Message;
 
+/**
+ * Class Login
+ * @package Source\Controllers\Admin
+ */
 class Login extends Controller
 {
     /**

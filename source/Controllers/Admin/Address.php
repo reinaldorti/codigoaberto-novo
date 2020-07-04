@@ -5,6 +5,10 @@ namespace Source\Controllers\Admin;
 
 use Source\Support\Message;
 
+/**
+ * Class Address
+ * @package Source\Controllers\Admin
+ */
 class Address extends Admin
 {
     /**

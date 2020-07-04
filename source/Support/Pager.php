@@ -6,7 +6,6 @@ use CoffeeCode\Paginator\Paginator;
 
 /**
  * Class Pager
- *
  * @package Source\Support
  */
 class Pager extends Paginator

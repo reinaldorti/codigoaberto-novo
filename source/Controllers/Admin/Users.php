@@ -8,6 +8,10 @@ use Source\Models\User;
 use Source\Support\Message;
 use Source\Support\Pager;
 
+/**
+ * Class Users
+ * @package Source\Controllers\Admin
+ */
 class Users extends Admin
 {
 

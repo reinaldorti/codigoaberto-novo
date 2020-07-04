@@ -6,7 +6,6 @@ use League\Plates\Engine;
 
 /**
  * Class View
- *
  * @package Source\Support
  */
 class View
