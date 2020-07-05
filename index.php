@@ -26,6 +26,7 @@ $router->get("/banco", "Web:database");
 //blog
 $router->group("/blog");
 $router->get("/", "Web:blog","web.blog");
+$router->get("/{uri}", "Web:blogPost");
 
 /**
  * ADMIN ROUTES

@@ -106,22 +106,24 @@ class Blog extends Admin
                 return;
             }
 
-            $postCreate = new Post();
-            $postCreate->title = $data["title"];
-            $postCreate->subtitle = $data["subtitle"];
-            $postCreate->uri = str_slug($postCreate->title);
-            $postCreate->tag = $data["tag"];
-            $postCreate->video = $data["video"];
-            $postCreate->status = $data["status"];
-            $postCreate->author = $data["author"];
-            $postCreate->title = $data["title"];
-            $postCreate->content = str_replace(["{title}"], [$postCreate->title], $content);
-            $postCreate->subtitle = $data["subtitle"];
-            $postCreate->created_at = date("Y-m-d H:i:s");
-            $postCreate->save();
+            $post = new Post();
+            $post->title = $data["title"];
+            $post->subtitle = $data["subtitle"];
+            $post->uri = (!empty($data["uri"]) ? str_slug($data["uri"]) : str_slug($post->title));
+            $post->tag = $data["tag"];
+            $post->video = $data["video"];
+            $post->status = $data["status"];
+            $post->author = $data["author"];
+            $post->title = $data["title"];
+            $post->content = str_replace(["{title}"], [$post->title], $content);
+            $post->subtitle = $data["subtitle"];
+            $post->post_at = (!empty($data["post_at"]) ? date("Y-m-d H:i:s", strtotime($data["post_at"])) : date("Y-m-d H:i:s"));
+
+            $post->created_at = date("Y-m-d H:i:s");
+            $post->save();
 
             if (!empty($_FILES["cover"])) {
-                $upload = new \CoffeeCode\Uploader\Image("storage", "posts");
+                $upload = new Image("storage", "posts");
                 $file = $_FILES["cover"];
 
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
@@ -132,21 +134,21 @@ class Blog extends Admin
                     return;
                 }
 
-                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$postCreate->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$postCreate->cover}")) {
-                    unlink(CONF_UPLOAD["STORAGE"] . "/{$postCreate->cover}");
+                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$post->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$post->cover}")) {
+                    unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $postCreate->id . "-" . str_slug($postCreate->title), 500);
+                $uploaded = $upload->upload($file, $post->id . "-" . str_slug($post->title), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
-                $postCreate->cover = $cover;
-                $postCreate->save();
+                $post->cover = $cover;
+                $post->save();
             }
 
             flash("success", "
                 <i class='icon fas fa-check'></i> Post cadastrado com sucesso!
             ");
             echo Message::ajaxResponse("redirect", [
-                "url" => url("admin/blog/post/{$postCreate->id}")
+                "url" => url("admin/blog/post/{$post->id}")
             ]);
             return;
         }
@@ -176,19 +178,20 @@ class Blog extends Admin
                 return;
             }
 
-            $postEdit = (new Post())->findById("{$data["post_id"]}");
-            $postEdit->title = $data["title"];
-            $postEdit->subtitle = $data["subtitle"];
-            $postEdit->uri = str_slug($postEdit->title);
-            $postEdit->tag = $data["tag"];
-            $postEdit->video = $data["video"];
-            $postEdit->status = $data["status"];
-            $postEdit->author = $data["author"];
-            $postEdit->title = $data["title"];
-            $postEdit->content = str_replace(["{title}"], [$postEdit->title], $content);
-            $postEdit->subtitle = $data["subtitle"];
-            $postEdit->updated_at = date("Y-m-d H:i:s");
-            $postEdit->save();
+            $post = (new Post())->findById("{$data["post_id"]}");
+            $post->title = $data["title"];
+            $post->subtitle = $data["subtitle"];
+            $post->uri = (!empty($data["uri"]) ? str_slug($data["uri"]) : str_slug($post->title));
+            $post->tag = $data["tag"];
+            $post->video = $data["video"];
+            $post->status = $data["status"];
+            $post->author = $data["author"];
+            $post->title = $data["title"];
+            $post->content = str_replace(["{title}"], [$post->title], $content);
+            $post->subtitle = $data["subtitle"];
+            $post->post_at = (!empty($data["post_at"]) ? date("Y-m-d H:i:s", strtotime($data["post_at"])) : date("Y-m-d H:i:s"));
+            $post->updated_at = date("Y-m-d H:i:s");
+            $post->save();
 
             if (!empty($_FILES["cover"])) {
                 $upload = new \CoffeeCode\Uploader\Image("storage", "posts");
@@ -202,21 +205,21 @@ class Blog extends Admin
                     return;
                 }
 
-                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$postEdit->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$postEdit->cover}")) {
-                    unlink(CONF_UPLOAD["STORAGE"] . "/{$postEdit->cover}");
+                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$post->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$post->cover}")) {
+                    unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $postEdit->id . "-" . str_slug($postEdit->title), 500);
+                $uploaded = $upload->upload($file, $post->id . "-" . str_slug($post->title), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
-                $postEdit->cover = $cover;
-                $postEdit->save();
+                $post->cover = $cover;
+                $post->save();
             }
 
             flash("success", "
-                <i class='icon fas fa-check'></i> Post cadastrado com sucesso!
+                <i class='icon fas fa-check'></i> Post atualizado com sucesso!
             ");
             echo Message::ajaxResponse("redirect", [
-                "url" => url("admin/blog/post/{$postEdit->id}")
+                "url" => url("admin/blog/post/{$post->id}")
             ]);
             return;
         }
@@ -228,10 +231,10 @@ class Blog extends Admin
             asset("/assets/images/logo/logo.png")
         );
 
-        $postEdit = null;
+        $post = null;
         if (!empty($data["post_id"])) {
             $postId = filter_var($data["post_id"], FILTER_VALIDATE_INT);
-            $postEdit = (new Post())->findById("{$postId}");
+            $post = (new Post())->findById("{$postId}");
         }
 
         $csrf = csrf_input();
@@ -239,7 +242,7 @@ class Blog extends Admin
             "app" => "blog/post",
             "head" => $head,
             "csrf" => $csrf,
-            "post" => $postEdit,
+            "post" => $post,
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
 
         ]);

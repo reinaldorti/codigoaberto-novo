@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?= asset("assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css", CONF_VIEW['ADMIN']); ?>">
   <link rel="stylesheet" href="<?= asset("assets/plugins/daterangepicker/daterangepicker.css", CONF_VIEW['ADMIN']); ?>">
   <link rel="stylesheet" href="<?= asset("assets/plugins/summernote/summernote-bs4.css", CONF_VIEW['ADMIN']); ?>">
+  <link rel="stylesheet" href="<?= asset("assets/datepicker/datepicker.min.css", CONF_VIEW['ADMIN']); ?>">
   <link rel="stylesheet" href="<?= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -97,6 +98,10 @@
 <!--<script src="--><?//= asset('assets/plugins/summernote/summernote-bs4.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
 <script src="<?= url("shared/js/tinymce/tinymce.min.js"); ?>"></script>
 <script src="<?= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script>
+
+<script src="<?= asset('assets/datepicker/datepicker.min.js', CONF_VIEW['ADMIN']); ?>"></script>
+<script src="<?= asset('assets/datepicker/datepicker.pt-BR.js', CONF_VIEW['ADMIN']); ?>"></script>
+
 <script src="<?= asset('assets/plugins/select2/js/select2.full.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 <?= $v->section("scripts"); ?>
 </body>

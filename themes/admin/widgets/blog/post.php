@@ -123,6 +123,22 @@ $v->layout("dash"); ?>
                                         </div>
                                     </div>
 
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Data de publicação</label>
+                                            <input type="text" name="post_at" class="js_datepicker form-control"
+                                                   placeholder="Data de publicação">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Link alternativo</label>
+                                            <input type="text" name="uri" class="form-control"
+                                                   placeholder="Link alternativo">
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Conteúdo</label>
@@ -224,6 +240,24 @@ $v->layout("dash"); ?>
                                         </div>
                                     </div>
 
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Data de publicação</label>
+                                            <input type="text" name="post_at" class="js_datepicker form-control"
+                                                   value="<?= date("d/m/Y", strtotime($post->post_at)); ?>"
+                                                   placeholder="Data de publicação"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Link alternativo</label>
+                                            <input type="text" name="uri" class="form-control"
+                                                   value="<?= $post->uri; ?>" placeholder="Link alternativo">
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Conteúdo</label>
@@ -249,6 +283,12 @@ $v->layout("dash"); ?>
         //SELECT 2
         $(document).ready(function () {
             $('.js-example-basic-single').select2();
+        });
+
+        //AIR DATEPICKER
+        $('.js_datepicker').datepicker({
+            language: 'pt-BR',
+            autoClose: true
         });
     </script>
 <?php $v->end(); ?>

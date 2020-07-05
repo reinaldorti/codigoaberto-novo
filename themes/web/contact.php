@@ -1,7 +1,6 @@
 
 <?php $v->layout("_theme"); ?>
 
-<!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg">
     <div class="container">
         <div class="row">
@@ -13,7 +12,6 @@
         </div>
     </div>
 </div>
-<!-- bradcam_area_end -->
 
 <section class="contact-section" id="contact">
     <div class="container">

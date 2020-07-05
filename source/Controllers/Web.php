@@ -3,8 +3,10 @@
 
 namespace Source\Controllers;
 
+use Source\Models\Post;
 use Source\Support\Message;
 use Source\Support\Email;
+use Source\Support\Pager;
 /**
  * Class Web
  * @package Source\Controllers
@@ -61,15 +63,44 @@ class Web extends Controller
      */
     public function blog(?array $data): void
     {
+        $blog = (new Post())->find();
+        $pager = new Pager(url("/blog/p/"));
+        $pager->pager($blog->count(), 10, ($data['page'] ?? 1));
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            "Blog - " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("blog", [
-            "head" => $head
+            "head" => $head,
+            "blog" => $blog->order("id DESC")->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "paginator" => $pager->render()
+        ]);
+    }
+
+    /**
+     * SITE BLOG POST
+     * @param array $data
+     */
+    public function blogPost(array $data): void
+    {
+        $post = (new Post())->find("uri = :url", "url={$data['uri']}")->fetch();
+        if (!$post) {
+            redirect("/404");
+        }
+
+        $head = $this->seo->render(
+            "{$post->title} - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
+            url(),
+            asset("/assets/images/logo/logo.png")
+        );
+
+        echo $this->view->render("blog-post", [
+            "head" => $head,
+            "post" => $post
         ]);
     }
 

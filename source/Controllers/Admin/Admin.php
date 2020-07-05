@@ -35,8 +35,7 @@ class Admin extends Controller
         $user = (new User())->findById("{$_SESSION["user"]}");
         if ($user->level < 6) {
             unset($_SESSION["user"]);
-            flash("alert", "
-                <i class='icon fas fa-ban'></i> Oops! Você não tem permissão de acesso!
+            flash("alert", "<i class='icon fas fa-ban'></i>Oops! Você não tem permissão de acesso!
             ");
             redirect("/admin");
         }

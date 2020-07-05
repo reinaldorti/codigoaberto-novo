@@ -16,7 +16,7 @@ class Post extends DataLayer
      */
     public function __construct()
     {
-        parent::__construct("posts", ["title", "uri", "subtitle", "content"]);
+        parent::__construct("posts", ["title", "subtitle", "content"]);
     }
 
     /**
@@ -31,5 +31,17 @@ class Post extends DataLayer
         }
 
         return parent::save();
+    }
+
+
+    /**
+     * @return null|User
+     */
+    public function author(): ?User
+    {
+        if ($this->author) {
+            return (new User())->find("id = :id", "id={$this->author}")->fetch();
+        }
+        return null;
     }
 }

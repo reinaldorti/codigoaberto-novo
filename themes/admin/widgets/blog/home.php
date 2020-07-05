@@ -81,20 +81,24 @@ $v->layout("dash"); ?>
                                         ?>
                                         <tr>
                                             <td><?= str_pad($post->id, 4, 0, STR_PAD_LEFT); ?></td>
-                                            <td><?= $post->title; ?></td>
+                                            <td><?= str_chars($post->title, 60); ?></td>
                                             <td><?= status($post->status); ?></td>
                                             <td><?= date('d/m/Y', strtotime($post->created_at)); ?></td>
                                             <td>
                                                 <div class="col-12 note" id="<?= $post->id; ?>">
-                                                    <a class="btn btn-info btn-sm"
+                                                    <a class="btn btn-success btn-sm" title="Ver post"
+                                                       href="<?= url("/blog/{$post->uri}"); ?>" target="_blank">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+
+                                                    <a class="btn btn-info btn-sm" title="Editar post"
                                                        href="<?= url("/admin/blog/post/{$post->id}"); ?>">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
 
-                                                    <a href="#" rel="note"
+                                                    <a href="#" title="Remover post" rel="note"
                                                        class="btn btn-danger btn-sm js_delete_action"
-                                                       id="<?= $post->id; ?>" title="Remover">
-                                                        <i class="fas fa-trash"></i>
+                                                       id="<?= $post->id; ?>" > <i class="fas fa-trash"></i>
                                                     </a>
 
                                                     <a href="<?= url("/admin/blog/delete/{$post->id}"); ?>" rel="note"
