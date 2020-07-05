@@ -61,11 +61,11 @@ class Web extends Controller
      * SITE BLOG
      * @param array|null $data
      */
-    public function blog(?array $data): void
+    public function posts(?array $data): void
     {
-        $blog = (new Post())->find();
+        $posts = (new Post())->find("post_at <= NOW()");
         $pager = new Pager(url("/blog/p/"));
-        $pager->pager($blog->count(), 10, ($data['page'] ?? 1));
+        $pager->pager($posts->count(), 10, ($data['page'] ?? 1));
         $head = $this->seo->render(
             "Blog - " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
@@ -73,9 +73,9 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("blog", [
+        echo $this->view->render("posts", [
             "head" => $head,
-            "blog" => $blog->order("id DESC")->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "posts" => $posts->order("id DESC")->limit($pager->limit())->offset($pager->offset())->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -84,12 +84,15 @@ class Web extends Controller
      * SITE BLOG POST
      * @param array $data
      */
-    public function blogPost(array $data): void
+    public function post(array $data): void
     {
         $post = (new Post())->find("uri = :url", "url={$data['uri']}")->fetch();
         if (!$post) {
             redirect("/404");
         }
+
+        $post->views += 1;
+        $post->save();
 
         $head = $this->seo->render(
             "{$post->title} - " . CONF_SITE['NAME'],
@@ -98,7 +101,7 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("blog-post", [
+        echo $this->view->render("post", [
             "head" => $head,
             "post" => $post
         ]);

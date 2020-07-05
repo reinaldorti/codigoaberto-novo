@@ -33,15 +33,12 @@
     "league/plates": "v4.0.0-alpha",
     "league/oauth2-facebook": "2.0.1",
     "league/oauth2-google": "3.0.2",
-    "illuminate/database": "^7.0",
-    "illuminate/events": "^7.0",
     "matthiasmullie/minify": "^1.3",
     "coffeecode/router": "1.0.7",
     "coffeecode/datalayer": "1.1.4",
     "coffeecode/paginator": "^1.0",
     "coffeecode/optimizer": "2.0.0",
     "coffeecode/uploader": "1.0.*",
-    "coffeecode/cropper": "1.2.*",
-    "facade/ignition": "^2.0"
+    "coffeecode/cropper": "1.2.*"
   }
 }

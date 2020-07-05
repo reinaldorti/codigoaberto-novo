@@ -25,7 +25,7 @@ $v->layout("dash"); ?>
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-6">
-                                    <form action="<?= url("/admin/blog/home"); ?>" method="post">
+                                    <form action="<?= url("/admin/posts/home"); ?>" method="post">
                                         <div class="input-group input-group-sm" style="width: 150px;">
                                             <input type="text" name="s" class="form-control float-right"
                                                    value="<?= $search; ?>" placeholder="Search" required>
@@ -38,7 +38,7 @@ $v->layout("dash"); ?>
                                 </div>
 
                                 <div class="col-6">
-                                    <a href="<?= url('admin/blog/post'); ?>" class="btn btn-success float-right">
+                                    <a href="<?= url('admin/posts/post'); ?>" class="btn btn-success float-right">
                                         Novo Post
                                     </a>
                                 </div>
@@ -92,7 +92,7 @@ $v->layout("dash"); ?>
                                                     </a>
 
                                                     <a class="btn btn-info btn-sm" title="Editar post"
-                                                       href="<?= url("/admin/blog/post/{$post->id}"); ?>">
+                                                       href="<?= url("/admin/posts/post/{$post->id}"); ?>">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
 
@@ -101,7 +101,7 @@ $v->layout("dash"); ?>
                                                        id="<?= $post->id; ?>" > <i class="fas fa-trash"></i>
                                                     </a>
 
-                                                    <a href="<?= url("/admin/blog/delete/{$post->id}"); ?>" rel="note"
+                                                    <a href="<?= url("/admin/posts/delete/{$post->id}"); ?>" rel="note"
                                                        class="btn btn-warning btn-sm js_delete_action_confirm"
                                                        id="<?= $post->id; ?>" title="Remover agora?"
                                                        style="display: none;">

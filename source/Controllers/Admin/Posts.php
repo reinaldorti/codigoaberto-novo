@@ -13,7 +13,7 @@ use Source\Support\Pager;
  * Class Blog
  * @package Source\Controllers\Admin
  */
-class Blog extends Admin
+class Posts extends Admin
 {
 
     /**
@@ -37,7 +37,7 @@ class Blog extends Admin
             $s = str_search($data["s"]);
 
             echo Message::ajaxResponse("redirect", [
-                "url" => url("/admin/blog/home/{$s}/1")
+                "url" => url("/admin/posts/home/{$s}/1")
             ]);
             return;
         }
@@ -51,12 +51,12 @@ class Blog extends Admin
             //$posts = (new User())->find("first_name LIKE = %{$search}%");
             if (!$posts->count()) {
                 flash("info", "Oops! Sua pesquisa não retornou resultados!");
-                redirect("/admin/blog/home");
+                redirect("/admin/posts/home");
             }
         }
 
         $all = ($search ?? "all");
-        $pager = new Pager(url("/admin/blog/home/{$all}/"));
+        $pager = new Pager(url("/admin/posts/home/{$all}/"));
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
 
         $head = $this->seo->render(
@@ -66,7 +66,7 @@ class Blog extends Admin
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("widgets/blog/home", [
+        echo $this->view->render("widgets/posts/home", [
             "app" => "posts",
             "head" => $head,
             "search" => $search,
@@ -148,7 +148,7 @@ class Blog extends Admin
                 <i class='icon fas fa-check'></i> Post cadastrado com sucesso!
             ");
             echo Message::ajaxResponse("redirect", [
-                "url" => url("admin/blog/post/{$post->id}")
+                "url" => url("admin/posts/post/{$post->id}")
             ]);
             return;
         }
@@ -219,7 +219,7 @@ class Blog extends Admin
                 <i class='icon fas fa-check'></i> Post atualizado com sucesso!
             ");
             echo Message::ajaxResponse("redirect", [
-                "url" => url("admin/blog/post/{$post->id}")
+                "url" => url("admin/posts/post/{$post->id}")
             ]);
             return;
         }
@@ -238,7 +238,7 @@ class Blog extends Admin
         }
 
         $csrf = csrf_input();
-        echo $this->view->render("widgets/blog/post", [
+        echo $this->view->render("widgets/posts/post", [
             "app" => "blog/post",
             "head" => $head,
             "csrf" => $csrf,
@@ -259,7 +259,7 @@ class Blog extends Admin
 
         if (!$post) {
             flash("error", "Oops! Você tentou gerenciar um post que não existe!");
-            redirect("admin/blog/home");
+            redirect("admin/posts/home");
         }
 
         if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$post->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$post->cover}")) {

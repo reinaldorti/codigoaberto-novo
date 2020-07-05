@@ -21,12 +21,11 @@ $router->get("/", "Web:home");
 $router->get("/sobre", "Web:about");
 $router->get("/contato", "Web:contact");
 $router->post("/contato", "Web:contact");
-$router->get("/banco", "Web:database");
 
 //blog
 $router->group("/blog");
-$router->get("/", "Web:blog","web.blog");
-$router->get("/{uri}", "Web:blogPost");
+$router->get("/", "Web:posts");
+$router->get("/{uri}", "Web:post");
 
 /**
  * ADMIN ROUTES
@@ -58,15 +57,15 @@ $router->post("/users/user/{user_id}", "Users:user");
 $router->get("/users/delete/{user_id}", "Users:delete");
 $router->post("/users/address/{user_id}", "Address:address");
 
-//blog
-$router->get("/blog/home", "Blog:home");
-$router->post("/blog/home", "Blog:home");
-$router->get("/blog/post", "Blog:post");
-$router->post("/blog/post", "Blog:post");
-$router->get("/blog/post/{post_id}", "Blog:post");
-$router->post("/blog/post/{post_id}", "Blog:post");
-$router->get("/blog/home/{search}/{page}", "Blog:home");
-$router->get("/blog/delete/{id}", "Blog:delete");
+//posts
+$router->get("/posts/home", "Posts:home");
+$router->post("/posts/home", "Posts:home");
+$router->get("/posts/post", "Posts:post");
+$router->post("/posts/post", "Posts:post");
+$router->get("/posts/post/{post_id}", "Posts:post");
+$router->post("/posts/post/{post_id}", "Posts:post");
+$router->get("/posts/home/{search}/{page}", "Posts:home");
+$router->get("/posts/delete/{id}", "Posts:delete");
 
 //END ADMIN
 $router->namespace("Source\Controllers");

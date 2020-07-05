@@ -1,7 +1,6 @@
 
 <?php $v->layout("_theme"); ?>
 
-<!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg">
     <div class="container">
         <div class="row">
@@ -19,14 +18,14 @@
         <div class="row">
             <div class="col-lg-8 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar">
-                    <?php if (empty($blog)): ?>
+                    <?php if (empty($posts)): ?>
                         <div class="login_form_callback"><div class="message info">
                                 <i class="fa fa-info"></i>
                                 Oops! Não existe artigos cadastrados no momento!
                             </div>
                         </div>
                     <?php else:
-                        foreach ($blog as $post):
+                        foreach ($posts as $post):
                             $cover = (!empty($post->cover) ? image($post->cover) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
                             ?>
                             <article class="blog_item">
@@ -35,7 +34,7 @@
                                     <a href="#" class="blog_item_date">
                                         <h3><?= date("d", strtotime($post->created_at)); ?></h3>
                                         <p><?= date("m", strtotime($post->created_at)); ?></p>
-                                    </a href="#">
+                                    </a>
                                 </div>
 
                                 <div class="blog_details">
@@ -45,7 +44,7 @@
                                     <p><?= $post->subtitle; ?></p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i> <?= "{$post->author()->first_name} {$post->author()->last_name}"; ?></a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        <li><a href="#"><i class="fa fa-calendar"></i> <?= date("d/m-Y", strtotime($post->created_at)); ?></a></li>
                                     </ul>
                                 </div>
                             </article>

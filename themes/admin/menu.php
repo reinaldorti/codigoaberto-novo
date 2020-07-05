@@ -30,7 +30,7 @@
 
         echo $nav("tachometer-alt", "dash", "Dashboard");
         echo $nav("users", "users/home", "Usuários");
-        echo $nav("edit", "blog/home", "Blog");
+        echo $nav("edit", "posts/home", "Posts");
 
         echo"
             <li class='nav-item has-treeview menu-open'>

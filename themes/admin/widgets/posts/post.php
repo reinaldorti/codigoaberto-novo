@@ -16,7 +16,7 @@ $v->layout("dash"); ?>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= url('admin/dash'); ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="<?= url('admin/blog/home'); ?>">Blog</a></li>
+                        <li class="breadcrumb-item"><a href="<?= url('admin/posts/home'); ?>">Blog</a></li>
                         <li class="breadcrumb-item active">Novo</li>
                     </ol>
                 </div>
@@ -26,7 +26,7 @@ $v->layout("dash"); ?>
 
     <div class="mce_upload" style="z-index: 997;">
         <div class="mce_upload_box">
-            <form action="<?= url("admin/blog/post"); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= url("admin/posts/post"); ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="upload" value="true"/>
                 <input type="hidden" name="action" value="create"/>
                 <label>
@@ -43,7 +43,7 @@ $v->layout("dash"); ?>
             <div class="row">
                 <?php if (!$post): ?>
                     <div class="col-12 card card-primary">
-                        <form action="<?= url('admin/blog/post'); ?>" method="post">
+                        <form action="<?= url('admin/posts/post'); ?>" method="post">
                             <input type="hidden" name="action" value="create"/>
                             <?= $csrf; ?>
 
@@ -155,7 +155,7 @@ $v->layout("dash"); ?>
                     </div>
                 <?php else: ?>
                     <div class="col-12 card card-primary">
-                        <form action="<?= url("admin/blog/post/{$post->id}"); ?>" method="post">
+                        <form action="<?= url("admin/posts/post/{$post->id}"); ?>" method="post">
                             <input type="hidden" name="action" value="update"/>
                             <?= $csrf; ?>
 
