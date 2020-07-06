@@ -32,7 +32,7 @@ define("CONF_VIEW", [
  */
 define("CONF_URl", [
     "BASE" => "https://www.seudominio.com.br",
-    "TEST" => "https://www.localhost/cursos/codigoaberto-anipat"
+    "TEST" => "https://www.localhost/cursos/codigoaberto-new"
 ]);
 
 /**
