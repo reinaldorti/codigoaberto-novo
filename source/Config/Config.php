@@ -31,8 +31,8 @@ define("CONF_VIEW", [
  * PROJECT URLs
  */
 define("CONF_URl", [
-    "BASE" => "https://www.seudominio.com.br",
-    "TEST" => "https://www.localhost/cursos/codigoaberto-new"
+    "TEST" => "https://localhost/cursos/codigoaberto-new",
+    "BASE" => "https://www.seudominio.com.br"
 ]);
 
 /**
@@ -111,7 +111,7 @@ define("CONF_MAIL", [
     "MODE" => "tls",
     "FROM_NAME" => "Reinaldo",
     "FROM_LASTNAME" => "Dorti",
-    "FROM_EMAIL" => "reinaldorti@gmail.com",
+    "FROM_EMAIL" => "dortistudio@gmail.com",
     "FROM_TELEPHONE" => "+55 (17) 99116-3205",
     "FROM_WHATSAPP"=> "5517991163205"
 ]);

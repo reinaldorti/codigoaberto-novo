@@ -145,6 +145,16 @@ $v->layout("dash"); ?>
 
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
+                                                                <label>Notificar usuário</label>
+                                                                <select class="form-control js-example-basic-single" name="send_email">
+                                                                    <option value="1">Sim</option>
+                                                                    <option value="2" selected="selected">Não</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
                                                                 <label>Senha (*)</label>
                                                                 <input type="password" name="password" class="form-control" placeholder="Senha">
                                                             </div>

@@ -5,6 +5,7 @@ namespace Source\Controllers\Admin;
 
 use CoffeeCode\Uploader\Image;
 use Source\Models\User;
+use Source\Support\Email;
 use Source\Support\Message;
 use Source\Support\Pager;
 
@@ -83,7 +84,7 @@ class Users extends Admin
         if (!empty($data["action"]) && $data["action"] == "create") {
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-            $form = [$data["first_name"], $data["last_name"], $data["email"], $data["genre"], $data["level"], $data["status"], $data["password"]];
+            $form = [$data["first_name"], $data["last_name"], $data["email"], $data["telephone"], $data["genre"], $data["level"], $data["status"], $data["password"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -142,6 +143,40 @@ class Users extends Admin
                 return;
             }
 
+            if($data["send_email"] == 1){
+
+                $link = url('admin');
+                $button = "ACESSAR CONTA";
+
+                $message = "
+                    <strong style='font-size:17px'>Prezado(a), {$user->first_name}!</strong> <br>
+                    Sua conta acaba de ser criada no site  " . CONF_SITE['NAME'] . "!<br><br>
+                
+                    <b>DADOS DE ACESSO:</b>
+                    <p>
+                        <b>E-mail:</b> {$user->email}<br/>
+                        <b>Senha:</b> <b style='color:#FF0000; font-family: Consolas; font-weight:bold;'>{$data["password"]}</b>
+                    </p>  
+                                                          
+                    <b>DÚVIDAS, CRÍTICAS OU SUGESTÕES?</b> <br>
+                    Estamos sempre à disposição para melhor atendê-los! Você sempre pode contar com nossa equipe de suporte!<br><br>
+                
+                    <p> — Atenciosamente " . CONF_SITE['NAME'] . "</p>
+                ";
+
+                $email = new Email();
+                $email->add(
+                    "Bem-vindo (a) {$data["first_name"]}! | " . CONF_SITE['NAME'],
+                    $this->view->render("templates/email", [
+                        "message" => $message,
+                        "button" => $button,
+                        "link" => $link
+                    ]),
+                    "{$data["first_name"]} {$data["last_name"]}",
+                    $data["email"]
+                )->send();
+            }
+
             if (!empty($_FILES["photo"])) {
                 $upload = new Image("storage", "users");
                 $file = $_FILES["photo"];
@@ -176,6 +211,7 @@ class Users extends Admin
         //update
         if (!empty($data["action"]) && $data["action"] == "update") {
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
             $user = (new User())->findById("{$data["user_id"]}");
 
             if (!$user) {
@@ -186,7 +222,7 @@ class Users extends Admin
                 return;
             }
 
-            $form = [$data["first_name"], $data["last_name"], $data["email"], $data["genre"], $data["level"], $data["status"]];
+            $form = [$data["first_name"], $data["last_name"], $data["email"], $data["telephone"], $data["genre"], $data["level"], $data["status"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -231,6 +267,7 @@ class Users extends Admin
             $user->first_name = $data["first_name"];
             $user->last_name = $data["last_name"];
             $user->email = $data["email"];
+            $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
             $user->password = (!empty($data["password"]) ? $data["password"] : $user->password);
             $user->level = $data["level"];
             $user->genre = $data["genre"];

@@ -94,7 +94,7 @@ function redirect(string $url): void
  */
 function url(string $path = null): string
 {
-    if(strpos($_SERVER['HTTP_HOST'], "localhost")) {
+    if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localhost') {
         if ($path) {
             return CONF_URl['TEST'] . "/" . ($path[0] == "/" ? mb_substr($path, 1) : $path);
         }
@@ -115,7 +115,7 @@ function url(string $path = null): string
  */
 function asset(string $path = null, string $asset = CONF_VIEW['THEME']): string
 {
-    if(strpos($_SERVER['HTTP_HOST'], "localhost")) {
+    if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localhost') {
         if ($path) {
             return CONF_URl['TEST'] . "/themes/{$asset}/" . ($path[0] == "/" ? mb_substr($path, 1) : $path);
         }

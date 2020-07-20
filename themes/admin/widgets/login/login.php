@@ -12,12 +12,13 @@
             <form action="<?= url("/admin/login"); ?>" method="post">
                 <input type="hidden" name="action" value="login"/>
                 <?= $csrf; ?>
+
                 <div class="login_form_callback">
                     <?= flash(); ?>
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="text" name="email" class="form-control" placeholder="E-mail" value="reinaldorti@gmail.com">
+                    <input type="text" name="email" class="form-control" placeholder="E-mail" value="dortistudio@gmail.com">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
