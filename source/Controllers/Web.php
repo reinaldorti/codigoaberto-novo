@@ -154,7 +154,7 @@ class Web extends Controller
             $mail = new Email();
             $mail->add(
                 $data["subject"],
-                $this->view->render("template/email", [
+                $this->view->render("templates/email", [
                     "data" => $data,
                     "message" => $data["message"],
                     "link" => url(),

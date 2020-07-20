@@ -198,7 +198,7 @@ class Login extends Controller
                     $Mail = new Email();
                     $Mail->add(
                         "Tudo certo {$user->first_name}? | " . CONF_SITE['NAME'],
-                        $this->view->render("template/email", [
+                        $this->view->render("templates/email", [
                             "message" => $message,
                             "button" => $button,
                             "link" => $link
@@ -326,7 +326,7 @@ class Login extends Controller
             $mail = new Email();
             $mail->add(
                 "Recupere sua senha | " . CONF_SITE["NAME"],
-                $this->view->render("template/email", [
+                $this->view->render("templates/email", [
                     "message" => $message,
                     "button" => $button,
                     "link" => $link
@@ -458,7 +458,7 @@ class Login extends Controller
             $mail = new Email();
             $mail->add(
                 "Tudo certo {$user->first_name}! | " . CONF_SITE['NAME'],
-                $this->view->render("template/email", [
+                $this->view->render("templates/email", [
                     "message" => $message,
                     "button" => $button,
                     "link" => $link
