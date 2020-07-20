@@ -88,7 +88,7 @@ class Users extends Admin
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "Oops! Por favor, preencha todos os campos (*) obrigatórios!"
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Os os campos (*) são obrigatórios!"
                 ]);
                 return;
             }
@@ -96,10 +96,11 @@ class Users extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "                 
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "  
+                        <i class='icon fas fa-exclamation-triangle'></i>               
+                        Oops! Erro ao enviar o formulário!<br>
+                        Por favor, atualize a página e tente novamente!
+                    "
                 ]);
                 return;
             }
@@ -108,7 +109,7 @@ class Users extends Admin
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
                     "message" => "
-                    <i class='fa fa-warning'></i>
+                    <i class='icon fas fa-exclamation-triangle'></i>
                     Oops! O e-email informado não é válido!
                 "
                 ]);
@@ -119,11 +120,12 @@ class Users extends Admin
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
                     "message" => "
+                    <i class='icon fas fa-exclamation-triangle'></i>
                     Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
                 "
                 ]);
                 return;
-            };
+            }
 
             $user = new User();
             $user->first_name = $data["first_name"];
@@ -217,7 +219,10 @@ class Users extends Admin
             if (!$user) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "Oops! Você tentou gerenciar um usuário que não existe!"
+                    "message" => "
+                        <i class='icon fas fa-ban'></i>
+                        Oops! Você tentou gerenciar um usuário que não existe!
+                    "
                 ]);
                 return;
             }
@@ -226,7 +231,10 @@ class Users extends Admin
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "Oops! Por favor, preencha todos os campos (*) obrigatórios!"
+                    "message" => "
+                        <i class='icon fas fa-ban'></i>
+                        Oops! Por favor, preencha todos os campos (*) obrigatórios!
+                    "
                 ]);
                 return;
             }
@@ -234,10 +242,11 @@ class Users extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "                  
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "
+                        <i class='icon fas fa-exclamation-triangle'></i>                  
+                        Oops! Erro ao enviar o formulário!<br>
+                        Por favor, atualize a página e tente novamente!
+                    "
                 ]);
                 return;
             }
@@ -246,8 +255,9 @@ class Users extends Admin
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
                     "message" => "
-                    Oops! O e-email informado não é válido!
-                "
+                        <i class='icon fas fa-exclamation-triangle'></i>
+                        Oops! O e-email informado não é válido!
+                    "
                 ]);
                 return;
             }
@@ -257,8 +267,9 @@ class Users extends Admin
                     echo Message::ajaxResponse("message", [
                         "type" => "alert",
                         "message" => "
-                        Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
-                    "
+                            <i class='icon fas fa-exclamation-triangle'></i>
+                            Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
+                        "
                     ]);
                     return;
                 }
@@ -268,7 +279,6 @@ class Users extends Admin
             $user->last_name = $data["last_name"];
             $user->email = $data["email"];
             $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
-            $user->password = (!empty($data["password"]) ? $data["password"] : $user->password);
             $user->level = $data["level"];
             $user->genre = $data["genre"];
             $user->status = $data["status"];
@@ -289,7 +299,7 @@ class Users extends Admin
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "Oops! Selecione uma imagem válida!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! Selecione uma imagem válida!"
                     ]);
                     return;
                 }
@@ -307,6 +317,75 @@ class Users extends Admin
             flash("success", "<i class='icon fas fa-check'></i> Usuário ataualizado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/users/user/{$user->id}")
+            ]);
+            return;
+        }
+
+        //password
+        if (!empty($data["action"]) && $data["action"] == "password") {
+
+            $password = [$data["password_at"], $data["password"], $data["password_re"]];
+            if (in_array("", $password)) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Preencha todos os campus para continuar!"
+                ]);
+                return;
+            }
+
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "  
+                        <i class='icon fas fa-exclamation-triangle'></i>              
+                        Oops! Erro ao enviar o formulário!<br>
+                        Por favor, atualize a página e tente novamente!
+                    "
+                ]);
+                return;
+            }
+
+            if (!is_passwd($data["password"])){
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "
+                        <i class='icon fas fa-exclamation-triangle'></i>
+                        Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
+                    "
+                ]);
+                return;
+            }
+
+            if ($data["password"] != $data["password_re"]) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Você informe 2 senhas diferentes!"
+                ]);
+                return;
+            }
+
+            $user = (new User())->find("id = :id", "id={$data["user_id"]}")->fetch();
+
+            if (!passwd_verify($data["password_at"], $user->password)) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Sua senha atual não conferem!"
+                ]);
+                return;
+            }
+
+            $user->password = $data["password"];
+            $user->save();
+
+            echo Message::ajaxResponse("message", [
+                "type" => "success",
+                "message" => "
+                    <i class='icon fas fa-check'></i> 
+                    Tudo certo, {$user->first_name}! Senha foi alterada com sucesso!
+                ",
+                "clear" => [
+                    "clear" => true,
+                ],
             ]);
             return;
         }
@@ -343,7 +422,7 @@ class Users extends Admin
         $userDelete = (new User())->findById("{$data["user_id"]}");
         if (!$userDelete) {
             flash("error", "
-                <i class='icon fas fa-ban'></i> 
+                <i class='icon fas fa-ban'></i>
                 Oops! Você tentou deletar um usuário que não existe!
             ");
             redirect("admin/users/home");

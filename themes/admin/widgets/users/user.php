@@ -40,6 +40,10 @@ $v->layout("dash"); ?>
                                 </li>
                                 <?php if ($user): ?>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="#password" data-toggle="tab">Senha</a>
+                                    </li>
+
+                                    <li class="nav-item">
                                         <a class="nav-link" href="#timeline" data-toggle="tab">Endereço</a>
                                     </li>
                                 <?php endif; ?>
@@ -280,14 +284,14 @@ $v->layout("dash"); ?>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>Senha</label>
-                                                            <input type="password" name="password" class="form-control"
-                                                                   placeholder="Senha"
-                                                            >
-                                                        </div>
-                                                    </div>
+<!--                                                    <div class="col-sm-6">-->
+<!--                                                        <div class="form-group">-->
+<!--                                                            <label>Senha</label>-->
+<!--                                                            <input type="password" name="password" class="form-control"-->
+<!--                                                                   placeholder="Senha"-->
+<!--                                                            >-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
 
                                                     <div class="col-sm-12">
                                                         <button type="submit" class="btn btn-primary">
@@ -301,6 +305,54 @@ $v->layout("dash"); ?>
                                 </div>
 
                                 <?php if ($user): ?>
+                                    <div class="tab-pane" id="password">
+                                        <div class=" timeline-inverse">
+                                            <form action="<?= url('admin/users/user'); ?>" method="post">
+                                                <input type="hidden" name="action" value="password"/>
+                                                <input type="hidden" name="user_id" value="<?= $user->id; ?>"/>
+                                                <?= $csrf; ?>
+
+                                                <div class="login_form_callback">
+                                                    <?= flash(); ?>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Senha atual</label>
+                                                            <input type="password" name="password_at" class="form-control"
+                                                                   placeholder="Senha"
+                                                            >
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Nova senha</label>
+                                                            <input type="password" name="password" class="form-control"
+                                                                   placeholder="Senha"
+                                                            >
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Confirmar senha</label>
+                                                            <input type="password" name="password_re" class="form-control"
+                                                                   placeholder="Senha"
+                                                            >
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-sm-12">
+                                                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                     <div class="tab-pane" id="timeline">
                                         <div class=" timeline-inverse">
                                             <form action="<?= url("admin/users/address/{$user->id}"); ?>" method="post">
