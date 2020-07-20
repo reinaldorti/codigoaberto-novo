@@ -151,7 +151,7 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                         <div class="socail_links">
                             <ul>
                                 <li>
-                                    <a rel="nofollow" target="_blank" href="<?= CONF_SOCIAL['FACEBOOK_AUTHOR']; ?>">
+                                    <a rel="nofollow" target="_blank" href="<?= CONF_SOCIAL['FACEBOOK_PAGE']; ?>">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
@@ -166,7 +166,7 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                                     </a>
                                 </li>
                                 <li>
-                                    <a rel="nofollow" target="_blank" href="<?= CONF_SOCIAL['FACEBOOK_AUTHOR']; ?>">
+                                    <a rel="nofollow" target="_blank" href="<?= CONF_SOCIAL['LINKDIN_PAGE']; ?>">
                                         <i class="fa fa-linkedin"></i>
                                     </a>
                                 </li>

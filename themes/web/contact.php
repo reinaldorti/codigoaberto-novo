@@ -30,12 +30,12 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input class="form-control valid" name="name" type="text" placeholder="Nome Commpleto" />
+                                <input class="form-control valid" name="name" type="text" placeholder="Nome" />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input class="form-control valid" name="email" type="text" placeholder="Seu melhor e-mail" />
+                                <input class="form-control valid" name="email" type="text" placeholder="E-mail" />
                             </div>
                         </div>
 
@@ -82,4 +82,3 @@
         </div>
     </div>
 </section>
-<!-- ================ contact section end ================= -->

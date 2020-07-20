@@ -62,12 +62,14 @@ define("CONF_SITE", [
     "DESC" => "Aprenda a construir uma plicação de autenticação em MVC com php do Jeito Certo",
     "LANG" => "pt_BR",
     "DOMAIN" => "www.dortistudio.com.br",
-    "ADDR_STREET" => "Votuporanga",
+    "ADDR_STREET" => "Votuporanga",   
     "ADDR_NUMBER" => "2562",
+    "ADDR_DISTRICT" => "Eldorado",
     "ADDR_COMPLEMENT" => "Fundos",
     "ADDR_CITY" => "São José do Rio Preto",
     "ADDR_STATE" => "SP",
     "ADDR_ZIPCODE" => "15043040",
+    "ADDR_TELEPHONE" => "17999-9999"
 ]);
 
 /**
@@ -76,10 +78,11 @@ define("CONF_SITE", [
 define("CONF_SOCIAL", [
     "TWITTER_CREATOR" => "@creator",
     "TWITTER_PUBLISHER" => "@creator",
+    "TWITTER_PAGE" => "https://twitter.com/home",
     "FACEBOOK_APP" => "https://www.facebook.com/reinaldorti",
     "FACEBOOK_PAGE" => "https://www.facebook.com/reinaldorti",
     "FACEBOOK_AUTHOR" => "https://www.facebook.com/reinaldorti",
-    "LINKDIN" => "https://www.linkedin.com/in/reinaldo-dorti-1a17a0198",
+    "LINKDIN_PAGE" => "https://www.linkedin.com/in/reinaldo-dorti-1a17a0198",
     "GOOGLE_PAGE" => "https://www.facebook.com/reinaldorti",
     "GOOGLE_AUTHOR" => "https://www.facebook.com/reinaldorti",
     "INSTAGRAM_PAGE" => "https://www.instagram.com/reinaldodorti",
@@ -109,7 +112,8 @@ define("CONF_MAIL", [
     "FROM_NAME" => "Reinaldo",
     "FROM_LASTNAME" => "Dorti",
     "FROM_EMAIL" => "reinaldorti@gmail.com",
-    "FROM_TELEPHONE" => "+55 (17) 99999-9999"
+    "FROM_TELEPHONE" => "+55 (17) 99116-3205",
+    "FROM_WHATSAPP"=> "5517991163205"
 ]);
 
 /*

@@ -150,12 +150,13 @@ class Web extends Controller
                 ]);
                 return;
             }
-
-            $Mail = new Email();
-            $Mail->add(
+          
+            $mail = new Email();
+            $mail->add(
                 $data["subject"],
-                $this->view->render("emails/contact", [
+                $this->view->render("template/email", [
                     "data" => $data,
+                    "message" => $data["message"],
                     "link" => url(),
                 ]),
                 "{$data["name"]}",
@@ -165,9 +166,13 @@ class Web extends Controller
             echo Message::ajaxResponse("message", [
                 "type" => "success",
                 "message" => "
-                <i class='fa fa-check'></i> Pronto, {$data["name"]}! <br>
-                Sua mensagem foi enviada com sucesso!
-            "
+                    <i class='fa fa-check'></i> 
+                    Pronto, {$data["name"]}! <br>
+                    Sua mensagem foi enviada com sucesso!
+                ",
+                "clear" => [
+                    "clear" => true,
+                ],
             ]);
             return;
         }

@@ -101,7 +101,7 @@ $v->layout("dash"); ?>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Genero (*)</label>
-                                                                <select class="form-control" name="genre">
+                                                                <select class="form-control js-example-basic-single" name="genre">
                                                                     <option value="" selected="selected" disabled>Selecione...</option>
                                                                     <?php
                                                                     $genre = genre();
@@ -116,7 +116,7 @@ $v->layout("dash"); ?>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Level (*)</label>
-                                                                <select class="form-control" name="level">
+                                                                <select class="form-control js-example-basic-single" name="level">
                                                                     <option value="" selected="selected" disabled>Selecione...</option>
                                                                     <?php
                                                                     $level = level();
@@ -131,7 +131,7 @@ $v->layout("dash"); ?>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Status (*)</label>
-                                                                <select class="form-control" name="status">
+                                                                <select class="form-control js-example-basic-single" name="status">
                                                                     <option value="" selected="selected" disabled>Selecione...</option>
                                                                     <?php
                                                                     $status = status();
@@ -216,7 +216,7 @@ $v->layout("dash"); ?>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Genero (*)</label>
-                                                            <select class="form-control" name="genre">
+                                                            <select class="form-control js-example-basic-single" name="genre">
                                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                                 <?php
                                                                 $genre = genre();
@@ -235,7 +235,7 @@ $v->layout("dash"); ?>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Level (*)</label>
-                                                            <select class="form-control" name="level">
+                                                            <select class="form-control js-example-basic-single" name="level">
                                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                                 <?php
                                                                 $level = level();
@@ -254,7 +254,7 @@ $v->layout("dash"); ?>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Status (*)</label>
-                                                            <select class="form-control" name="status">
+                                                            <select class="form-control js-example-basic-single" name="status">
                                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                                 <?php
                                                                 $status = status();
@@ -448,6 +448,9 @@ $v->layout("dash"); ?>
                     preview.src = "";
                 }
             }
+
+            //SELECT 2
+            $('.js-example-basic-single').select2();
         });
     </script>
 <?php $v->end(); ?>

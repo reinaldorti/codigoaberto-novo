@@ -124,20 +124,20 @@ class Users extends Admin
                 return;
             };
 
-            $userCreate = new User();
-            $userCreate->first_name = $data["first_name"];
-            $userCreate->last_name = $data["last_name"];
-            $userCreate->email = $data["email"];
-            $userCreate->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
-            $userCreate->genre = $data["genre"];
-            $userCreate->level = $data["level"];
-            $userCreate->status = $data["status"];
-            $userCreate->password = $data["password"];
+            $user = new User();
+            $user->first_name = $data["first_name"];
+            $user->last_name = $data["last_name"];
+            $user->email = $data["email"];
+            $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
+            $user->genre = $data["genre"];
+            $user->level = $data["level"];
+            $user->status = $data["status"];
+            $user->password = $data["password"];
 
-            if (!$userCreate->save()) {
+            if (!$user->save()) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => $userCreate->fail()->getMessage()
+                    "message" => $user->fail()->getMessage()
                 ]);
                 return;
             }
@@ -154,21 +154,21 @@ class Users extends Admin
                     return;
                 }
 
-                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$userCreate->photo}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$userCreate->photo}")) {
-                    unlink(CONF_UPLOAD["STORAGE"] . "/{$userCreate->photo}");
+                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$user->photo}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$user->photo}")) {
+                    unlink(CONF_UPLOAD["STORAGE"] . "/{$user->photo}");
                 }
 
-                $uploaded = $upload->upload($file, $userCreate->id . "-" . str_slug($userCreate->first_name), 500);
+                $uploaded = $upload->upload($file, $user->id . "-" . str_slug($user->first_name), 500);
                 $photo = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
-                $userCreate->photo = $photo;
-                $userCreate->save();
+                $user->photo = $photo;
+                $user->save();
             }
 
             flash("success", "
                 <i class='icon fas fa-check'></i> Usuário cadastrado com sucesso!
             ");
             echo Message::ajaxResponse("redirect", [
-                "url" => url("admin/users/user/{$userCreate->id}")
+                "url" => url("admin/users/user/{$user->id}")
             ]);
             return;
         }
@@ -176,9 +176,9 @@ class Users extends Admin
         //update
         if (!empty($data["action"]) && $data["action"] == "update") {
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-            $userEdit = (new User())->findById("{$data["user_id"]}");
+            $user = (new User())->findById("{$data["user_id"]}");
 
-            if (!$userEdit) {
+            if (!$user) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "Oops! Você tentou gerenciar um usuário que não existe!"
@@ -228,19 +228,19 @@ class Users extends Admin
                 }
             }
 
-            $userEdit->first_name = $data["first_name"];
-            $userEdit->last_name = $data["last_name"];
-            $userEdit->email = $data["email"];
-            $userEdit->password = (!empty($data["password"]) ? $data["password"] : $userEdit->password);
-            $userEdit->level = $data["level"];
-            $userEdit->genre = $data["genre"];
-            $userEdit->status = $data["status"];
-            $userEdit->updated_at = date("Y-m-d H:i:s");
+            $user->first_name = $data["first_name"];
+            $user->last_name = $data["last_name"];
+            $user->email = $data["email"];
+            $user->password = (!empty($data["password"]) ? $data["password"] : $user->password);
+            $user->level = $data["level"];
+            $user->genre = $data["genre"];
+            $user->status = $data["status"];
+            $user->updated_at = date("Y-m-d H:i:s");
 
-            if (!$userEdit->save()) {
+            if (!$user->save()) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => $userEdit->fail()->getMessage()
+                    "message" => $user->fail()->getMessage()
                 ]);
                 return;
             }
@@ -257,27 +257,26 @@ class Users extends Admin
                     return;
                 }
 
-                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$userEdit->photo}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$userEdit->photo}")) {
-                    unlink(CONF_UPLOAD["STORAGE"] . "/{$userEdit->photo}");
+                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$user->photo}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$user->photo}")) {
+                    unlink(CONF_UPLOAD["STORAGE"] . "/{$user->photo}");
                 }
 
-                $uploaded = $upload->upload($file, $userEdit->id . "-" . str_slug($userEdit->first_name), 500);
+                $uploaded = $upload->upload($file, $user->id . "-" . str_slug($user->first_name), 500);
                 $photo = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
-                $userEdit->photo = $photo;
-                $userEdit->save();
+                $user->photo = $photo;
+                $user->save();
             }
 
             flash("success", "<i class='icon fas fa-check'></i> Usuário ataualizado com sucesso!");
             echo Message::ajaxResponse("redirect", [
-                "url" => url("admin/users/user/{$userEdit->id}")
+                "url" => url("admin/users/user/{$user->id}")
             ]);
             return;
         }
 
-        $userEdit = null;
+        $user = null;
         if (!empty($data["user_id"])) {
-            $userId = filter_var($data["user_id"], FILTER_VALIDATE_INT);
-            $userEdit = (new User())->findById("{$userId}");
+            $user = (new User())->findById(filter_var($data["user_id"], FILTER_VALIDATE_INT));
         }
 
         $csrf = csrf_input();
@@ -292,7 +291,7 @@ class Users extends Admin
             "app" => "users/user",
             "head" => $head,
             "csrf" => $csrf,
-            "user" => $userEdit
+            "user" => $user
         ]);
     }
 
@@ -327,10 +326,7 @@ class Users extends Admin
 
         $userDelete->destroy();
 
-        flash("success", "
-            <i class='icon fas fa-check'></i>
-            Usuário foi removido com sucesso!
-        ");
+        flash("success", "<i class='icon fas fa-check'></i>Usuário foi removido com sucesso!");
         redirect("admin/users/home");
     }
 }

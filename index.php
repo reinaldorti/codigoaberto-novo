@@ -4,36 +4,28 @@ session_start();
 
 require __DIR__ . "/vendor/autoload.php";
 
-/**
- * BOOTSTRAP
- */
-
 use CoffeeCode\Router\Router;
 
 $router = new Router(url(), ":");
 $router->namespace("Source\Controllers");
 
-/**
- * WEB ROUTES
- */
+//WEB ROUTES
 $router->group(null);
 $router->get("/", "Web:home");
 $router->get("/sobre", "Web:about");
 $router->get("/contato", "Web:contact");
 $router->post("/contato", "Web:contact");
 
-//blog
+//BLOG
 $router->group("/blog");
 $router->get("/", "Web:posts");
 $router->get("/{uri}", "Web:post");
 
-/**
- * ADMIN ROUTES
- */
+//ADMIN ROUTES
 $router->namespace("Source\Controllers\Admin");
 $router->group("/admin");
 
-//login
+//LOGIN
 $router->get("/", "Login:login");
 $router->post("/login", "Login:login");
 $router->get("/recuperar", "Login:forget");
@@ -41,12 +33,12 @@ $router->post("/forget", "Login:forget");
 $router->get("/senha/{email}/{forget}", "Login:reset");
 $router->post("/reset", "Login:reset");
 
-//dash
+//DASHBOARD
 $router->get("/dash", "Dash:home");
 $router->post("/dash", "Dash:dashboard");
 $router->get("/dash/sair", "Dash:logoff");
 
-//users
+//USERS
 $router->get("/users/home", "Users:home");
 $router->post("/users/home", "Users:home");
 $router->get("/users/home/{search}/{page}", "Users:home");
@@ -57,7 +49,7 @@ $router->post("/users/user/{user_id}", "Users:user");
 $router->get("/users/delete/{user_id}", "Users:delete");
 $router->post("/users/address/{user_id}", "Address:address");
 
-//posts
+//POSTS
 $router->get("/posts/home", "Posts:home");
 $router->post("/posts/home", "Posts:home");
 $router->get("/posts/post", "Posts:post");
@@ -70,20 +62,14 @@ $router->get("/posts/delete/{id}", "Posts:delete");
 //END ADMIN
 $router->namespace("Source\Controllers");
 
-/**
- * ERROR ROUTES
- */
+//ERROR ROUTES
 $router->group("/ops");
 $router->get("/{errcode}", "Web:error");
 
-/**
- * ROUTE
- */
+//ROUTE
 $router->dispatch();
 
-/**
- * ERROR REDIRECT
- */
+//ERROR REDIRECT
 if ($router->error()) {
     $router->redirect("/ops/{$router->error()}");
 }

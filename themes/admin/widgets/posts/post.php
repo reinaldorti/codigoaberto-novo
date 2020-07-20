@@ -95,7 +95,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Status (*)</label>
-                                            <select class="form-control" name="status">
+                                            <select class="form-control js-example-basic-single" name="status">
                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                 <?php
                                                 $status = status();
@@ -206,7 +206,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Status (*)</label>
-                                            <select class="form-control" name="status">
+                                            <select class="form-control js-example-basic-single" name="status">
                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                 <?php
                                                 $status = status();
@@ -225,7 +225,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Author (*)</label>
-                                            <select class="js-example-basic-single form-control form-control" name="author" required>
+                                            <select class="js-example-basic-single form-control" name="author" required>
                                                 <?php foreach ($authors as $author):
                                                     $authorId = $post->author;
                                                     $select = function ($value) use ($authorId) {
