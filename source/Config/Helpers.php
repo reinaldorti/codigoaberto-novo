@@ -166,36 +166,36 @@ function is_email($Email)
 /**
  * <b>NewPass:</b> Gera uma nova senha aleatória para um usuário!
  * @param INT $tamanho = Quantidade de caracteres na senha
- * @param BOOL $maiusculas Usar letras maiusculas (ABCDEFGHIJKLMNOPQRSTUVWXYZ)
- * @param BOOL $numeros Usar numeros (1234567890)
- * @param BOOL $simbolos Usar simbolos (!@#$%*-')
+ * @param BOOL $letters Usar letras maiusculas (ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+ * @param BOOL $numbers Usar numeros (1234567890)
+ * @param BOOL $symbols Usar simbolos (!@#$%*-')
  */
-function new_password($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
+function new_password($size = 8, $letters = true, $numbers = true, $symbols = true)
 {
     $lmin = 'abcdefghijklmnopqrstuvwxyz';
     $lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $num = '1234567890';
     $simb = '!@#$%*-';
-    $retorno = '';
-    $caracteres = '';
+    $return = '';
+    $characters = '';
 
-    $caracteres .= $lmin;
-    if ($maiusculas):
-        $caracteres .= $lmai;
+    $characters .= $lmin;
+    if ($letters):
+        $characters .= $lmai;
     endif;
-    if ($numeros):
-        $caracteres .= $num;
+    if ($numbers):
+        $characters .= $num;
     endif;
-    if ($simbolos):
-        $caracteres .= $simb;
+    if ($symbols):
+        $characters .= $simb;
     endif;
 
-    $len = strlen($caracteres);
-    for ($n = 1; $n <= $tamanho; $n++) {
+    $len = strlen($characters);
+    for ($n = 1; $n <= $size; $n++) {
         $rand = mt_rand(1, $len);
-        $retorno .= $caracteres[$rand - 1];
+        $return .= $characters[$rand - 1];
     }
-    return $retorno;
+    return $return;
 }
 
 /**
