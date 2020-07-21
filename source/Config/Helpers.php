@@ -304,7 +304,7 @@ function passwd_rehash($hash)
 }
 
 /**
- * Gera um csrf_token;
+ * Gera input de csrf token;
  */
 function csrf_input()
 {
