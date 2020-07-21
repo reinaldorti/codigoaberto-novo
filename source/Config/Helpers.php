@@ -155,12 +155,12 @@ function flash(string $type = null, string $message = null): ?string
 
 /**
  * Executa validação de formato de e-mail.
- * @param STRING $Email = Uma conta de e-mail
+ * @param STRING $email = Uma conta de e-mail
  * @return BOOL = True para um email válido, ou false
  */
-function is_email($Email)
+function is_email($email)
 {
-    return filter_var($Email, FILTER_VALIDATE_EMAIL);
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 /**
