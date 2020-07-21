@@ -315,20 +315,20 @@ function csrf_input()
 
 /**
  * Validação do csrf token
- * @param STRING $Request = Retorna um csrf_token
+ * @param STRING $request = Retorna um csrf_token
  * @return BOOL = True para um csrf_token válido, ou false
  */
-function csrf_verify($Request)
+function csrf_verify($request)
 {
     if (empty($_SESSION['csrf_token'])){
         return false;
     }
 
-    if (empty($Request)){
+    if (empty($request)){
         return false;
     }
 
-    if ($Request != $_SESSION['csrf_token']){
+    if ($request != $_SESSION['csrf_token']){
         return false;
     }
 
