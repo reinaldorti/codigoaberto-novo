@@ -30,8 +30,9 @@ $v->layout("dash"); ?>
                                             <input type="text" name="s" class="form-control float-right"
                                                    value="<?= $search; ?>" placeholder="Search" required>
                                             <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default"><i
-                                                            class="fas fa-search"></i></button>
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </form>

@@ -63,9 +63,37 @@ class Web extends Controller
      */
     public function posts(?array $data): void
     {
-        $posts = (new Post())->find("post_at <= NOW()");
-        $pager = new Pager(url("/blog/p/"));
-        $pager->pager($posts->count(), 10, ($data['page'] ?? 1));
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
+        //search redirect
+        if (!empty($data["s"])) {
+            $s = str_search($data["s"]);
+
+            echo Message::ajaxResponse("redirect", [
+                "url" => url("/blog/buscar/{$s}/1")
+            ]);
+            return;
+        }
+
+        $search = null;
+        $posts = (new Post())->find()->order("id DESC");
+
+        if (!empty($data["search"]) && str_search($data["search"]) != "all") {
+            $search = str_search($data["search"]);
+            $posts = (new Post())->find("MATCH(title) AGAINST(:s)", "s={$search}");
+            if (!$posts->count()) {
+                flash("info", "Oops! Sua pesquisa não retornou resultados!");
+                redirect("/blog/");
+            }
+        }
+
+//        $posts = (new Post())->find("post_at <= NOW()");
+//        $pager = new Pager(url("/blog/p/"));
+//        $pager->pager($posts->count(), 10, ($data['page'] ?? 1));
+
+        $all = ($search ?? "all");
+        $pager = new Pager(url("/blog/{$all}/"));
+        $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
         $head = $this->seo->render(
             "Blog - " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
@@ -75,7 +103,8 @@ class Web extends Controller
 
         echo $this->view->render("posts", [
             "head" => $head,
-            "posts" => $posts->order("id DESC")->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "search" => $search,
+            "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
             "paginator" => $pager->render()
         ]);
     }

@@ -127,6 +127,7 @@ $v->layout("dash"); ?>
                                         <div class="form-group">
                                             <label>Data de publicação</label>
                                             <input type="text" name="post_at" class="js_datepicker form-control"
+                                                   autocomplete="off"
                                                    placeholder="Data de publicação">
                                         </div>
                                     </div>
@@ -244,6 +245,7 @@ $v->layout("dash"); ?>
                                         <div class="form-group">
                                             <label>Data de publicação</label>
                                             <input type="text" name="post_at" class="js_datepicker form-control"
+                                                   autocomplete="off"
                                                    value="<?= date("d/m/Y", strtotime($post->post_at)); ?>"
                                                    placeholder="Data de publicação"
                                             >

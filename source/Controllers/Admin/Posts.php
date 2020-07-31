@@ -48,7 +48,6 @@ class Posts extends Admin
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
             $posts = (new Post())->find("MATCH(title) AGAINST(:s)", "s={$search}");
-            //$posts = (new User())->find("first_name LIKE = %{$search}%");
             if (!$posts->count()) {
                 flash("info", "Oops! Sua pesquisa não retornou resultados!");
                 redirect("/admin/posts/home");
@@ -247,7 +246,7 @@ class Posts extends Admin
 
     /**
      * ADMIN BLOG DELETE
-     * @param array $data
+     * @param int $data
      */
     public function delete($data): void
     {
@@ -266,6 +265,6 @@ class Posts extends Admin
         $post->destroy();
 
         flash("success", "<i class='icon fas fa-check'></i> Post foi removido com sucesso!");
-        redirect("admin/blog/home");
+        redirect("admin/posts/home");
     }
 }

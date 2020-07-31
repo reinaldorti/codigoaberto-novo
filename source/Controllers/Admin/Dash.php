@@ -39,7 +39,7 @@ class Dash extends Admin
                 "users" => (new User())->find()->count(),
             ],
             "blog" => (object)[
-                "posts" => (new Post())->find("id > 1")->count(),
+                "posts" => (new Post())->find()->count(),
             ],
         ]);
     }

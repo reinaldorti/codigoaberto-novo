@@ -1,17 +1,36 @@
 <div class="col-lg-4">
     <div class="blog_right_sidebar">
         <aside class="single_sidebar_widget search_widget">
-            <form action="#">
+            <form action="<?= url("/blog/buscar"); ?>">
                 <div class="form-group">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Pesquisar">
+                        <input type="text" name="s" class="form-control" placeholder="Pesquisar">
                         <div class="input-group-append">
                             <button class="btn" type="button"><i class="ti-search"></i></button>
                         </div>
                     </div>
                 </div>
-                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                        type="submit">Pesquisar
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">
+                    Pesquisar
+                </button>
+            </form>
+        </aside>
+
+        <aside class="single_sidebar_widget newsletter_widget">
+            <h4 class="widget_title">Newsletter</h4>
+            <form class="ajax_off" target="_blank" action="https://dominio.com/proc.php" id="_form_334_">
+                <input type="hidden" name="u" value="334" />
+                <input type="hidden" name="f" value="334" />
+                <input type="hidden" name="s" />
+                <input type="hidden" name="c" value="0" />
+                <input type="hidden" name="m" value="0" />
+                <input type="hidden" name="act" value="sub" />
+                <input type="hidden" name="v" value="2" />
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder='Melhor e-mail' required>
+                </div>
+                <button id="_form_334_submit" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">
+                    QUERO RECEBER
                 </button>
             </form>
         </aside>
@@ -40,6 +59,7 @@
                 </div>
             </div>
         </aside>
+
         <aside class="single_sidebar_widget tag_cloud_widget">
             <h4 class="widget_title">Tags</h4>
             <ul class="list">
@@ -69,7 +89,6 @@
                 </li>
             </ul>
         </aside>
-
 
         <aside class="single_sidebar_widget instagram_feeds">
             <h4 class="widget_title">Instagram Feeds</h4>
@@ -105,25 +124,6 @@
                     </a>
                 </li>
             </ul>
-        </aside>
-
-        <aside class="single_sidebar_widget newsletter_widget">
-            <h4 class="widget_title">Newsletter</h4>
-            <form class="ajax_off" target="_blank" action="https://dominio.com/proc.php" id="_form_334_">
-                <input type="hidden" name="u" value="334" />
-                <input type="hidden" name="f" value="334" />
-                <input type="hidden" name="s" />
-                <input type="hidden" name="c" value="0" />
-                <input type="hidden" name="m" value="0" />
-                <input type="hidden" name="act" value="sub" />
-                <input type="hidden" name="v" value="2" />
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder='Melhor e-mail' required>
-                </div>
-                <button id="_form_334_submit" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">
-                    QUERO RECEBER
-                </button>
-            </form>
         </aside>
     </div>
 </div>
