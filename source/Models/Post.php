@@ -24,15 +24,13 @@ class Post extends DataLayer
      */
     public function save(): bool
     {
-        $checkUri = (new Post())->find("uri = :uri AND id != :id", "uri={$this->uri}&id={$this->id}");
-
-        if ($checkUri->count()) {
+        $uri = (new Post())->find("uri = :uri AND id != :id", "uri={$this->uri}&id={$this->id}");
+        if ($uri->count()) {
             $this->uri = "{$this->uri}-". time();
         }
 
         return parent::save();
     }
-
 
     /**
      * @return null|User

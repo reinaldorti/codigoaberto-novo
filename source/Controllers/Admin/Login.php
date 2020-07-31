@@ -221,7 +221,6 @@ class Login extends Controller
             }
         }
 
-        $csrf = csrf_input();
         $email = filter_input(INPUT_COOKIE, 'email', FILTER_VALIDATE_EMAIL);
         $head = $this->seo->render(
             CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
@@ -232,7 +231,7 @@ class Login extends Controller
 
         echo $this->view->render("widgets/login/login", [
             "head" => $head,
-            "csrf" => $csrf,
+            "csrf" => csrf_input(),
             "email" => $email
         ]);
     }
@@ -347,7 +346,6 @@ class Login extends Controller
             return;
         }
 
-        $csrf = csrf_input();
         $head = $this->seo->render(
             "Recuperar Senha - " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
@@ -357,7 +355,7 @@ class Login extends Controller
 
         echo $this->view->render("widgets/login/forget", [
             "head" => $head,
-            "csrf" => $csrf,
+            "csrf" => csrf_input(),
         ]);
     }
 
@@ -498,7 +496,6 @@ class Login extends Controller
             redirect("admin/recuperar");
         }
 
-        $csrf = csrf_input();
         $head = $this->seo->render(
             CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
             CONF_SITE['DESC'],
@@ -508,7 +505,7 @@ class Login extends Controller
 
         echo $this->view->render("widgets/login/reset", [
             "head" => $head,
-            "csrf" => $csrf,
+            "csrf" => csrf_input(),
         ]);
     }
 }

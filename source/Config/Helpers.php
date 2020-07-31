@@ -22,6 +22,24 @@ function image(?string $image): ?string
 }
 
 /**
+ * @param string|null $date
+ * @return string|null
+ */
+function date_fmt(?string $date): ?string
+{
+    if (!$date) {
+        return null;
+    }
+
+    if (strpos($date, " ")) {
+        $date = explode(" ", $date);
+        return implode("-", array_reverse(explode("/", $date[0]))) . " " . $date[1];
+    }
+
+    return implode("-", array_reverse(explode("/", $date)));
+}
+
+/**
  * @param string $string
  * @param int $limit
  * @param string $pointer

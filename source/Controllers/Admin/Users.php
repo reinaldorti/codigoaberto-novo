@@ -395,7 +395,6 @@ class Users extends Admin
             $user = (new User())->findById(filter_var($data["user_id"], FILTER_VALIDATE_INT));
         }
 
-        $csrf = csrf_input();
         $head = $this->seo->render(
             CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
             CONF_SITE['DESC'],
@@ -406,7 +405,7 @@ class Users extends Admin
         echo $this->view->render("widgets/users/user", [
             "app" => "users/user",
             "head" => $head,
-            "csrf" => $csrf,
+            "csrf" => csrf_input(),
             "user" => $user
         ]);
     }
