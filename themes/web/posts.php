@@ -30,14 +30,12 @@
                             ?>
                             <article class="blog_item">
                                 <div class="blog_item_img">
-                                    <img class="card-img rounded-0" src="<?= $cover; ?>" alt="">
-                                    <a href="#" class="blog_item_date">
-                                        <h3><?= date("d", strtotime($post->created_at)); ?></h3>
-                                        <p><?= date("m", strtotime($post->created_at)); ?></p>
+                                    <a href="<?= url("/blog/{$post->uri}"); ?>">
+                                        <img class="card-img rounded-0" src="<?= $cover; ?>" alt="">
                                     </a>
                                 </div>
 
-                                <div class="blog_details">
+                                <div class="m-2"> <!--blog_details">-->
                                     <a class="d-inline-block" href="<?= url("/blog/{$post->uri}"); ?>">
                                         <h2> <?= $post->title; ?></h2>
                                     </a>
