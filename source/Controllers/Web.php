@@ -177,7 +177,6 @@ class Web extends Controller
             return;
         }
 
-        $csrf = csrf_input();
         $head = $this->seo->render(
             CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
             CONF_SITE['DESC'],
@@ -187,8 +186,7 @@ class Web extends Controller
 
         echo $this->view->render("contact", [
             "head" => $head,
-            "csrf" => $csrf
-
+            "csrf" => csrf_input()
         ]);
     }
 

@@ -266,7 +266,7 @@ $v->layout("dash"); ?>
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Criar Post</button>
+                                        <button type="submit" class="btn btn-primary">Atualizar Post</button>
                                     </div>
                                 </div>
                             </div>

@@ -117,8 +117,7 @@ class Posts extends Admin
             $post->title = $data["title"];
             $post->content = str_replace(["{title}"], [$post->title], $content);
             $post->subtitle = $data["subtitle"];
-            $post->post_at = (!empty($data["post_at"]) ? date("Y-m-d H:i:s", strtotime($data["post_at"])) : date("Y-m-d H:i:s"));
-
+            $post->post_at = date_fmt($data["post_at"]);
             $post->created_at = date("Y-m-d H:i:s");
             $post->save();
 
@@ -189,7 +188,7 @@ class Posts extends Admin
             $post->title = $data["title"];
             $post->content = str_replace(["{title}"], [$post->title], $content);
             $post->subtitle = $data["subtitle"];
-            $post->post_at = (!empty($data["post_at"]) ? date("Y-m-d H:i:s", strtotime($data["post_at"])) : date("Y-m-d H:i:s"));
+            $post->post_at = date_fmt($data["post_at"]);
             $post->updated_at = date("Y-m-d H:i:s");
             $post->save();
 
@@ -237,14 +236,12 @@ class Posts extends Admin
             $post = (new Post())->findById("{$postId}");
         }
 
-        $csrf = csrf_input();
         echo $this->view->render("widgets/posts/post", [
             "app" => "blog/post",
             "head" => $head,
-            "csrf" => $csrf,
+            "csrf" => csrf_input(),
             "post" => $post,
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
-
         ]);
     }
 
