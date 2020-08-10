@@ -20,7 +20,7 @@ class Web extends Controller
     public function __construct($router)
     {
         $this->router = $router;
-        parent::__construct(__DIR__ . "/../../themes/" . CONF_VIEW['THEME'] . "/");
+        parent::__construct(__DIR__ . "/../../public/" . CONF_VIEW['THEME'] . "/");
     }
 
     /**

@@ -22,7 +22,7 @@ class Admin extends Controller
      */
     public function __construct()
     {
-        parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW['ADMIN'] . "/");
+        parent::__construct(__DIR__ . "/../../../public/" . CONF_VIEW['ADMIN'] . "/");
 
         if (empty($_SESSION["user"])) {
             unset($_SESSION["user"]);

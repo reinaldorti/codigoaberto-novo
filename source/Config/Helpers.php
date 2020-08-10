@@ -135,17 +135,17 @@ function asset(string $path = null, string $asset = CONF_VIEW['THEME']): string
 {
     if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localhost') {
         if ($path) {
-            return CONF_URl['TEST'] . "/themes/{$asset}/" . ($path[0] == "/" ? mb_substr($path, 1) : $path);
+            return CONF_URl['TEST'] . "/public/{$asset}/" . ($path[0] == "/" ? mb_substr($path, 1) : $path);
         }
 
-        return CONF_URl['TEST'] . "/themes/{$asset}";
+        return CONF_URl['TEST'] . "/public/{$asset}";
     }
 
     if ($path) {
-        return CONF_URl['BASE'] . "/themes/{$asset}/" . ($path[0] == "/" ? mb_substr($path, 1) : $path);
+        return CONF_URl['BASE'] . "/public/{$asset}/" . ($path[0] == "/" ? mb_substr($path, 1) : $path);
     }
 
-    return CONF_URl['BASE'] . "/themes/{$asset}";
+    return CONF_URl['BASE'] . "/public/{$asset}";
 }
 
 /**
