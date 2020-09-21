@@ -113,7 +113,6 @@ class Posts extends Admin
             $post->video = $data["video"];
             $post->status = $data["status"];
             $post->author = $data["author"];
-            $post->title = $data["title"];
             $post->content = str_replace(["{title}"], [$post->title], $content);
             $post->subtitle = $data["subtitle"];
             $post->post_at = date_fmt($data["post_at"]);
@@ -176,7 +175,7 @@ class Posts extends Admin
                 return;
             }
 
-            $post = (new Post())->findById("{$data["post_id"]}");
+            $post = (new Post())->findById("{$data["id"]}");
             $post->title = $data["title"];
             $post->subtitle = $data["subtitle"];
             $post->uri = (!empty($data["uri"]) ? slug($data["uri"]) : slug($post->title));
@@ -184,7 +183,6 @@ class Posts extends Admin
             $post->video = $data["video"];
             $post->status = $data["status"];
             $post->author = $data["author"];
-            $post->title = $data["title"];
             $post->content = str_replace(["{title}"], [$post->title], $content);
             $post->subtitle = $data["subtitle"];
             $post->post_at = date_fmt($data["post_at"]);
