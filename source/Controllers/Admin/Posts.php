@@ -114,7 +114,7 @@ class Posts extends Admin
             $post->status = $data["status"];
             $post->author = $data["author"];
             $post->content = str_replace(["{title}"], [$post->title], $content);
-            $post->post_at = date_fmt($data["post_at"]);
+            $post->post_at = (empty($data["post_at"]) ? date("Y-m-d") : date_fmt($data["post_at"]));
             $post->created_at = date("Y-m-d H:i:s");
             $post->save();
 
