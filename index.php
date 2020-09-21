@@ -44,18 +44,18 @@ $router->post("/users/home", "Users:home");
 $router->get("/users/home/{search}/{page}", "Users:home");
 $router->get("/users/user", "Users:user");
 $router->post("/users/user", "Users:user");
-$router->get("/users/user/{user_id}", "Users:user");
-$router->post("/users/user/{user_id}", "Users:user");
-$router->get("/users/delete/{user_id}", "Users:delete");
-$router->post("/users/address/{user_id}", "Address:address");
+$router->get("/users/user/{id}", "Users:user");
+$router->post("/users/user/{id}", "Users:user");
+$router->get("/users/delete/{id}", "Users:delete");
+$router->post("/users/address/{id}", "Address:address");
 
 //POSTS
 $router->get("/posts/home", "Posts:home");
 $router->post("/posts/home", "Posts:home");
 $router->get("/posts/post", "Posts:post");
 $router->post("/posts/post", "Posts:post");
-$router->get("/posts/post/{post_id}", "Posts:post");
-$router->post("/posts/post/{post_id}", "Posts:post");
+$router->get("/posts/post/{id}", "Posts:post");
+$router->post("/posts/post/{id}", "Posts:post");
 $router->get("/posts/home/{search}/{page}", "Posts:home");
 $router->get("/posts/delete/{id}", "Posts:delete");
 
