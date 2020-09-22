@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source\Controllers\Admin;
 
 use CoffeeCode\Uploader\Image;
@@ -43,12 +42,12 @@ class Slides extends Admin
         }
 
         $search = null;
-        $slides = (new Slide())->find()->order("id DESC");
+        $slide = (new Slide())->find()->order("id DESC");
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
-            $slides = (new Slide())->find("MATCH(title) AGAINST(:s)", "s={$search}");
-            if (!$slides->count()) {
+            $slide = (new Slide())->find("MATCH(title) AGAINST(:s)", "s={$search}");
+            if (!$slide->count()) {
                 flash("info", "<i class='icon fas fa-info'></i> Oops! Sua pesquisa não retornou resultados!");
                 redirect("/admin/slides/home");
             }
@@ -56,7 +55,7 @@ class Slides extends Admin
 
         $all = ($search ?? "all");
         $pager = new Pager(url("/admin/slides/home/{$all}/"));
-        $pager->pager($slides->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
+        $pager->pager($slide->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
 
         $head = $this->seo->render(
             CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
@@ -69,7 +68,7 @@ class Slides extends Admin
             "app" => "slides",
             "head" => $head,
             "search" => $search,
-            "slides" => $slides->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "slides" => $slide->limit($pager->limit())->offset($pager->offset())->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
