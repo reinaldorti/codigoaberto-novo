@@ -49,6 +49,16 @@ $router->post("/users/user/{id}", "Users:user");
 $router->get("/users/delete/{id}", "Users:delete");
 $router->post("/users/address/{id}", "Address:address");
 
+//SLIDES
+$router->get("/slides/home", "Slides:home");
+$router->post("/slides/home", "Slides:home");
+$router->get("/slides/slide", "Slides:slide");
+$router->post("/slides/slide", "Slides:slide");
+$router->get("/slides/slide/{id}", "Slides:slide");
+$router->post("/slides/slide/{id}", "Slides:slide");
+$router->get("/slides/home/{search}/{page}", "Slides:home");
+$router->get("/slides/delete/{id}", "Slides:delete");
+
 //POSTS
 $router->get("/posts/home", "Posts:home");
 $router->post("/posts/home", "Posts:home");
