@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source\Controllers;
 
 use Source\Models\Post;
@@ -86,10 +85,6 @@ class Web extends Controller
                 redirect("/blog/");
             }
         }
-
-//        $posts = (new Post())->find("post_at <= NOW()");
-//        $pager = new Pager(url("/blog/p/"));
-//        $pager->pager($posts->count(), 10, ($data['page'] ?? 1));
 
         $all = ($search ?? "all");
         $pager = new Pager(url("/blog/{$all}/"));

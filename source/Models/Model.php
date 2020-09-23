@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source\Models;
 
 use Source\Support\Message;

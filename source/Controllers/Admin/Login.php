@@ -287,7 +287,7 @@ class Login extends Controller
                 return;
             }
 
-            if ($user->status == 1) {
+            if ($user->status != 1) {
                 echo Message::ajaxResponse("message", [
                     "type" => "info",
                     "message" => "

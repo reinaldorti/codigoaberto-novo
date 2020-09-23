@@ -22,7 +22,7 @@
                     <ul class='nav nav-treeview'>
                         <li class='nav-item'>
                             <a href='{$url}' class='nav-link {$active}'><i class='nav-icon fas fa-{$icon}'></i><p>{$title}</p></a>
-                        </li>                   
+                        </li>
                     </ul>
                 </li>
             ";
@@ -40,7 +40,7 @@
                         <a href='" . url() . "' target='_blank' class='nav-link'>
                             <i class='nav-icon fas fa-reply'></i><p>Ver Site</p>
                         </a>
-                    </li>                   
+                    </li>
                 </ul>
             </li>
         ";

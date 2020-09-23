@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source\Controllers\Admin;
 use Source\Models\Post;
 use Source\Models\User;
