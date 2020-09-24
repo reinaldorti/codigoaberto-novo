@@ -363,7 +363,7 @@ class Users extends Admin
                 return;
             }
 
-            $user = (new User())->find("id = :id", "id={$data["id"]}")->fetch();
+            $user = (new User())->find("id = :id", "id={$data["user_id"]}")->fetch();
 
             if (!passwd_verify($data["password_at"], $user->password)) {
                 echo Message::ajaxResponse("message", [

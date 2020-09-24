@@ -51,24 +51,30 @@ class Address extends Admin
             return;
         }
 
-        $addr = (!empty($data['id']) ? (new \Source\Models\Address())->findById($data['id']) : new \Source\Models\Address());
-        $addr->user_id = $data['user_id'];
+        $addr = (new \Source\Models\Address())->find("user_id = :id", "id={$data["user_id"]}")->fetch();
+        if(!$addr){
+            $addr = new \Source\Models\Address();
+            $addr->user_id = $data['user_id'];
+            $addr->created_at = date("Y-d-m H:i:s");
+        }
+        
         $addr->zipcode = $data['zipcode'];
         $addr->street = mb_convert_case($data['street'], MB_CASE_TITLE);
         $addr->number = $data['number'];
         $addr->complement = (!empty($data['complement']) ? mb_convert_case($data['complement'], MB_CASE_TITLE) : "Não informado");
         $addr->district = mb_convert_case($data['district'], MB_CASE_TITLE);
         $addr->city = mb_convert_case($data['city'], MB_CASE_TITLE);
-        $addr->state = mb_convert_case($data['state'], MB_CASE_TITLE);
+        $addr->state = mb_convert_case($data['state'], MB_CASE_UPPER);
         $addr->country = (!empty($data['country']) ? mb_convert_case($data['country'], MB_CASE_TITLE) : "Brasil");
+        $addr->updated_at = date("Y-d-m H:i:s");
         $addr->save();
 
         echo Message::ajaxResponse("message", [
             "type" => "success",
             "message" => "<i class='icon fas fa-check'></i> Endereço atualizado com sucesso!",
-            "clear" => [
-                "clear" => true,
-            ],
+            // "clear" => [
+            //     "clear" => true,
+            // ],
         ]);
         return;
     }
