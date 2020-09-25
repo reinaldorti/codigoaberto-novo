@@ -2,6 +2,7 @@
 
 namespace Source\Controllers\Admin;
 use Source\Models\Post;
+use Source\Models\Slide;
 use Source\Models\User;
 
 /**
@@ -40,6 +41,9 @@ class Dash extends Admin
             "blog" => (object)[
                 "posts" => (new Post())->find()->count(),
             ],
+            "slides" => (object)[
+                "slides" => (new Slide())->find()->count(),
+            ]
         ]);
     }
 
