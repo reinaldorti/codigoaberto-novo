@@ -22,9 +22,9 @@ if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localh
         "driver" => "mysql",
         "host" => "localhost",
         "port" => "3306",
-        "dbname" => "bancoonline",
-        "username" => "bancoonline",
-        "passwd" => "bancoonline",
+        "dbname" => "banco_online",
+        "username" => "username_online",
+        "passwd" => "passowrd_online",
         "options" => [
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
