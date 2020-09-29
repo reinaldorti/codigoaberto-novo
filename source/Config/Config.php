@@ -32,7 +32,12 @@ if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localh
             PDO::ATTR_CASE => PDO::CASE_NATURAL
         ]
     ]);
-}   
+}  
+
+/**
+ * COOKIE POLICY
+ */
+define("COOKIEPOLICY", filter_input(INPUT_COOKIE, "cookiePolicy", FILTER_SANITIZE_STRIPPED));
 
 /**
  * VIEW

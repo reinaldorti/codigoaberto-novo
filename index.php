@@ -15,6 +15,7 @@ $router->get("/", "Web:home");
 $router->get("/sobre", "Web:about");
 $router->get("/contato", "Web:contact");
 $router->post("/contato", "Web:contact");
+$router->post("/cookie", "Web:cookiePolicy");
 
 //BLOG
 $router->group("/blog");
