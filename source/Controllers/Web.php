@@ -225,7 +225,7 @@ class Web extends Controller
     public function cookiePolicy(array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-        setcookie("cookiePolicy", $data["cookie"], time() + PHP_INT_MAX, "/");
+        setcookie("cookiePolicy", $data["cookie"], time() + (12 * 43200), "/");
 
         $json["agree"] = true;
         echo json_encode($json);
