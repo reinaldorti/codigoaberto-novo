@@ -39,6 +39,7 @@
     "coffeecode/paginator": "^1.0",
     "coffeecode/optimizer": "2.0.0",
     "coffeecode/uploader": "1.0.*",
-    "coffeecode/cropper": "1.2.*"
+    "coffeecode/cropper": "1.2.*",
+    "symfony/var-dumper": "^5.1",
   }
 }
