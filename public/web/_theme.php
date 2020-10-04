@@ -74,9 +74,9 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                             <nav>
                                 <ul id="navigation">
                                     <li><a  href="<?= url(); ?>">home</a></li>
-                                    <li><a href="<?= url('sobre'); ?>">Sobre</a></li>
-                                    <li><a href="<?= url('blog'); ?>">Blog</a></li>
-                                    <li><a href="<?= url('contato'); ?>#contact">Contato</a></li>
+                                    <li><a href="<?= $router->route("web.about"); ?>">Sobre</a></li>
+                                    <li><a href="<?= $router->route("web.blog"); ?>">Blog</a></li>
+                                    <li><a href="<?= $router->route("web.contact"); ?>#contact">Contato</a></li>
                                     <li><a href="<?= url('admin'); ?>">Login</a></li>
                                 </ul>
                             </nav>

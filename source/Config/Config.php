@@ -53,7 +53,7 @@ define("CONF_VIEW", [
  * PROJECT URLs
  */
 define("CONF_URl", [
-    "TEST" => "https://localhost/cursos/codigoaberto-novo",
+    "TEST" => "https://localhost/cursos/youtube/codigoaberto-novo",
     "BASE" => "https://www.seudominio.com.br"
 ]);
 

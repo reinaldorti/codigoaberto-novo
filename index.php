@@ -11,16 +11,16 @@ $router->namespace("Source\Controllers");
 
 //WEB ROUTES
 $router->group(null);
-$router->get("/", "Web:home");
-$router->get("/sobre", "Web:about");
-$router->get("/contato", "Web:contact");
-$router->post("/contato", "Web:contact");
-$router->post("/cookie", "Web:cookiePolicy");
+$router->get("/", "Web:home", "web.home");
+$router->get("/sobre", "Web:about", "web.about");
+$router->get("/contato", "Web:contact", "web.contact");
+$router->post("/contato", "Web:contact", "web.contact");
+$router->post("/cookie", "Web:cookiePolicy", "web.cookie.policy");
 
 //BLOG
 $router->group("/blog");
-$router->get("/", "Web:posts");
-$router->get("/{uri}", "Web:post");
+$router->get("/", "Web:posts", "web.blog");
+$router->get("/{uri}", "Web:post", "web.blog");
 
 //ADMIN ROUTES
 $router->namespace("Source\Controllers\Admin");

@@ -2,6 +2,7 @@
 
 namespace Source\Controllers;
 
+use CoffeeCode\Router\Router;
 use Source\Models\Post;
 use Source\Support\Message;
 use Source\Support\Email;
@@ -12,14 +13,21 @@ use Source\Support\Pager;
  */
 class Web extends Controller
 {
+    protected $router;
+
     /**
      * Web constructor.
-     * @param $router
+     * @param Router $router
      */
-    public function __construct($router)
+    public function __construct(Router $router)
     {
-        $this->router = $router;
         parent::__construct(__DIR__ . "/../../public/" . CONF_VIEW['THEME'] . "/");
+
+        $this->router = $router;
+
+        $this->view->data([
+            "router" => $this->router
+        ]);
     }
 
     /**

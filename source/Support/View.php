@@ -35,6 +35,16 @@ class View
     }
 
     /**
+     * @param array $data
+     * @return View
+     */
+    public function data(array $data): View
+    {
+        $this->engine->addData($data);
+        return $this;
+    }
+
+    /**
      * @param string $templateName
      * @param array $data
      * @return string
