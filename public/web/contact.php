@@ -50,7 +50,14 @@
                                 <textarea class="form-control w-100" name="message" cols="30" rows="9" placeholder="Mensagem" ></textarea>
                             </div>
                         </div>
+
+                        <!-- <div class="col-12">
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="<?//= $siteKey; ?>"></div>
+                            </div>
+                        </div> -->
                     </div>
+
                     <div class="form-group mt-3">
                         <button type="submit" class="button button-contactForm boxed-btn">Enviar</button>
                     </div>
@@ -82,3 +89,7 @@
         </div>
     </div>
 </section>
+
+<?php $v->start("recaptcha"); ?>
+    <scripts src="https://www.google.com/recaptcha/api.js" async defer></scripts>
+<?php $v->end(); ?>

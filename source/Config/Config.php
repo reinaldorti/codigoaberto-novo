@@ -156,3 +156,11 @@ define("GOOGLE_LOGIN", [
     "clientSecret" => "",
     "redirectUri" => CONF_URl["TEST"] . "/google"
 ]);
+
+/*
+ * GOOGLE RECAPTCHA
+ */
+define("CONF_GOOGLE_RECAPTCHA", [
+    "SITE" => "",
+    "SERET" => ""
+]);

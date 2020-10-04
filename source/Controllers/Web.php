@@ -218,7 +218,8 @@ class Web extends Controller
 
         echo $this->view->render("contact", [
             "head" => $head,
-            "csrf" => csrf_input()
+            "csrf" => csrf_input(),
+            //"siteKey" => CONF_GOOGLE_RECAPTCHA['SITE'],
         ]);
     }
 

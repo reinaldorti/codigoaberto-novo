@@ -11,6 +11,8 @@
 
     <!-- CSS here -->
     <link rel="stylesheet" href="<?= asset('assets/style.min.css'); ?>">
+
+    <?= $v->section("recaptcha"); ?>
 </head>
 
 <body>

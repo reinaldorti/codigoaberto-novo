@@ -41,5 +41,6 @@
     "coffeecode/uploader": "1.0.*",
     "coffeecode/cropper": "1.2.*",
     "symfony/var-dumper": "^5.1",
+    "google/recaptcha": "^1.2"
   }
 }
