@@ -20,7 +20,7 @@
                 <h2 class="contact-title">Fale Conosco</h2>
             </div>
             <div class="col-lg-8" >
-                <form class="form-contact contact_form" action="<?= url("/contato"); ?>" method="post">
+                <form class="form-contact contact_form" action="<?= $router->route("web.contact"); ?>" method="post">
                     <input type="hidden" name="action" value="contact"/>
                     <?= $csrf; ?>
                     <div class="login_form_callback">

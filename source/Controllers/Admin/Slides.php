@@ -14,15 +14,6 @@ use Source\Support\Pager;
  */
 class Slides extends Admin
 {
-
-    /**
-     * Dash constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * ADMIN SLIDE HOME
      * @param array|null $data

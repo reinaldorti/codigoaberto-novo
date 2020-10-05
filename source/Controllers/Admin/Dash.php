@@ -11,15 +11,6 @@ use Source\Models\User;
  */
 class Dash extends Admin
 {
-
-    /**
-     * Dash constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * ADMIN TELA HOME
      */

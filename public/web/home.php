@@ -9,7 +9,7 @@
                     <div class="slider_text">
                         <h3>We Care <br> <span>Your Pets</span></h3>
                         <p>LEVAR CONFORTO E QUALIDADE DE VIDA <br> AO SEU ANIMALZINHO DE ESTIMAÇÃO.</p>
-                        <a href="<?= url('contato'); ?>#contact" class="boxed-btn4">Contato</a>
+                        <a href="<?= $router->route("web.contact"); ?>#contact" class="boxed-btn4">Contato</a>
                     </div>
                 </div>
             </div>
@@ -88,9 +88,12 @@
                     <div class="section_title">
                         <h3><span>We care your pet </span> <br>
                             As you care</h3>
-                        <p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br> iusmod tempor incididunt ut labore et dolore magna aliqua. <br> Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
-                            viverra maecenas accumsan.</p>
-                        <a href="about.html" class="boxed-btn3">About Us</a>
+                        <p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br>
+                            iusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+                            Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
+                            viverra maecenas accumsan.
+                        </p>
+                        <a href="<?= $router->route("web.about"); ?>" class="boxed-btn3">About Us</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +110,7 @@
                         <h3><span>We need your</span>
                             help Adopt Us</h3>
                         <p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed do iusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices.</p>
-                        <a href="<?= url('contato'); ?>#contact" class="boxed-btn3">Contact Us</a>
+                        <a href="<?= $router->route("web.contact"); ?>#contact" class="boxed-btn3">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -235,7 +238,7 @@
                         <p>LEVAR CONFORTO E QUALIDADE DE VIDA AO SEU ANIMALZINHO DE ESTIMAÇÃO.</p>
                     </div>
                     <div class="contact_btn d-flex align-items-center justify-content-center">
-                        <a href="<?= url('contato'); ?>#contact" class="boxed-btn4">FALE CO A GENTE</a>
+                        <a href="<?= $router->route("web.contact"); ?>#contact" class="boxed-btn4">FALE CO A GENTE</a>
                         <p>Or  <a href="#"> +880 4664 216</a></p>
                     </div>
                 </div>

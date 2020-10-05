@@ -73,3 +73,93 @@
 .mce_upload_box .btn {
     width: 100%;
 }
+
+/*COOKIE POLICY*/
+#cookiePolicy {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #000;
+    text-align: center;
+}
+
+#cookiePolicy .container {
+    padding: 30px 0;
+}
+
+#cookiePolicy p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #FFF;
+    font-size: var(--font-small);
+}
+
+#cookiePolicy p a {
+    color: var(--color-green);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    transition-duration: var(--hover-duration);
+}
+
+#cookiePolicy .footer_optout_btn {
+    padding: 12px 24px;
+    font-size: var(--font-normal);
+    font-weight: var(--weight-bold);
+    color:#FFF;
+}
+
+/* CUSTON BUTTONS */
+.btn{
+    display: inline-block;
+    cursor: pointer;
+    padding: 7px 12px;
+    margin-top: 2px;
+    background: #888;
+    font-size: 0.9em;
+    color: #fff !important;
+    text-decoration: none !important;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    text-shadow: 1px 1px #555;
+}
+
+.btn_medium{
+    padding: 10px 20px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn:hover{
+    background: #555;
+    text-decoration: none !important;
+}
+
+.btn_blue{
+    background-color: #0E96E5;
+    text-shadow: 1px 1px #096397;
+}
+.btn_blue:hover{background-color: #096397;}
+
+.btn_green{
+    background-color: #00B494;
+    text-shadow: 1px 1px #008068;
+}
+.btn_green:hover{background-color: #008068;}
+
+.btn_yellow{
+    background-color: #FAAD50;
+    text-shadow: 1px 1px #CC8D41;
+}
+.btn_yellow:hover{background-color: #CC8D41;}
+
+.btn_red{
+    background-color: #F45563;
+    text-shadow: 1px 1px #C54550;
+}
+.btn_red:hover{background-color: #C54550;}

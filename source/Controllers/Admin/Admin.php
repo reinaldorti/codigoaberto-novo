@@ -2,6 +2,7 @@
 
 namespace Source\Controllers\Admin;
 
+use CoffeeCode\Router\Router;
 use Source\Controllers\Controller;
 use Source\Models\User;
 
@@ -16,12 +17,21 @@ class Admin extends Controller
      */
     protected $user;
 
+    protected $router;
+
     /**
      * Admin constructor.
+     * @param Router $router
      */
-    public function __construct()
+    public function __construct(Router $router)
     {
         parent::__construct(__DIR__ . "/../../../public/" . CONF_VIEW['ADMIN'] . "/");
+
+        $this->router = $router;
+
+        $this->view->data([
+            "router" => $this->router
+        ]);
 
         if (empty($_SESSION["user"])) {
             unset($_SESSION["user"]);

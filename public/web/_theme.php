@@ -119,9 +119,9 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                         </h3>
                         <ul class="links">
                             <li><a  href="<?= url(); ?>">home</a></li>
-                            <li><a href="<?= url('sobre'); ?>">Sobre</a></li>
-                            <li><a href="<?= url('blog'); ?>">Blog</a></li>
-                            <li><a href="<?= url('contato'); ?>#contact">Contato</a></li>
+                            <li><a href="<?= $router->route("web.about"); ?>">Sobre</a></li>
+                            <li><a href="<?= $router->route("web.blog"); ?>">Blog</a></li>
+                            <li><a href="<?= $router->route("web.contact"); ?>">Contato</a></li>
                             <li><a href="<?= url('admin'); ?>">Login</a></li>
                         </ul>
                     </div>
@@ -203,8 +203,7 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
     <div id="cookiePolicy" class="al-center">
         <div class="container">
             <p>Este website utiliza cookies próprios e de terceiros a fim de personalizar o conteúdo, melhorar a experiência do usuário, fornecer funções de mídias sociais e analisar o tráfego. Para continuar navegando você deve concordar com nossa <a href="<?= url("/politica-de-privacidade"); ?>">Política de Privacidade</a>.</p>
-            <a data-route="<?= url("/cookie"); ?>" data-cookie="agree" href="#"
-            class="footer_optout_btn gradient gradient-green gradient-hover radius icon-check">
+            <a data-route="<?= $router->route("web.cookie.policy"); ?>" data-cookie="agree" href="#" class="btn btn_blue">
                 Sim, eu aceito.
             </a>
         </div>

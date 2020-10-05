@@ -14,15 +14,6 @@ use Source\Support\Pager;
  */
 class Posts extends Admin
 {
-
-    /**
-     * Dash constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * ADMIN BLOG HOME
      * @param array|null $data

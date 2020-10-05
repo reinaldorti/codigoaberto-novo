@@ -35,38 +35,3 @@
     font-weight: 800;
     color: inherit;
 }
-
-/*COOKIE POLICY*/
-#cookiePolicy {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    background-color: #000;
-}
-
-#cookiePolicy .container {
-    padding: 30px 0;
-}
-
-#cookiePolicy p {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #FFF;
-    font-size: var(--font-small);
-}
-
-#cookiePolicy p a {
-    color: #FFF;
-    font-weight: var(--weight-bold);
-    text-decoration: none;
-    transition-duration: var(--hover-duration);
-}
-
-#cookiePolicy .footer_optout_btn {
-    /*padding: 12px 24px;*/
-    font-size: var(--font-normal);
-    font-weight: var(--weight-bold);
-    color: #FFF;
-}

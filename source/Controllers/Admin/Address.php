@@ -11,14 +11,6 @@ use Source\Support\Message;
 class Address extends Admin
 {
     /**
-     * Dash constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * ADMIN TELA ADDRES CREATE/UPDATE
      * @param array|null $data
      * @param \Source\Models\Address

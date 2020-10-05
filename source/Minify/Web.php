@@ -6,6 +6,7 @@ if ($minify) {
      * MINIFY CSS
      */
     $minCSS = new MatthiasMullie\Minify\CSS();
+    $minCSS->add(dirname(__DIR__, 2) . "/shared/css/boot.css");
     $minCSS->add(dirname(__DIR__, 2) . "/shared/css/load.css");
     $minCSS->add(dirname(__DIR__, 2) . "/shared/css/message.css");
     $cssDir = scandir(dirname(__DIR__, 2) . "/public/" . CONF_VIEW['THEME'] . "/assets/css");

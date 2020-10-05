@@ -18,7 +18,7 @@
 
         <aside class="single_sidebar_widget newsletter_widget">
             <h4 class="widget_title">Newsletter</h4>
-            <form class="ajax_off" target="_blank" action="https://dominio.com/proc.php" id="_form_334_">
+            <form class="ajax_off" target="_blank" action="" id="_form_334_">
                 <input type="hidden" name="u" value="334" />
                 <input type="hidden" name="f" value="334" />
                 <input type="hidden" name="s" />

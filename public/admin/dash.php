@@ -97,12 +97,9 @@
 <script src="<?= asset('assets/bootstrap/dist/js/demo.js', CONF_VIEW['ADMIN']); ?>"></script>
 <!--<script src="--><?//= asset('assets/bootstrap/plugins/summernote/summernote-bs4.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
 <script src="<?= url("shared/js/tinymce/tinymce.min.js"); ?>"></script>
-
 <script src="<?= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script>
-
 <script src="<?= asset('assets/datepicker/datepicker.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/datepicker/datepicker.pt-BR.js', CONF_VIEW['ADMIN']); ?>"></script>
-
 <script src="<?= asset('assets/bootstrap/plugins/select2/js/select2.full.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 
 <?= $v->section("scripts"); ?>

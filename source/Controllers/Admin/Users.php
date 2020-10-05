@@ -14,15 +14,6 @@ use Source\Support\Pager;
  */
 class Users extends Admin
 {
-
-    /**
-     * Dash constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * ADMIN TELA USERS HOME
      * @param array|null $data

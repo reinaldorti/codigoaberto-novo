@@ -284,15 +284,6 @@ $v->layout("dash"); ?>
                                                         </div>
                                                     </div>
 
-<!--                                                    <div class="col-sm-6">-->
-<!--                                                        <div class="form-group">-->
-<!--                                                            <label>Senha</label>-->
-<!--                                                            <input type="password" name="password" class="form-control"-->
-<!--                                                                   placeholder="Senha"-->
-<!--                                                            >-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-
                                                     <div class="col-sm-12">
                                                         <button type="submit" class="btn btn-primary">
                                                             Atualizar

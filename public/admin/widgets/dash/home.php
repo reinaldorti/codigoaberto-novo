@@ -29,7 +29,9 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="<?= url('admin/users/home'); ?>" class="small-box-footer">Ver usuários <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= url('admin/users/home'); ?>" class="small-box-footer">Ver usuários
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -58,7 +60,9 @@
                         <div class="icon">
                             <i class="fas fa-images"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= url('admin/slides/home'); ?>" class="small-box-footer">More info
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </a>
                     </div>
                 </div>
 
