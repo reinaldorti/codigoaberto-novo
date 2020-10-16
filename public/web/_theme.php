@@ -203,7 +203,7 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
     <div id="cookiePolicy" class="al-center">
         <div class="container">
             <p>Este website utiliza cookies próprios e de terceiros a fim de personalizar o conteúdo, melhorar a experiência do usuário, fornecer funções de mídias sociais e analisar o tráfego. Para continuar navegando você deve concordar com nossa <a href="<?= url("/politica-de-privacidade"); ?>">Política de Privacidade</a>.</p>
-            <a data-route="<?= $router->route("web.cookie.policy"); ?>" data-cookie="agree" href="#" class="btn btn_blue">
+            <a data-route="<?= $router->route("web.cookie.policy"); ?>" data-cookie="agree" href="#" class="btn btn-primary">
                 Sim, eu aceito.
             </a>
         </div>
