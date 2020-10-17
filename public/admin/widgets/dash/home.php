@@ -90,6 +90,7 @@
                 window.location.href = data.redirect.url;
             }
         }, 'json');
-    }, 5 * 60 * 1000);
+    }, 3000);
+    // }, 5 * 60 * 1000);
 </script>
 <?php $v->end(); ?>

@@ -2,12 +2,13 @@
 /*
  * DATABASE CONNECT
  */
-if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localhost') {
+
+if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",
         "host" => "localhost",
         "port" => "3306",
-        "dbname" => "codigoaberto",
+        "dbname" => "codigoaberto_novo",
         "username" => "root",
         "passwd" => "",
         "options" => [
@@ -32,7 +33,7 @@ if (filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING) == 'localh
             PDO::ATTR_CASE => PDO::CASE_NATURAL
         ]
     ]);
-}  
+}
 
 /**
  * COOKIE POLICY
