@@ -3,7 +3,7 @@
  * DATABASE CONNECT
  */
 
-if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
+if ($_SERVER['HTTP_HOST'] == 'localhost') {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",
         "host" => "localhost",
