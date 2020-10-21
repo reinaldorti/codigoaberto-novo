@@ -33,17 +33,6 @@ class Admin extends Controller
             "router" => $this->router
         ]);
 
-        //GERA O TEMPO PARA NAO DESLOGAR O USUARIO
-        $_SESSION['start_login'] = time();
-        $_SESSION['logout_time'] = $_SESSION['start_login'] + 30 * 60;
-
-        //AUMENTA O TEMPO DE SESSAO DO USUARIO LOGADO
-        $user = (new User())->findById($_SESSION["user"]);
-
-        $user->user_login = time();
-        $user->lastaccess = date('Y-m-d H:i:s');
-        $user->save();
-
         if (empty($_SESSION["user"])) {
             unset($_SESSION["user"]);
             flash("error", "
@@ -52,7 +41,12 @@ class Admin extends Controller
             redirect("/admin");
         }
 
-        $user = (new User())->findById("{$_SESSION["user"]}");
+        //GERA O TEMPO PARA NAO DESLOGAR O USUARIO
+        $_SESSION['start_login'] = time();
+        $_SESSION['logout_time'] = $_SESSION['start_login'] + 30 * 60;
+
+        $user = (new User())->find("id=:id", "id={$_SESSION["user"]}")->fetch();
+
         if ($user->level < 6) {
             unset($_SESSION["user"]);
             flash("alert", "
@@ -71,5 +65,9 @@ class Admin extends Controller
             ");
             redirect("/admin");
         }
+
+        $user->user_login = time();
+        $user->lastaccess = date('Y-m-d H:i:s');
+        $user->save();
     }
 }

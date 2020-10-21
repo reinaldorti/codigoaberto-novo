@@ -41,10 +41,14 @@ class Dash extends Admin
 
     public function dashboard(): void
     {
-        $user = (new User())->find("id = :id", "id={$_SESSION["user"]}")->fetch();
+        $user = (new User())->find("id=:id", "id={$_SESSION["user"]}")->fetch();
 
         if (time() >= $_SESSION['logout_time']) {
-            unset($_SESSION["user"]);
+            unset(
+                $_SESSION["user"],
+                $_SESSION['start_login'],
+                $_SESSION['logout_time']
+            );
 
             flash("success", "
                 <i class='fa fa-info-circle'></i>
