@@ -128,9 +128,10 @@ class Login extends Controller
             }
 
             /** MULTIPLO LOGIN **/
-            if (CONF_LOGIN["LOGIN"]) {
+            if (CONF_LOGIN["LOGIN_MULTIPLE"]) {
                 $LoginTrue = true;
             } else {
+
                 $LoginCookieFree = filter_input(INPUT_COOKIE, "user_cookie", FILTER_DEFAULT);
                 $LoginTimeFree = (!empty($user->user_login) ? $user->user_login + (CONF_LOGIN["LOGIN_BLOCK"] * 60) : 0);
 
@@ -158,59 +159,40 @@ class Login extends Controller
                     ]);
                     return;
                 }
-
-                /** SESSION USER ID **/
-                $_SESSION["user"] = $user->id;
-
-                /** SAVE COOKIE **/
-                $Remember = (isset($data['remember']) ? 1 : null);
-                if ($Remember) {
-                    setcookie('email', $data["email"], time() + 2592000, '/');
-                } else {
-                    setcookie('email', '', 60, '/');
-                }
-
-                /** VERIFY IP **/
-                $ip = $_SERVER['REMOTE_ADDR'];
-
-                if ($ip != $user->ip) {
-                    $link = url('admin');
-                    $button = "ACESSAR CONTA";
-
-                    $message = "
-                        <strong style='font-size:17px'>Prezado(a), {$user->first_name}! É importante!</strong> <br>
-                        Detectamos um novo acesso á sua conta do " . CONF_SITE['NAME'] . "!
-                        Foi efetuado a partir de uma rede de IP ou dispositivo diferente do habitual, confira se foi você:<br><br>
-                    
-                        <b>IP:</b> {$ip}<br>
-                        <b>Data:</b> " . date('d/m/Y H:i:s') . "<br><br>
-                    
-                        <b>NÃO FOI VOCÊ?</b><br> É importante atualizar sua conta o quanto antes para manter seus dados seguros.<br> Para isso é preciso aterar sua senha.<br><br>
-                        <b>FOI VOCÊ?</b><br> Então pode ignorar este e-mail, mas ele sempre será enviado como medida de segurança para que você tenha certeza que está tudo certo com sua conta.<br>
-                        Como você sabe, nela existem seus dados pessoais.<br><br>
-                                                              
-                        <b>DÚVIDAS, CRÍTICAS OU SUGESTÕES?</b> <br>
-                        Estamos sempre à disposição para melhor atendê-los! Você sempre pode contar com nossa equipe de suporte!<br><br>
-                    
-                        <p> — Atenciosamente " . CONF_SITE['NAME'] . "</p>
-                    ";
-
-                    $Mail = new Email();
-                    $Mail->add(
-                        "Tudo certo {$user->first_name}? | " . CONF_SITE['NAME'],
-                        $this->view->render("templates/email", [
-                            "message" => $message,
-                            "button" => $button,
-                            "link" => $link
-                        ]),
-                        "{$user->first_name} {$user->last_name}",
-                        $user->email
-                    )->send();
-                }
             }
 
+            /** SAVE COOKIE **/
+            $Remember = (isset($data['remember']) ? 1 : null);
+            if ($Remember) {
+                setcookie('email', $data["email"], time() + 2592000, '/');
+            } else {
+                setcookie('email', '', 60, '/');
+            }
+
+            /** VERIFY IP **/
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            if ($ip != $user->ip) {
+                $link = url('admin');
+                $button = "ACESSAR CONTA";
+
+                $Mail = new Email();
+                $Mail->add(
+                    "Tudo certo {$user->first_name}? | " . CONF_SITE['NAME'],
+                    $this->view->render("templates/email", [
+                        "button" => $button,
+                        "link" => $link
+                    ]),
+                    "{$user->first_name} {$user->last_name}",
+                    $user->email
+                )->send();
+            }
+
+            /** SESSION USER ID **/
+            $_SESSION["user"] = $user->id;
+
             /** SAVE IP **/
-            $user->ip = $ip;
+            $user->ip = $_SERVER['REMOTE_ADDR'];
             $user->save();
 
             if ($LoginTrue) {

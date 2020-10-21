@@ -38,7 +38,8 @@ class Admin extends Controller
         $_SESSION['logout_time'] = $_SESSION['start_login'] + 30 * 60;
 
         //AUMENTA O TEMPO DE SESSAO DO USUARIO LOGADO
-        $user = (new \Source\Models\User())->findById($_SESSION["user"]);
+        $user = (new User())->findById($_SESSION["user"]);
+
         $user->user_login = time();
         $user->lastaccess = date('Y-m-d H:i:s');
         $user->save();

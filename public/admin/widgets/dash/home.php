@@ -83,14 +83,13 @@
 </div>
 
 <?php $v->start("scripts"); ?>
-<script>
-    setInterval(function () {
-        $.post('<?= url('admin/dash'); ?>', function (data) {
-            if (data.redirect) {
-                window.location.href = data.redirect.url;
-            }
-        }, 'json');
-    }, 3000);
-    // }, 5 * 60 * 1000);
-</script>
+    <script>
+        setInterval(function () {
+            $.post('<?= url('admin/dash'); ?>', function (data) {
+                if (data.redirect) {
+                    window.location.href = data.redirect.url;
+                }
+            }, 'json');
+        }, 10000);
+    </script>
 <?php $v->end(); ?>
