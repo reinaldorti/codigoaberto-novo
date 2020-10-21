@@ -179,7 +179,9 @@ class Login extends Controller
                 $Mail = new Email();
                 $Mail->add(
                     "Tudo certo {$user->first_name}? | " . CONF_SITE['NAME'],
-                    $this->view->render("templates/email", [
+                    $this->view->render("templates/login", [
+                        "user" => $user,
+                        "ip" => $ip,
                         "button" => $button,
                         "link" => $link
                     ]),
@@ -290,25 +292,11 @@ class Login extends Controller
             $link = url("/admin/senha/{$user->email}/{$user->forget}");
             $button = "ALTERAR SENHA";
 
-            $message = "
-                <strong style='font-size:17px'>Prezado(a), {$user->first_name}!</strong> <br>
-                Recebemos em nosso site uma solicitação para recuperar sua senha.<br><br>               
-                                   
-                <b>NÃO FOI VOCÊ?</b><br> É importante atualizar sua conta o quanto antes para manter seus dados seguros.
-                Para isso é preciso aterar sua senha.<br><br>
-                                                                      
-                <b>DÚVIDAS, CRÍTICAS OU SUGESTÕES?</b> <br>
-                Estamos sempre à disposição para melhor atendê-los! <br>
-                Você sempre pode contar com nossa equipe de suporte!<br><br>
-            
-                <p> — Atenciosamente " . CONF_SITE['NAME'] . "</p>
-            ";
-
             $mail = new Email();
             $mail->add(
                 "Recupere sua senha | " . CONF_SITE["NAME"],
-                $this->view->render("templates/email", [
-                    "message" => $message,
+                $this->view->render("templates/forget", [
+                    "user" => $user,
                     "button" => $button,
                     "link" => $link
                 ]),
@@ -405,8 +393,13 @@ class Login extends Controller
                 return;
             }
 
+            $ip = $_SERVER['REMOTE_ADDR'];
+
             $user->password = $data["password"];
+            $user->ip = $ip;
             $user->forget = null;
+            $user->user_login = null;
+            $user->user_cookie = null;
 
             if (!$user->save()) {
                 echo Message::ajaxResponse("redirect", [
@@ -419,29 +412,14 @@ class Login extends Controller
             $link = url("/admin");
             $button = "ACESSAR CONTA";
 
-            $message = "
-                <strong style='font-size:17px'>Prezado(a), {$user->first_name}! Tudo certo?</strong> <br>
-                Sua senha foi redefinida com sucesso em nosso site!<br><br> 
-                
-                <b>IP:</b> " . $_SERVER['REMOTE_ADDR'] . " <br/>
-                <b>Data:</b> ". date('d/m/Y H:i:s') . "<br/><br/>              
-                                   
-                <b>NÃO FOI VOCÊ?</b><br> É importante atualizar sua conta o quanto antes para manter seus dados seguros.<br><br>
-                                                                      
-                <b>DÚVIDAS, CRÍTICAS OU SUGESTÕES?</b> <br>
-                Estamos sempre à disposição para melhor atendê-los! <br>
-                Você sempre pode contar com nossa equipe de suporte!<br><br>
-            
-                <p> — Atenciosamente " . CONF_SITE['NAME'] . "</p>
-            ";
-
             $mail = new Email();
             $mail->add(
                 "Tudo certo {$user->first_name}! | " . CONF_SITE['NAME'],
-                $this->view->render("templates/email", [
-                    "message" => $message,
+                $this->view->render("templates/reset", [
+                    "user" => $user,
                     "button" => $button,
-                    "link" => $link
+                    "link" => $link,
+                    "ip" => $ip
                 ]),
                 "{$user->first_name} {$user->last_name}",
                 $user->email

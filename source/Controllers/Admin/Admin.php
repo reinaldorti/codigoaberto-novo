@@ -34,7 +34,12 @@ class Admin extends Controller
         ]);
 
         if (empty($_SESSION["user"])) {
-            unset($_SESSION["user"]);
+            unset(
+                $_SESSION["user"],
+                $_SESSION['start_login'],
+                $_SESSION['logout_time']
+            );
+
             flash("error", "
                 <i class='icon fas fa-ban'></i> Oops! Acesso negado! Por favor, faça o login!
             ");

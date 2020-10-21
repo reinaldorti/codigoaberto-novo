@@ -182,12 +182,13 @@ class Web extends Controller
                 ]);
                 return;
             }
+
+            var_dump($data);
           
             $mail = new Email();
             $mail->add(
                 $data["subject"],
-                $this->view->render("templates/email", [
-                    "data" => $data,
+                $this->view->render("templates/contact", [
                     "message" => $data["message"],
                     "link" => url(),
                 ]),

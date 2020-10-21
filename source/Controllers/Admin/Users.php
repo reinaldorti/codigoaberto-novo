@@ -64,9 +64,11 @@ class Users extends Admin
         ]);
     }
 
+
     /**
      * ADMIN TELA USERS CREATE/UPDATE
      * @param array|null $data
+     * @throws \Exception
      */
     public function user(?array $data): void
     {
@@ -137,30 +139,17 @@ class Users extends Admin
 
             if($data["send_email"] == 1){
 
+                $password =$data["password"];
+
                 $link = url('admin');
                 $button = "ACESSAR CONTA";
-
-                $message = "
-                    <strong style='font-size:17px'>Prezado(a), {$user->first_name}!</strong> <br>
-                    Sua conta acaba de ser criada no site  " . CONF_SITE['NAME'] . "!<br><br>
-                
-                    <b>DADOS DE ACESSO:</b>
-                    <p>
-                        <b>E-mail:</b> {$user->email}<br/>
-                        <b>Senha:</b> <b style='color:#FF0000; font-family: Consolas; font-weight:bold;'>{$data["password"]}</b>
-                    </p>  
-                                                          
-                    <b>DÚVIDAS, CRÍTICAS OU SUGESTÕES?</b> <br>
-                    Estamos sempre à disposição para melhor atendê-los! Você sempre pode contar com nossa equipe de suporte!<br><br>
-                
-                    <p> — Atenciosamente " . CONF_SITE['NAME'] . "</p>
-                ";
 
                 $email = new Email();
                 $email->add(
                     "Bem-vindo (a) {$data["first_name"]}! | " . CONF_SITE['NAME'],
-                    $this->view->render("templates/email", [
-                        "message" => $message,
+                    $this->view->render("templates/newuser", [
+                        "user" => $user,
+                        "password" => $password,
                         "button" => $button,
                         "link" => $link
                     ]),

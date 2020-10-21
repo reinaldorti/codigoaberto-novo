@@ -74,11 +74,15 @@ class Dash extends Admin
      */
     public function logoff(): void
     {
-        $user = (new User())->findById("{$_SESSION["user"]}");
+        $user = (new User())->find("id=:id", "id={$_SESSION["user"]}")->fetch();
         $user->user_login = null;
         $user->save();
 
-        unset($_SESSION["user"]);
+        unset(
+            $_SESSION["user"],
+            $_SESSION['start_login'],
+            $_SESSION['logout_time']
+        );
 
         flash("success", "
             <i class='icon fas fa-check'></i>

@@ -64,9 +64,11 @@ class Posts extends Admin
         ]);
     }
 
+
     /**
      * ADMIN BLOG POST
-     * @param array $data
+     * @param array|null $data
+     * @throws \Exception
      */
     public function post(?array $data): void
     {
