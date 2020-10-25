@@ -20,7 +20,11 @@ $router->post("/cookie", "Web:cookiePolicy", "web.cookie.policy");
 //BLOG
 $router->group("/blog");
 $router->get("/", "Web:posts", "web.blog");
-$router->get("/{uri}", "Web:post", "web.blog");
+$router->post("/buscar", "Web:postSearch");
+$router->get("/buscar/{search}/{page}", "Web:postSearch");
+$router->get("/{uri}", "Web:post");
+
+
 
 //ADMIN ROUTES
 $router->namespace("Source\Controllers\Admin");

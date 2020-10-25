@@ -18,6 +18,13 @@
         <div class="row">
             <div class="col-lg-8 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar">
+
+                    <?php if (!empty($_SESSION["flash"])): ?>
+                        <div class="login_form_callback">
+                            <?= flash(); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if (empty($posts)): ?>
                         <div class="login_form_callback"><div class="message info">
                                 <i class="fa fa-info"></i>
@@ -42,7 +49,7 @@
                                     <p><?= $post->subtitle; ?></p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i> <?= "{$post->author()->first_name} {$post->author()->last_name}"; ?></a></li>
-                                        <li><a href="#"><i class="fa fa-calendar"></i> <?= date("d/m-Y", strtotime($post->created_at)); ?></a></li>
+                                        <li><a href="#"><i class="fa fa-calendar"></i> <?= date("d/m/Y", strtotime($post->created_at)); ?></a></li>
                                     </ul>
                                 </div>
                             </article>

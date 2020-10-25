@@ -72,6 +72,33 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
+        $posts = (new Post())->find()->order("id DESC");
+
+        $pager = new Pager(url("/blog/"));
+        $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
+        $head = $this->seo->render(
+            "Blog - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
+            url(),
+            asset("/assets/images/logo/logo.png")
+        );
+
+        echo $this->view->render("posts", [
+            "head" => $head,
+            "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "views" => (new Post())->find()->order("views DESC")->fetch(true),
+            "paginator" => $pager->render()
+        ]);
+    }
+
+    /**
+     * SITE BLOG SEARCH
+     * @param array $data
+     */
+    public function postSearch(array $data): void
+    {
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
         //search redirect
         if (!empty($data["s"])) {
             $s = str_search($data["s"]);
@@ -111,7 +138,6 @@ class Web extends Controller
             "paginator" => $pager->render()
         ]);
     }
-
     /**
      * SITE BLOG POST
      * @param array $data
@@ -135,7 +161,8 @@ class Web extends Controller
 
         echo $this->view->render("post", [
             "head" => $head,
-            "post" => $post
+            "post" => $post,
+            "views" => (new Post())->find()->order("views DESC")->fetch(true)
         ]);
     }
 

@@ -182,11 +182,12 @@ function is_email($email)
 }
 
 /**
- * <b>NewPass:</b> Gera uma nova senha aleatória para um usuário!
- * @param INT $tamanho = Quantidade de caracteres na senha
- * @param BOOL $letters Usar letras maiusculas (ABCDEFGHIJKLMNOPQRSTUVWXYZ)
- * @param BOOL $numbers Usar numeros (1234567890)
- * @param BOOL $symbols Usar simbolos (!@#$%*-')
+ * Gera uma nova senha aleatória para um usuário!
+ * @param int $size
+ * @param bool $letters
+ * @param bool $numbers
+ * @param bool $symbols
+ * @return string
  */
 function new_password($size = 8, $letters = true, $numbers = true, $symbols = true)
 {
@@ -231,8 +232,8 @@ function is_passwd($password)
 }
 
 /**
- * Escrece status
- * @param int|null $data
+ * @param null $data
+ * @return array|mixed
  */
 function status($data = null)
 {
@@ -249,8 +250,8 @@ function status($data = null)
 }
 
 /**
- * Escrece genero
- * @param int|null $data
+ * @param null $data
+ * @return array|mixed
  */
 function genre($data = null)
 {
@@ -267,8 +268,8 @@ function genre($data = null)
 }
 
 /**
- * Escrece genero
- * @param int|null $data
+ * @param null $data
+ * @return array|mixed
  */
 function level($data = null)
 {

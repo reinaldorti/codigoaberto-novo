@@ -107,15 +107,15 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                         </h3>
                         <ul class="address_line">
                             <li><?= CONF_MAIL['FROM_TELEPHONE']; ?></li>
-                            <li><a href="#">Demomail@gmail.Com</a></li>
-                            <li>700, Green Lane, New York, USA</li>
+                            <li><a href="#"><?= CONF_MAIL['FROM_EMAIL']; ?></a></li>
+                            <li><?= CONF_SITE['ADDR_STREET']; ?>, <?= CONF_SITE['ADDR_NUMBER']; ?></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-xl-3  col-md-6 col-lg-3">
                     <div class="footer_widget">
                         <h3 class="footer_title">
-                            Our Servces
+                            Serviços
                         </h3>
                         <ul class="links">
                             <li><a  href="<?= url(); ?>">home</a></li>
@@ -129,7 +129,7 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                 <div class="col-xl-3  col-md-6 col-lg-3">
                     <div class="footer_widget">
                         <h3 class="footer_title">
-                            Quick Link
+                            Link
                         </h3>
                         <ul class="links">
                             <li><a href="#">About Us</a></li>
@@ -186,9 +186,8 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                 <div class="col-xl-12">
                     <p class="copy_right text-center">
                     <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
-                        This template is made with <i class="ti-heart" aria-hidden="true"></i>
-                        by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                       Todos os direitos resevados | Pragramação desenvolvida por
+                        <a href="mailto:<?= CONF_MAIL['FROM_EMAIL']; ?>" target="_blank">Reinaldo Dorti</a>
                     </p>
                     </p>
                 </div>
