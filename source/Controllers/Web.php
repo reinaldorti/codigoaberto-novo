@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use CoffeeCode\Router\Router;
 use Source\Models\Post;
+use Source\Models\Testimony;
 use Source\Support\Message;
 use Source\Support\Email;
 use Source\Support\Pager;
@@ -42,8 +43,11 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
+        $testimony = (new Testimony())->find()->order("id DESC")->fetch(true);
+
         echo $this->view->render("home", [
             "head" => $head,
+            "testimony" => $testimony
         ]);
     }
 

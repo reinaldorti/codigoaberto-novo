@@ -149,30 +149,34 @@
     </div>
 </div>
 
-<div class="testmonial_area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="textmonial_active owl-carousel">
-                    <?php for ($i = 0; $i <= 5; $i++): ?>
-                        <div class="testmonial_wrap">
-                            <div class="single_testmonial d-flex align-items-center">
-                                <div class="test_thumb">
-                                    <img src="<?= asset('assets/img/testmonial/1.png'); ?>" alt="">
-                                </div>
-                                <div class="test_content">
-                                    <h4>Jhon Walker</h4>
-                                    <span>Head of web design</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
+<?php if (!empty($testimony)): ?>
+    <div class="testmonial_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="textmonial_active owl-carousel">
+                        <?php
+                        foreach ($testimony as $comment):
+                            $cover = (!empty($comment->cover) ? image($comment->cover) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
+                            ?>
+                            <div class="testmonial_wrap">
+                                <div class="single_testmonial d-flex align-items-center">
+                                    <div class="test_thumb">
+                                        <img src="<?= $cover; ?>" width="130" height="148" title="<?= $comment->title; ?>" alt="<?= $comment->title; ?>">
+                                    </div>
+                                    <div class="test_content">
+                                        <h4><?= $comment->title; ?></h4>
+                                        <p><?= $comment->content; ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endfor; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="team_area">
     <div class="container">

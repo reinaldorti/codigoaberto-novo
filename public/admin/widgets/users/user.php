@@ -59,7 +59,7 @@ $v->layout("dash"); ?>
                                                 <?= $csrf; ?>
 
                                                 <div class="card-body">
-                                                    <div class="login_form_callback teste">
+                                                    <div class="login_form_callback">
                                                         <?= flash(); ?>
                                                     </div>
 

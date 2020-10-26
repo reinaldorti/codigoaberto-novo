@@ -4,19 +4,19 @@ $v->layout("dash"); ?>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <?php if (!$post): ?>
+                <?php if (!$testimony): ?>
                     <div class="col-sm-6">
-                        <h4>Novo Post</h4>
+                        <h4>Novo Depoimento</h4>
                     </div>
                 <?php else: ?>
                     <div class="col-sm-6">
-                        <h4>Editar Post</h4>
+                        <h4>Editar Depoimento</h4>
                     </div>
                 <?php endif; ?>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= url('admin/dash'); ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="<?= url('admin/posts/home'); ?>">Blog</a></li>
+                        <li class="breadcrumb-item"><a href="<?= url('admin/testimony/home'); ?>">Depoimentos</a></li>
                         <li class="breadcrumb-item active">Novo</li>
                     </ol>
                 </div>
@@ -26,7 +26,7 @@ $v->layout("dash"); ?>
 
     <div class="mce_upload" style="z-index: 997;">
         <div class="mce_upload_box">
-            <form action="<?= url("admin/posts/post"); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= url("admin/testimony/testimony"); ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="upload" value="true"/>
                 <input type="hidden" name="action" value="create"/>
                 <label>
@@ -41,9 +41,9 @@ $v->layout("dash"); ?>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <?php if (!$post): ?>
+                <?php if (!$testimony): ?>
                     <div class="col-12 card card-primary">
-                        <form action="<?= url('admin/posts/post'); ?>" method="post">
+                        <form action="<?= url('admin/testimony/testimony'); ?>" method="post">
                             <input type="hidden" name="action" value="create"/>
                             <?= $csrf; ?>
 
@@ -67,28 +67,6 @@ $v->layout("dash"); ?>
                                         <div class="form-group">
                                             <label>Título (*)</label>
                                             <input type="text" name="title" class="form-control" placeholder="Título">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Subtítulo (*)</label>
-                                            <input type="text" name="subtitle" class="form-control" placeholder="Subtítulo">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Tag (*)</label>
-                                            <input type="text" name="tag" class="form-control" placeholder="Tag">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Vídeo</label>
-                                            <input type="text" name="video" class="form-control"
-                                                   placeholder="Nome">
                                         </div>
                                     </div>
 
@@ -121,23 +99,6 @@ $v->layout("dash"); ?>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Data de publicação</label>
-                                            <input type="text" name="post_at" class="js_datepicker form-control"
-                                                   autocomplete="off"
-                                                   placeholder="Data de publicação">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Link alternativo</label>
-                                            <input type="text" name="uri" class="form-control"
-                                                   placeholder="Link alternativo">
-                                        </div>
-                                    </div>
-
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Conteúdo</label>
@@ -154,7 +115,7 @@ $v->layout("dash"); ?>
                     </div>
                 <?php else: ?>
                     <div class="col-12 card card-primary">
-                        <form action="<?= url("admin/posts/post/{$post->id}"); ?>" method="post">
+                        <form action="<?= url("admin/testimony/testimony/{$testimony->id}"); ?>" method="post">
                             <input type="hidden" name="action" value="update"/>
                             <?= $csrf; ?>
 
@@ -177,28 +138,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Título (*)</label>
-                                            <input type="text" name="title" class="form-control" value="<?= $post->title; ?>" placeholder="Título">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Subtítulo (*)</label>
-                                            <input type="text" name="subtitle" class="form-control" value="<?= $post->subtitle; ?>" placeholder="Subtítulo">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Tag (*)</label>
-                                            <input type="text" name="tag" class="form-control" value="<?= $post->tag; ?>" placeholder="Tag">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Vídeo</label>
-                                            <input type="text" name="video" class="form-control" value="<?= $post->video; ?>" placeholder="Nome">
+                                            <input type="text" name="title" class="form-control" value="<?= $testimony->title; ?>" placeholder="Título">
                                         </div>
                                     </div>
 
@@ -211,7 +151,7 @@ $v->layout("dash"); ?>
                                                 $status = status();
                                                 foreach ($status as $id => $desc):
                                                     echo "<option value='{$id}'";
-                                                    if (isset($post->status) && $post->status == $id):
+                                                    if (isset($testimony->status) && $testimony->status == $id):
                                                         echo 'selected';
                                                     endif;
                                                     echo "> {$desc}</option>";
@@ -226,7 +166,7 @@ $v->layout("dash"); ?>
                                             <label>Author (*)</label>
                                             <select class="js-example-basic-single form-control" name="author" required>
                                                 <?php foreach ($authors as $author):
-                                                    $authorId = $post->author;
+                                                    $authorId = $testimony->author;
                                                     $select = function ($value) use ($authorId) {
                                                         return ($authorId == $value ? "selected" : "");
                                                     };
@@ -239,29 +179,10 @@ $v->layout("dash"); ?>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Data de publicação</label>
-                                            <input type="text" name="post_at" class="js_datepicker form-control"
-                                                   autocomplete="off"
-                                                   value="<?= date("d/m/Y", strtotime($post->post_at)); ?>"
-                                                   placeholder="Data de publicação"
-                                            >
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Link alternativo</label>
-                                            <input type="text" name="uri" class="form-control"
-                                                   value="<?= $post->uri; ?>" placeholder="Link alternativo">
-                                        </div>
-                                    </div>
-
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Conteúdo</label>
-                                            <textarea class="mce" name="content"><?= $post->content; ?></textarea>
+                                            <textarea class="mce" name="content"><?= $testimony->content; ?></textarea>
                                         </div>
                                     </div>
 
