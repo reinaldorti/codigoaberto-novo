@@ -3,6 +3,7 @@
 namespace Source\Controllers\Admin;
 
 use CoffeeCode\Uploader\Image;
+use Source\Models\Testimony;
 use Source\Models\User;
 use Source\Support\Message;
 use Source\Support\Pager;
@@ -11,7 +12,7 @@ use Source\Support\Pager;
  * Class Testimony
  * @package Source\Controllers\Admin
  */
-class Testimony extends Admin
+class Testimonys extends Admin
 {
     /**
      * ADMIN TESTIMONY HOME
@@ -75,7 +76,7 @@ class Testimony extends Admin
             $content = $data["content"];
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-            $form = [$data["title"], $data["status"], $data["author"]];
+            $form = [$data["name"], $data["status"], $data["author"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -95,16 +96,13 @@ class Testimony extends Admin
                 return;
             }
 
-            $testimony = new \Source\Models\Testimony();
+            $testimony = new Testimony();
             $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
             $testimony->content = str_replace(["{name}"], [$testimony->name], $content);
             $testimony->created_at = date("Y-m-d H:i:s");
             $testimony->save();
-
-
-            var_dump($testimony->save());
 
             if (!empty($_FILES["cover"])) {
                 $upload = new Image("storage", "testimony");
@@ -126,14 +124,15 @@ class Testimony extends Admin
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $testimony->cover = $cover;
                 $testimony->save();
+
+                var_dump($testimony);
             }
 
             flash("success", "
                 <i class='icon fas fa-check'></i> Depoimento cadastrado com sucesso!
             ");
             echo Message::ajaxResponse("redirect", [
-                //"url" => url("admin/testimony/testimony/{$testimony->id}")
-                "url" => url("admin/testimony/testimony")
+                "url" => url("admin/testimony/testimony/{$testimony->id}")
             ]);
             return;
         }
@@ -163,7 +162,7 @@ class Testimony extends Admin
                 return;
             }
 
-            $testimony = (new \Source\Models\Testimony())->findById("{$data["id"]}");
+            $testimony = (new Testimony())->findById("{$data["id"]}");
             $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
@@ -212,7 +211,7 @@ class Testimony extends Admin
         $testimony = null;
         if (!empty($data["id"])) {
             $postId = filter_var($data["id"], FILTER_VALIDATE_INT);
-            $testimony = (new \Source\Models\Testimony())->findById("{$postId}");
+            $testimony = (new Testimony())->findById("{$postId}");
         }
 
         echo $this->view->render("widgets/testimony/testimony", [
@@ -231,7 +230,7 @@ class Testimony extends Admin
     public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-        $testimony = (new \Source\Models\Testimony())->findById("{$data["id"]}");
+        $testimony = (new Testimony())->findById("{$data["id"]}");
 
         if (!$testimony) {
             flash("error", "Oops! Você tentou gerenciar um depoimento que não existe!");

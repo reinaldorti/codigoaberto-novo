@@ -24,20 +24,6 @@ $v->layout("dash"); ?>
         </div>
     </section>
 
-    <div class="mce_upload" style="z-index: 997;">
-        <div class="mce_upload_box">
-            <form action="<?= url("admin/testimony/testimony"); ?>" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="upload" value="true"/>
-                <input type="hidden" name="action" value="create"/>
-                <label>
-                    <label class="legend">Selecione uma imagem JPG ou PNG:</label>
-                    <input accept="image/*" type="file" name="image" required/>
-                </label>
-                <button class="btn btn-primary">Enviar Imagem</button>
-            </form>
-        </div>
-    </div>
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -56,7 +42,7 @@ $v->layout("dash"); ?>
                                     <label>Foto (Opcional)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="cover" class="custom-file-input">
+                                            <input type="file" name="cover" class="custom-file-input" accept="image/png, image/jpeg">
                                             <label class="custom-file-label">Imagem</label>
                                         </div>
                                     </div>
@@ -107,7 +93,7 @@ $v->layout("dash"); ?>
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Criar Post</button>
+                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +114,7 @@ $v->layout("dash"); ?>
                                     <label>Imagem (Opcional)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="cover" class="custom-file-input">
+                                            <input type="file" name="cover" class="custom-file-input" accept="image/png, image/jpeg">
                                             <label class="custom-file-label">Imagem</label>
                                         </div>
                                     </div>

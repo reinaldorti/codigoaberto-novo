@@ -74,14 +74,14 @@ $router->get("/posts/home/{search}/{page}", "Posts:home");
 $router->get("/posts/delete/{id}", "Posts:delete");
 
 //TESTIMONY
-$router->get("/testimony/home", "Testimony:home");
-$router->post("/testimony/home", "Testimony:home");
-$router->get("/testimony/testimony", "Testimony:testimony");
-$router->post("/testimony/testimony", "Testimony:testimony");
-$router->get("/testimony/testimony/{id}", "Testimony:testimony");
-$router->post("/testimony/testimony/{id}", "Testimony:testimony");
-$router->get("/testimony/home/{search}/{page}", "Testimony:home");
-$router->get("/testimony/delete/{id}", "Testimony:delete");
+$router->get("/testimony/home", "Testimonys:home");
+$router->post("/testimony/home", "Testimonys:home");
+$router->get("/testimony/testimony", "Testimonys:testimony");
+$router->post("/testimony/testimony", "Testimonys:testimony");
+$router->get("/testimony/testimony/{id}", "Testimonys:testimony");
+$router->post("/testimony/testimony/{id}", "Testimonys:testimony");
+$router->get("/testimony/home/{search}/{page}", "Testimonys:home");
+$router->get("/testimony/delete/{id}", "Testimonys:delete");
 
 //END ADMIN
 $router->namespace("Source\Controllers");

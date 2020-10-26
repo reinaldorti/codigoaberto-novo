@@ -56,7 +56,7 @@ $v->layout("dash"); ?>
                                     <label>Foto(*)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="cover" class="custom-file-input">
+                                            <input type="file" name="cover" class="custom-file-input" accept="image/png, image/jpeg">
                                             <label class="custom-file-label">Imagem</label>
                                         </div>
                                     </div>

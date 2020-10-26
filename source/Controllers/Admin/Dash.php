@@ -5,6 +5,7 @@ use Source\Models\Post;
 use Source\Models\Slide;
 use Source\Models\User;
 use Source\Support\Message;
+use Source\Models\Testimony;
 
 /**
  * Class Dash
@@ -35,6 +36,9 @@ class Dash extends Admin
             ],
             "slides" => (object)[
                 "slides" => (new Slide())->find()->count(),
+            ],
+            "testimony" => (object)[
+                "testimony" => (new Testimony())->find()->count(),
             ]
         ]);
     }
