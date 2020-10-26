@@ -96,7 +96,7 @@ class Web extends Controller
      * SITE BLOG TAG
      * @param array|null $data
      */
-    public function tags(?array $data): void
+    public function tag(?array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
