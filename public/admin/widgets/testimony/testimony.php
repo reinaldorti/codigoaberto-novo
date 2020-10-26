@@ -65,8 +65,8 @@ $v->layout("dash"); ?>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Título (*)</label>
-                                            <input type="text" name="title" class="form-control" placeholder="Título">
+                                            <label>Nome (*)</label>
+                                            <input type="text" name="name" class="form-control" placeholder="Nome">
                                         </div>
                                     </div>
 
@@ -138,7 +138,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Título (*)</label>
-                                            <input type="text" name="title" class="form-control" value="<?= $testimony->title; ?>" placeholder="Título">
+                                            <input type="text" name="name" class="form-control" value="<?= $testimony->name; ?>" placeholder="Título">
                                         </div>
                                     </div>
 

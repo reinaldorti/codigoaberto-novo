@@ -70,7 +70,7 @@ $v->layout("dash"); ?>
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
+                                        <th>Nome</th>
                                         <th>Status</th>
                                         <th>Data</th>
                                         <th>Ações</th>
@@ -82,7 +82,7 @@ $v->layout("dash"); ?>
                                         ?>
                                         <tr>
                                             <td><?= str_pad($comment->id, 4, 0, STR_PAD_LEFT); ?></td>
-                                            <td><?= str_chars($comment->title, 60); ?></td>
+                                            <td><?= str_chars($comment->name, 60); ?></td>
                                             <td><?= status($comment->status); ?></td>
                                             <td><?= date('d/m/Y', strtotime($comment->created_at)); ?></td>
                                             <td>

@@ -96,10 +96,10 @@ class Testimony extends Admin
             }
 
             $testimony = new \Source\Models\Testimony();
-            $testimony->title = $data["title"];
+            $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
-            $testimony->content = str_replace(["{title}"], [$testimony->title], $content);
+            $testimony->content = str_replace(["{name}"], [$testimony->name], $content);
             $testimony->created_at = date("Y-m-d H:i:s");
             $testimony->save();
 
@@ -122,7 +122,7 @@ class Testimony extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$testimony->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $testimony->id . "-" . slug($testimony->title), 730);
+                $uploaded = $upload->upload($file, $testimony->id . "-" . slug($testimony->name), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $testimony->cover = $cover;
                 $testimony->save();
@@ -143,7 +143,7 @@ class Testimony extends Admin
             $content = $data["content"];
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-            $form = [$data["title"], $data["status"], $data["author"]];
+            $form = [$data["name"], $data["status"], $data["author"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -164,10 +164,10 @@ class Testimony extends Admin
             }
 
             $testimony = (new \Source\Models\Testimony())->findById("{$data["id"]}");
-            $testimony->title = $data["title"];
+            $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
-            $testimony->content = str_replace(["{title}"], [$testimony->title], $content);
+            $testimony->content = str_replace(["{name}"], [$testimony->name], $content);
             $testimony->updated_at = date("Y-m-d H:i:s");
             $testimony->save();
 
@@ -187,7 +187,7 @@ class Testimony extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$testimony->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $testimony->id . "-" . slug($testimony->title), 730);
+                $uploaded = $upload->upload($file, $testimony->id . "-" . slug($testimony->name), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $testimony->cover = $cover;
                 $testimony->save();

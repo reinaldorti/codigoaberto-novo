@@ -15,6 +15,6 @@ class Testimony extends DataLayer
      */
     public function __construct()
     {
-        parent::__construct("testimony", ["id", "title", "status", "author"]);
+        parent::__construct("testimony", ["id", "name", "status", "author"]);
     }
 }
