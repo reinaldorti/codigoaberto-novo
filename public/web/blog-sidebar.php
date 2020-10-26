@@ -78,31 +78,31 @@
 
         <aside class="single_sidebar_widget tag_cloud_widget">
             <h4 class="widget_title">Tags</h4>
+
             <ul class="list">
-                <li>
-                    <a href="#">project</a>
-                </li>
-                <li>
-                    <a href="#">love</a>
-                </li>
-                <li>
-                    <a href="#">technology</a>
-                </li>
-                <li>
-                    <a href="#">travel</a>
-                </li>
-                <li>
-                    <a href="#">restaurant</a>
-                </li>
-                <li>
-                    <a href="#">life style</a>
-                </li>
-                <li>
-                    <a href="#">design</a>
-                </li>
-                <li>
-                    <a href="#">illustration</a>
-                </li>
+                <?php if (empty($tags)): ?>
+                    <div class="login_form_callback">
+                        <div class="message info">
+                            <i class="fa fa-info"></i>
+                            Oops! Não existe tags cadastrados no momento!
+                        </div>
+                    </div>
+                <?php
+                else:
+                    foreach ($tags as $tag):
+                        if ($tag->tag):
+                            foreach (explode(",", $tag->tag) AS $tags):
+                                $tag = ltrim(rtrim($tags));
+                                ?>
+                                <li>
+                                    <a href="<?= url("/blog/tag/" . slug($tag) . " "); ?>"><?= $tag; ?></a>
+                                </li>
+                            <?php
+                            endforeach;
+                        endif;
+                    endforeach;
+                endif;
+                ?>
             </ul>
         </aside>
     </div>

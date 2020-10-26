@@ -23,8 +23,7 @@ $router->get("/", "Web:posts", "web.blog");
 $router->post("/buscar", "Web:postSearch");
 $router->get("/buscar/{search}/{page}", "Web:postSearch");
 $router->get("/{uri}", "Web:post");
-
-
+$router->get("/tag/{tag}", "Web:tags");
 
 //ADMIN ROUTES
 $router->namespace("Source\Controllers\Admin");

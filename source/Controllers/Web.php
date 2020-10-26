@@ -87,8 +87,32 @@ class Web extends Controller
             "head" => $head,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
             "views" => (new Post())->find()->order("views DESC")->fetch(true),
+            "tags" => (new Post())->find()->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
+    }
+
+    /**
+     * SITE BLOG TAG
+     * @param array|null $data
+     */
+    public function tags(?array $data): void
+    {
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
+        $search = null;
+
+        if (!empty($data["tag"]) && str_search($data["tag"]) != "all") {
+            $search = str_search($data["tag"]);
+            $tag = (new Post())->find("MATCH(tag) AGAINST(:tag)", "s={$search}");
+            if (!$tag->count()) {
+                flash("info", "Oops! Tag não foi encontrado!");
+                redirect("/blog/");
+            }
+        }
+
+        var_dump($tag);
+
     }
 
     /**
@@ -110,7 +134,7 @@ class Web extends Controller
         }
 
         $search = null;
-        $posts = (new Post())->find()->order("id DESC");
+        $posts = (new Post())->find()->order("id DESC")->fetch();
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
@@ -124,6 +148,7 @@ class Web extends Controller
         $all = ($search ?? "all");
         $pager = new Pager(url("/blog/{$all}/"));
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
+
         $head = $this->seo->render(
             "Blog - " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
@@ -135,9 +160,11 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "views" => (new Post())->find()->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
+
     /**
      * SITE BLOG POST
      * @param array $data
@@ -162,7 +189,7 @@ class Web extends Controller
         echo $this->view->render("post", [
             "head" => $head,
             "post" => $post,
-            "views" => (new Post())->find()->order("views DESC")->fetch(true)
+            "views" => (new Post())->find()->order("views DESC")->fetch(true),
         ]);
     }
 
