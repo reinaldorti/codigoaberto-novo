@@ -59,10 +59,10 @@
             <?php
             else:
                 foreach ($views as $view):
-                    $cover = (!empty($view->cover) ? image($post->cover, 120) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
+                    $cover = (!empty($view->cover) ? image($view->cover, 80) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
                     ?>
                     <div class="media post_item">
-                        <img src="<?= $cover; ?>" title="<?= $view->title; ?>" alt="<?= $view->title; ?>">
+                        <img src="<?= $cover; ?>" title="<?= $view->title; ?>" width="120" height="80" alt="<?= $view->title; ?>">
                         <div class="media-body">
                             <a href="<?= url("/blog/{$view->uri}"); ?>">
                                 <h3><?= str_chars($view->title, 60); ?></h3>

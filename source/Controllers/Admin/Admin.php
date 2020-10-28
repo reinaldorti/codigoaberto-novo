@@ -54,7 +54,7 @@ class Admin extends Controller
 
         if ($user->level < 6) {
             unset($_SESSION["user"]);
-            flash("alert", "
+            flash("error", "
                 <i class='icon fas fa-ban'></i>Oops! Esse nível de acesso não tem permissão para logar!
             ");
             redirect("/admin");

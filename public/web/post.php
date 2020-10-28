@@ -19,7 +19,7 @@
             <div class="col-lg-8 posts-list">
                 <div class="single-post">
                     <div class="feature-img">
-                        <img class="img-fluid" src="<?= (!empty($post->cover) ? image($post->cover) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME'])); ?>" alt="">
+                        <img class="img-fluid" src="<?= (!empty($post->cover) ? image($post->cover, 730) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME'])); ?>" alt="">
                     </div>
                     <div class="blog_details">
                         <h2><?= $post->subtitle; ?></h2>
