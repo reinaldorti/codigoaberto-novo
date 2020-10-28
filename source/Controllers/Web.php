@@ -240,8 +240,6 @@ class Web extends Controller
                 ]);
                 return;
             }
-
-            var_dump($data);
           
             $mail = new Email();
             $mail->add(
