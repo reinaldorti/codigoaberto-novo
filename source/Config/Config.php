@@ -2,7 +2,6 @@
 /*
  * DATABASE CONNECT
  */
-
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",

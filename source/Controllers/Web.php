@@ -114,9 +114,6 @@ class Web extends Controller
                 redirect("/blog/");
             }
         }
-
-        var_dump($tag);
-
     }
 
     /**
@@ -248,8 +245,8 @@ class Web extends Controller
                     "message" => $data["message"],
                     "link" => url(),
                 ]),
-                "{$data["name"]}",
-                $data["email"]
+                CONF_MAIL['FROM_NAME'],
+                CONF_MAIL['FROM_EMAIL']
             )->send();
 
             echo Message::ajaxResponse("message", [
