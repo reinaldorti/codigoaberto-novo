@@ -34,16 +34,25 @@
                     <?php else:
                         foreach ($posts as $post):
                             $cover = (!empty($post->cover) ? image($post->cover) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
+                            $link = url("/blog/{$post->uri}");
+
+                            $dateObj   = DateTime::createFromFormat('!m', date("m", strtotime($post->created_at)));
+                            $monthName = $dateObj->format('F');
                             ?>
                             <article class="blog_item">
                                 <div class="blog_item_img">
-                                    <a href="<?= url("/blog/{$post->uri}"); ?>">
+                                    <a href="<?= $link; ?>">
                                         <img class="card-img rounded-0" src="<?= $cover; ?>" alt="">
+                                    </a>
+
+                                    <a href="<?= $link; ?>" class="blog_item_date" title="<?= $post->title; ?>">
+                                        <h3><?= date("d", strtotime($post->created_at)); ?></h3>
+                                        <p><?= substr($monthName, 0, 3)?></p>
                                     </a>
                                 </div>
 
                                 <div class="m-2"> <!--blog_details">-->
-                                    <a class="d-inline-block" href="<?= url("/blog/{$post->uri}"); ?>">
+                                    <a class="d-inline-block" href="<?= $link; ?>">
                                         <h2> <?= $post->title; ?></h2>
                                     </a>
                                     <p><?= $post->subtitle; ?></p>

@@ -60,11 +60,15 @@
             else:
                 foreach ($views as $view):
                     $cover = (!empty($view->cover) ? image($view->cover, 80) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
+                    $link = url("/blog/{$view->uri}");
                     ?>
                     <div class="media post_item">
-                        <img src="<?= $cover; ?>" title="<?= $view->title; ?>" width="120" height="80" alt="<?= $view->title; ?>">
+                        <a href="<?= $link; ?>" title="<?= $view->title; ?>">
+                            <img src="<?= $cover; ?>" title="<?= $view->title; ?>" width="120" height="80" alt="<?= $view->title; ?>">
+                        </a>
+                        
                         <div class="media-body">
-                            <a href="<?= url("/blog/{$view->uri}"); ?>">
+                            <a href="<?= $link; ?>" title="<?= $view->title; ?>">
                                 <h3><?= str_chars($view->title, 60); ?></h3>
                             </a>
                             <p><?= date("d/m/Y", strtotime($view->created_at)); ?></p>
