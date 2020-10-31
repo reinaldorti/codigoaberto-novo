@@ -42,18 +42,18 @@ function date_fmt(?string $date): ?string
 /**
  * @param string $string
  * @param int $limit
- * @param string $pointer
  * @return string
  */
-function str_chars(string $string, int $limit, string $pointer = "..."): string
+function str_chars(string $string, int $limit): string
 {
-    $string = trim(filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS));
-    if (mb_strlen($string) <= $limit) {
-        return $string;
+    $data = strip_tags($string);
+    $format = $limit;
+    if (strlen($data) <= $format) {
+        return $data;
+    } else {
+        $subStr = strrpos(substr($data, 0, $format), ' ');
+        return substr($data, 0, $subStr) . '...';
     }
-
-    $chars = mb_substr($string, 0, mb_strrpos(mb_substr($string, 0, $limit), " "));
-    return "{$chars}{$pointer}";
 }
 
 /**
