@@ -193,37 +193,28 @@ $v->layout("dash"); ?>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Nome (*)</label>
-                                                            <input type="text" name="first_name"
-                                                                   class="form-control" placeholder="Nome"
-                                                                   value="<?= $user->first_name; ?>"
-                                                            >
+                                                            <input type="text" name="first_name" class="form-control" placeholder="Nome" value="<?= $user->first_name; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Sobrenome (*)</label>
-                                                            <input type="text" name="last_name" class="form-control"
-                                                                   placeholder="Sobrenome" value="<?= $user->last_name; ?>"
-                                                            >
+                                                            <input type="text" name="last_name" class="form-control" placeholder="Sobrenome" value="<?= $user->last_name; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>E-mail (*)</label>
-                                                            <input type="text" name="email" class="form-control"
-                                                                   placeholder="E-mail" value="<?= $user->email; ?>"
-                                                            >
+                                                            <input type="text" name="email" class="form-control" placeholder="E-mail" value="<?= $user->email; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Telefone (*)</label>
-                                                            <input type="text" name="telephone" class="form-control formPhone"
-                                                                   placeholder="Telefone" value="<?= $user->telephone; ?>"
-                                                            >
+                                                            <input type="text" name="telephone" class="form-control formPhone" placeholder="Telefone" value="<?= $user->telephone; ?>">
                                                         </div>
                                                     </div>
 
@@ -311,30 +302,23 @@ $v->layout("dash"); ?>
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
                                                             <label>Senha atual</label>
-                                                            <input type="password" name="password_at" class="form-control"
-                                                                   placeholder="Senha"
-                                                            >
+                                                            <input type="password" name="password_at" class="form-control" placeholder="Senha">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Nova senha</label>
-                                                            <input type="password" name="password" class="form-control"
-                                                                   placeholder="Senha"
-                                                            >
+                                                            <input type="password" name="password" class="form-control" placeholder="Senha">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Confirmar senha</label>
-                                                            <input type="password" name="password_re" class="form-control"
-                                                                   placeholder="Senha"
-                                                            >
+                                                            <input type="password" name="password_re" class="form-control" placeholder="Senha">
                                                         </div>
                                                     </div>
-
 
                                                     <div class="col-sm-12">
                                                         <button type="submit" class="btn btn-primary">Atualizar</button>
@@ -359,80 +343,56 @@ $v->layout("dash"); ?>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Cep (*)</label>
-                                                            <input type="text" class="form-control formCep js_getCep"
-                                                                   name="zipcode" placeholder="Cep"
-                                                                   value="<?php if (isset($user->addr()->zipcode)) echo $user->addr()->zipcode; ?>"
-                                                            >
+                                                            <input type="text" class="form-control formCep js_getCep" name="zipcode" placeholder="Cep" value="<?php if (isset($user->addr()->zipcode)) echo $user->addr()->zipcode; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Rua (*)</label>
-                                                            <input type="text" class="form-control js_logradouro"
-                                                                   name="street" placeholder="Rua"
-                                                                   value="<?php if (isset($user->addr()->street)) echo $user->addr()->street; ?>"
-                                                            >
+                                                            <input type="text" class="form-control js_logradouro" name="street" placeholder="Rua" value="<?php if (isset($user->addr()->street)) echo $user->addr()->street; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Número (*)</label>
-                                                            <input type="text" class="form-control"
-                                                                   name="number" placeholder="Número"
-                                                                   value="<?php if (isset($user->addr()->number)) echo $user->addr()->number; ?>"
-                                                            >
+                                                            <input type="text" class="form-control" name="number" placeholder="Número" value="<?php if (isset($user->addr()->number)) echo $user->addr()->number; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Complemento</label>
-                                                            <input type="text" class="form-control js_complemento"
-                                                                   name="complement" placeholder="Ex: Casa, Apto, Etc:"
-                                                                   value="<?php if (isset($user->addr()->complement)) echo $user->addr()->complement; ?>"
-                                                            >
+                                                            <input type="text" class="form-control js_complemento" name="complement" placeholder="Ex: Casa, Apto, Etc:" value="<?php if (isset($user->addr()->complement)) echo $user->addr()->complement; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Bairro (*)</label>
-                                                            <input type="text" class="form-control js_bairro"
-                                                                   name="district" placeholder="Bairro:"
-                                                                   value="<?php if (isset($user->addr()->district)) echo $user->addr()->district; ?>"
-                                                            >
+                                                            <input type="text" class="form-control js_bairro" name="district" placeholder="Bairro:" value="<?php if (isset($user->addr()->district)) echo $user->addr()->district; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Cidade (*)</label>
-                                                            <input type="text" class="form-control js_localidade"
-                                                                   name="city" placeholder="Cidade"
-                                                                   value="<?php if (isset($user->addr()->city)) echo $user->addr()->city; ?>"
-                                                            >
+                                                            <input type="text" class="form-control js_localidade" name="city" placeholder="Cidade" value="<?php if (isset($user->addr()->city)) echo $user->addr()->city; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Estado (*)</label>
-                                                            <input type="text" class="form-control js_uf" maxlength="2"
-                                                                   name="state" placeholder="Estado"
-                                                                   value="<?php if (isset($user->addr()->state)) echo $user->addr()->state; ?>"
-                                                            >
+                                                            <input type="text" class="form-control js_uf" maxlength="2" name="state" placeholder="Estado" value="<?php if (isset($user->addr()->state)) echo $user->addr()->state; ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Pais</label>
-                                                            <input type="text" class="form-control"
-                                                                   name="country" placeholder="Pais"
-                                                                   value="<?php if (isset($user->addr()->country)) echo $user->addr()->country; ?>"
-                                                            >
+                                                            <input type="text" class="form-control" name="country" placeholder="Pais" value="<?php if (isset($user->addr()->country)) echo $user->addr()->country; ?>">
                                                         </div>
                                                     </div>
 
