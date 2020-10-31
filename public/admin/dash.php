@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<?= url('shared/css/boot.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/load.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/message.css'); ?>">
+    <link rel="stylesheet" href="<?= url('shared/shadowbox/shadowbox.css'); ?>">
 
     <!--link rel="stylesheet" href="<?//= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>"-->
 
@@ -90,7 +91,12 @@
 <script src="<?= asset('assets/bootstrap/dist/js/demo.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= url("shared/js/tinymce/tinymce.min.js"); ?>"></script>
 
-<script src="<?= url('/shared/js/jquery.form.js'); ?>"></script>
+<script src="<?= url("/shared/js/jquery.min.js"); ?>"></script>
+<script src="<?= url("/shared/js/jquery.form.js"); ?>"></script>
+<script src="<?= url("/shared/js/jquery-ui.js"); ?>"></script>
+<script src="<?= url("/shared/js/jquery.mask.js"); ?>"></script>
+<script src="<?= url("/shared/shadowbox/shadowbox.js"); ?>"></script>
+<script src="<?= url("/shared/tinymce/tinymce.min.js"); ?>"></script>
 <script src="<?= url('/shared/js/scripts.js'); ?>"></script>
 
 <!--<script src="><?//= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script>-->
