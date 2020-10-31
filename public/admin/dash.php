@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css", CONF_VIEW['ADMIN']); ?>">
 
     <link rel="stylesheet" href="<?= asset("assets/bootstrap/dist/css/adminlte.min.css", CONF_VIEW['ADMIN']); ?>">
-    <link rel="stylesheet"
-          href="<?= asset("assets/bootstrap/plugins/overlayScrollbars/css/OverlayScrollbars.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/overlayScrollbars/css/OverlayScrollbars.min.css", CONF_VIEW['ADMIN']); ?>">
     <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/daterangepicker/daterangepicker.css", CONF_VIEW['ADMIN']); ?>">
     <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/summernote/summernote-bs4.css", CONF_VIEW['ADMIN']); ?>">
     <link rel="stylesheet" href="<?= asset("assets/datepicker/datepicker.min.css", CONF_VIEW['ADMIN']); ?>">
@@ -27,7 +26,6 @@
     <link rel="stylesheet" href="<?= url('shared/css/boot.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/load.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/message.css'); ?>">
-    <link rel="stylesheet" href="<?= url('shared/shadowbox/shadowbox.css'); ?>">
 
     <!--link rel="stylesheet" href="<?//= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>"-->
 
@@ -89,7 +87,6 @@
 <script src="<?= asset('assets/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/bootstrap/dist/js/adminlte.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/bootstrap/dist/js/demo.js', CONF_VIEW['ADMIN']); ?>"></script>
-<script src="<?= url("shared/js/tinymce/tinymce.min.js"); ?>"></script>
 
 <script src="<?= url("/shared/js/jquery.min.js"); ?>"></script>
 <script src="<?= url("/shared/js/jquery.form.js"); ?>"></script>
