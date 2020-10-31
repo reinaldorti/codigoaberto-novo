@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <?= $head; ?>
+    <?= $head; ?>
 
-  <link rel="shortcut icon" href="<?= asset('assets/bootstrap/dist/img/AdminLTELogo.png', CONF_VIEW['ADMIN']); ?>"/>
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/fontawesome-free/css/all.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/jqvmap/jqvmap.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="shortcut icon" href="<?= asset('assets/bootstrap/dist/img/AdminLTELogo.png', CONF_VIEW['ADMIN']); ?>"/>
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/fontawesome-free/css/all.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/jqvmap/jqvmap.min.css", CONF_VIEW['ADMIN']); ?>">
 
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/select2/css/select2.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/select2/css/select2.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css", CONF_VIEW['ADMIN']); ?>">
 
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/dist/css/adminlte.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/overlayScrollbars/css/OverlayScrollbars.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/daterangepicker/daterangepicker.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/summernote/summernote-bs4.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset("assets/datepicker/datepicker.min.css", CONF_VIEW['ADMIN']); ?>">
-  <link rel="stylesheet" href="<?= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/dist/css/adminlte.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet"
+          href="<?= asset("assets/bootstrap/plugins/overlayScrollbars/css/OverlayScrollbars.min.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/daterangepicker/daterangepicker.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/plugins/summernote/summernote-bs4.css", CONF_VIEW['ADMIN']); ?>">
+    <link rel="stylesheet" href="<?= asset("assets/datepicker/datepicker.min.css", CONF_VIEW['ADMIN']); ?>">
 
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="<?= url('shared/css/boot.css'); ?>">
+    <link rel="stylesheet" href="<?= url('shared/css/load.css'); ?>">
+    <link rel="stylesheet" href="<?= url('shared/css/message.css'); ?>">
+
+    <!--link rel="stylesheet" href="<?//= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>"-->
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -79,25 +85,16 @@
 <!-- jQuery -->
 <script src="<?= asset('assets/bootstrap/plugins/jquery/jquery.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/bootstrap/plugins/jquery-ui/jquery-ui.min.js', CONF_VIEW['ADMIN']); ?>"></script>
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
 <script src="<?= asset('assets/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js', CONF_VIEW['ADMIN']); ?>"></script>
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/chart.js/Chart.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/sparklines/sparkline.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/jqvmap/jquery.vmap.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/jqvmap/maps/jquery.vmap.usa.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/jquery-knob/jquery.knob.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/moment/moment.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/daterangepicker/daterangepicker.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
 <script src="<?= asset('assets/bootstrap/dist/js/adminlte.js', CONF_VIEW['ADMIN']); ?>"></script>
-<!--<script src="--><?//= asset('assets/bootstrap/dist/js/pages/dashboard.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
 <script src="<?= asset('assets/bootstrap/dist/js/demo.js', CONF_VIEW['ADMIN']); ?>"></script>
-<!--<script src="--><?//= asset('assets/bootstrap/plugins/summernote/summernote-bs4.min.js', CONF_VIEW['ADMIN']); ?><!--"></script>-->
 <script src="<?= url("shared/js/tinymce/tinymce.min.js"); ?>"></script>
-<script src="<?= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script>
+
+<script src="<?= url('/shared/js/jquery.form.js'); ?>"></script>
+<script src="<?= url('/shared/js/scripts.js'); ?>"></script>
+
+<!--<script src="><?//= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script>-->
+
 <script src="<?= asset('assets/datepicker/datepicker.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/datepicker/datepicker.pt-BR.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/bootstrap/plugins/select2/js/select2.full.min.js', CONF_VIEW['ADMIN']); ?>"></script>

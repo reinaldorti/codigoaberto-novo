@@ -70,7 +70,7 @@
                     ?>
                 </div>
             </div>
-            <?php $v->insert("blog-sidebar"); ?>
+            <?php $v->insert("posts-sidebar"); ?>
         </div>
     </div>
 </section>

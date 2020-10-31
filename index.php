@@ -72,6 +72,7 @@ $router->get("/posts/post/{id}", "Posts:post");
 $router->post("/posts/post/{id}", "Posts:post");
 $router->get("/posts/home/{search}/{page}", "Posts:home");
 $router->get("/posts/delete/{id}", "Posts:delete");
+$router->post("/posts/order", "Posts:PostOrder");
 
 //TESTIMONY
 $router->get("/testimony/home", "Testimonys:home");

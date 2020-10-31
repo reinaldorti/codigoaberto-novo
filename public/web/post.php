@@ -18,9 +18,16 @@
         <div class="row">
             <div class="col-lg-8 posts-list">
                 <div class="single-post">
-                    <div class="feature-img">
-                        <img class="img-fluid" src="<?= (!empty($post->cover) ? image($post->cover, 730) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME'])); ?>" alt="">
-                    </div>
+                    <?php if ($post->video): ?>
+                        <div class="embed-container">
+                            <iframe id="mediaview" width="740" height="460" src="https://www.youtube.com/embed/<?= $post->video; ?>?rel=0&amp;showinfo=0&autoplay=0&origin=<?= CONF_VIEW['THEME']; ?>" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    <?php else: ?>
+                        <div class="feature-img">
+                            <img class="img-fluid" src="<?= (!empty($post->cover) ? image($post->cover, 730) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME'])); ?>" alt="">
+                        </div>
+                    <?php endif; ?>
+
                     <div class="blog_details">
                         <h2><?= $post->subtitle; ?></h2>
                         <ul class="blog-info-link mt-3 mb-4">
@@ -53,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <?php $v->insert("blog-sidebar"); ?>
+            <?php $v->insert("posts-sidebar"); ?>
         </div>
     </div>
 </section>

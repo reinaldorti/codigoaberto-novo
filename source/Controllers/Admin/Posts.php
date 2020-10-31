@@ -64,7 +64,6 @@ class Posts extends Admin
         ]);
     }
 
-
     /**
      * ADMIN BLOG POST
      * @param array|null $data
@@ -230,6 +229,29 @@ class Posts extends Admin
             "post" => $post,
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
         ]);
+    }
+
+    /**
+     * @param array|null $data
+     */
+    public function PostOrder(?array $data): void
+    {
+        foreach ($data as $number => $number_array) {
+            foreach ($number_array as $data => $order) {
+
+                $id = $order[0];
+                $post = (new Post())->findById("{$id}");
+
+                $post->post_order = $order[1];
+                $post->save();
+
+                echo Message::ajaxResponse("message", [
+                    "type" => "info",
+                    "message" => "Ordenação foi realizada com sucesso!"
+                ]);
+                return;
+            }
+        }
     }
 
     /**

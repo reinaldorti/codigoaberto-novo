@@ -12,7 +12,12 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= asset('assets/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css', CONF_VIEW['ADMIN']); ?>">
     <link rel="stylesheet" href="<?= asset('assets/bootstrap/dist/css/adminlte.min.css', CONF_VIEW['ADMIN']); ?>">
-    <link rel="stylesheet" href="<?= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>">
+
+    <link rel="stylesheet" href="<?= url('shared/css/boot.css'); ?>">
+    <link rel="stylesheet" href="<?= url('shared/css/load.css'); ?>">
+    <link rel="stylesheet" href="<?= url('shared/css/message.css'); ?>">
+
+    <!--link rel="stylesheet" href="<?//= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>"-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
@@ -26,6 +31,11 @@
 
 <?= $v->section("content"); ?>
 
-<script src="<?= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script>
+<script src="<?= url('/shared/js/jquery.min.js'); ?>"></script>
+<script src="<?= url('/shared/js/jquery.form.js'); ?>"></script>
+<script src="<?= url('/shared/js/jquery-ui.js'); ?>"></script>
+<script src="<?= url('/shared/js/login.js'); ?>"></script>
+
+<!--script src="<?//= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script-->
 </body>
 </html>
