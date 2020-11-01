@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.4.14-MariaDB)
 # Database: codigoaberto_novo
-# Generation Time: 2020-10-31 12:22:03 +0000
+# Generation Time: 2020-11-01 20:38:51 +0000
 # ************************************************************
 
 
@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `categories`;
 
 CREATE TABLE `categories` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `status` bigint(20) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 1,
   `uri` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -103,7 +103,8 @@ DROP TABLE IF EXISTS `slides`;
 
 CREATE TABLE `slides` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `status` varchar(20) COLLATE utf8_unicode_ci DEFAULT '1' COMMENT '1 ativo, 2 inativo',
+  `status` varchar(11) COLLATE utf8_unicode_ci DEFAULT '1' COMMENT '1 ativo, 2 inativo',
+  `slide_order` int(11) DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `uri` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cover` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -126,6 +127,7 @@ CREATE TABLE `testimonys` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `author` bigint(20) unsigned DEFAULT NULL,
   `status` int(11) DEFAULT 1 COMMENT '1 ativo, 2 inativo',
+  `testimony_order` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `cover` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -175,15 +177,6 @@ CREATE TABLE `users` (
   FULLTEXT KEY `first_name_3` (`first_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-
-INSERT INTO `users` (`id`, `logged`, `level`, `status`, `first_name`, `last_name`, `email`, `password`, `telephone`, `forget`, `token`, `genre`, `document`, `photo`, `facebook_id`, `google_id`, `user_login`, `user_cookie`, `ip`, `lastaccess`, `datebirth`, `created_at`, `updated_at`)
-VALUES
-	(1,NULL,10,'1','Reinaldo','Dorti','reinaldorti@gmail.com','$2y$08$yZEU6dYiHCNRnsiyg8rHXut1dKpMznFRnscRhPKFqZL6KcHbl.II6','433421421423143214321',NULL,NULL,'1',NULL,NULL,NULL,NULL,'1604146908','124dc6f453c99ff82ff629b562c3e473a7ba9117a766748a6ad2853f4f8f509aeddb2ad04c12a20e0b773e5767777c102b834fc3c4550aa1b9f7c89acf9a3df7','::1','2020-10-31 09:21:48',NULL,'2020-10-28 18:51:44','2020-10-31 09:21:48');
-
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 
