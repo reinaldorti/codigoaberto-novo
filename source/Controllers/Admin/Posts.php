@@ -236,20 +236,12 @@ class Posts extends Admin
      */
     public function PostOrder(?array $data): void
     {
-        foreach ($data as $number => $number_array) {
-            foreach ($number_array as $data => $order) {
-
+        if (is_array($data['Data'])) {
+            foreach ($data['Data'] as $order) {
                 $id = $order[0];
                 $post = (new Post())->findById("{$id}");
-
                 $post->post_order = $order[1];
                 $post->save();
-
-                echo Message::ajaxResponse("message", [
-                    "type" => "info",
-                    "message" => "Ordenação foi realizada com sucesso!"
-                ]);
-                return;
             }
         }
     }
