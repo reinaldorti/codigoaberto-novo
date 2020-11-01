@@ -62,6 +62,7 @@ $router->get("/slides/slide/{id}", "Slides:slide");
 $router->post("/slides/slide/{id}", "Slides:slide");
 $router->get("/slides/home/{search}/{page}", "Slides:home");
 $router->get("/slides/delete/{id}", "Slides:delete");
+$router->post("/slides/order", "Slides:SlideOrder");
 
 //POSTS
 $router->get("/posts/home", "Posts:home");
@@ -72,7 +73,6 @@ $router->get("/posts/post/{id}", "Posts:post");
 $router->post("/posts/post/{id}", "Posts:post");
 $router->get("/posts/home/{search}/{page}", "Posts:home");
 $router->get("/posts/delete/{id}", "Posts:delete");
-$router->post("/posts/order", "Posts:PostOrder");
 
 //TESTIMONY
 $router->get("/testimony/home", "Testimonys:home");
@@ -83,6 +83,7 @@ $router->get("/testimony/testimony/{id}", "Testimonys:testimony");
 $router->post("/testimony/testimony/{id}", "Testimonys:testimony");
 $router->get("/testimony/home/{search}/{page}", "Testimonys:home");
 $router->get("/testimony/delete/{id}", "Testimonys:delete");
+$router->post("/testimony/order", "Testimonys:TestimonyOrder");
 
 //END ADMIN
 $router->namespace("Source\Controllers");

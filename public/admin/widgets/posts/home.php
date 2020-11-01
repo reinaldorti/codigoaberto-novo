@@ -39,8 +39,6 @@ $v->layout("dash"); ?>
                                 </div>
 
                                 <div class="col-6">
-                                    <span class="j_drag_active btn btn-info float-right" style="margin-left: 10px;" title="Organizar Fotos">Ordenar</span>
-
                                     <a title="Novo Post" href="<?= url('admin/posts/post'); ?>" class="btn btn-success float-right">
                                         Novo Post
                                     </a>
@@ -82,7 +80,7 @@ $v->layout("dash"); ?>
                                     <?php
                                     foreach ($posts as $post):
                                         ?>
-                                        <tr class="j_draganddrop" id="<?= $post->id; ?>">
+                                        <tr>
                                             <td><?= str_pad($post->id, 4, 0, STR_PAD_LEFT); ?></td>
                                             <td><?= str_chars($post->title, 60); ?></td>
                                             <td><?= status($post->status); ?></td>
@@ -125,64 +123,3 @@ $v->layout("dash"); ?>
         </div>
     </section>
 </div>
-
-<?php $v->start("scripts"); ?>
-    <script>
-        //######## DRAG AND DROP
-        $("html").on('click', '.j_drag_active', function () {
-            $(this).toggleClass('btn-warning');
-
-            if ($('.j_draganddrop').attr('draggable')) {
-                $('.j_draganddrop').removeAttr('draggable');
-                $('html').unbind("drag dragover dragleave drop");
-            } else {
-                $('.j_draganddrop').attr('draggable', true);
-
-                //DRAG EVENT
-                $("html").on("drag", ".j_draganddrop", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    wcDragContent = $(this);
-                    wcDragPosition = $(this).index();
-                });
-
-                //DRAG OVER EVENT
-                $("html").on("dragover", ".j_draganddrop", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    $(this).css('border', '1px dashed #ccc');
-                });
-
-                //DRAGB LEAVE EVENT
-                $("html").on("dragleave", ".j_draganddrop", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    $(this).css('border', '0');
-                });
-
-                //DROP EVENT
-                $("html").on("drop", ".j_draganddrop", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    var wcDropElement = $(this);
-
-                    $(wcDropElement).css('border', '0');
-                    if (wcDragPosition > wcDropElement.index()) {
-                        wcDropElement.before(wcDragContent);
-                    } else {
-                        wcDropElement.after(wcDragContent);
-                    }
-
-                    Reorder = new Array();
-                    $.each($(".j_draganddrop"), function (i, el) {
-                        Reorder.push([el.id, i + 1]);
-                    });
-                    $.post('<?= url("/admin/posts/order");?>', {Data: Reorder});
-                });
-            }
-        });
-    </script>
-<?php $v->end(); ?>

@@ -33,7 +33,7 @@ class Slides extends Admin
         }
 
         $search = null;
-        $slide = (new Slide())->find()->order("id DESC");
+        $slide = (new Slide())->find()->order("slide_order ASC");
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
@@ -66,7 +66,8 @@ class Slides extends Admin
 
     /**
      * ADMIN SLIDE
-     * @param array $data
+     * @param array|null $data
+     * @throws \Exception
      */
     public function slide(?array $data): void
     {
@@ -230,6 +231,21 @@ class Slides extends Admin
             "csrf" => csrf_input(),
             "slide" => $slide
         ]);
+    }
+
+    /**
+     * @param array|null $data
+     */
+    public function SlideOrder(?array $data): void
+    {
+        if (is_array($data['Data'])) {
+            foreach ($data['Data'] as $order) {
+                $id = $order[0];
+                $slide = (new Slide())->findById("{$id}");
+                $slide->slide_order = $order[1];
+                $slide->save();
+            }
+        }
     }
 
     /**

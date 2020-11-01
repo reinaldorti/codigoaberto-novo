@@ -232,21 +232,6 @@ class Posts extends Admin
     }
 
     /**
-     * @param array|null $data
-     */
-    public function PostOrder(?array $data): void
-    {
-        if (is_array($data['Data'])) {
-            foreach ($data['Data'] as $order) {
-                $id = $order[0];
-                $post = (new Post())->findById("{$id}");
-                $post->post_order = $order[1];
-                $post->save();
-            }
-        }
-    }
-
-    /**
      * ADMIN BLOG DELETE
      * @param int $data
      */

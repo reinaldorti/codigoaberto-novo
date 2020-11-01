@@ -33,7 +33,7 @@ class Testimonys extends Admin
         }
 
         $search = null;
-        $testimony = (new \Source\Models\Testimony())->find()->order("id DESC");
+        $testimony = (new \Source\Models\Testimony())->find()->order("testimony_order ASC");
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
@@ -221,6 +221,21 @@ class Testimonys extends Admin
             "testimony" => $testimony,
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
         ]);
+    }
+
+    /**
+     * @param array|null $data
+     */
+    public function TestimonyOrder(?array $data): void
+    {
+        if (is_array($data['Data'])) {
+            foreach ($data['Data'] as $order) {
+                $id = $order[0];
+                $testimony = (new Testimony())->findById("{$id}");
+                $testimony->testimony_order = $order[1];
+                $testimony->save();
+            }
+        }
     }
 
     /**

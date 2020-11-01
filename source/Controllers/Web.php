@@ -43,7 +43,7 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        $testimony = (new Testimony())->find()->order("id DESC")->fetch(true);
+        $testimony = (new Testimony())->find()->order("testimony_order ASC")->fetch(true);
 
         echo $this->view->render("home", [
             "head" => $head,
