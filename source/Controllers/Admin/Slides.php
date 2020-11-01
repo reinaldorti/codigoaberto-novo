@@ -137,9 +137,7 @@ class Slides extends Admin
             }
 
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Slide cadastrado com sucesso!
-            ");
+            flash("success", "<i class='icon fas fa-check'></i> Slide cadastrado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/slides/slide/{$slide->id}")
             ]);
@@ -164,9 +162,9 @@ class Slides extends Admin
                     "type" => "alert",
                     "message" => "  
                     <i class='icon fas fa-exclamation-triangle'></i>                
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                        Oops! Erro ao enviar o formulário!<br>
+                        Por favor, atualize a página e tente novamente!
+                    "
                 ]);
                 return;
             }
