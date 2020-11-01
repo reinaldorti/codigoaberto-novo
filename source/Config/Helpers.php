@@ -199,21 +199,24 @@ function new_password($size = 8, $letters = true, $numbers = true, $symbols = tr
     $characters = '';
 
     $characters .= $lmin;
-    if ($letters):
+    if ($letters) {
         $characters .= $lmai;
-    endif;
-    if ($numbers):
+    }
+
+    if ($numbers) {
         $characters .= $num;
-    endif;
-    if ($symbols):
+    }
+
+    if ($symbols) {
         $characters .= $simb;
-    endif;
+    }
 
     $len = strlen($characters);
     for ($n = 1; $n <= $size; $n++) {
         $rand = mt_rand(1, $len);
         $return .= $characters[$rand - 1];
     }
+    
     return $return;
 }
 
