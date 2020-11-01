@@ -9,6 +9,42 @@ function user(): ?\Source\Models\User
 }
 
 /**
+ * @param $cpf
+ * @return string
+ */
+function is_cpf($cpf) :string
+{
+    $data = preg_replace('/[^0-9]/', '', $cpf);
+
+    if (strlen($data) != 11):
+        return false;
+    endif;
+
+    $digitoA = 0;
+    $digitoB = 0;
+
+    for ($i = 0, $x = 10; $i <= 8; $i++, $x--) {
+        $digitoA += $data[$i] * $x;
+    }
+
+    for ($i = 0, $x = 11; $i <= 9; $i++, $x--) {
+        if (str_repeat($i, 11) == $data) {
+            return false;
+        }
+        $digitoB += $data[$i] * $x;
+    }
+
+    $somaA = (($digitoA % 11) < 2) ? 0 : 11 - ($digitoA % 11);
+    $somaB = (($digitoB % 11) < 2) ? 0 : 11 - ($digitoB % 11);
+
+    if ($somaA != $data[9] || $somaB != $data[10]) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/**
  * @param string $image
  * @return string
  */
