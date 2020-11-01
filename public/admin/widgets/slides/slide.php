@@ -104,7 +104,7 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Link</label>
+                                            <label>Link (opcioanal)</label>
                                             <input type="text" name="url" class="form-control" placeholder="Link alternativo">
                                         </div>
                                     </div>

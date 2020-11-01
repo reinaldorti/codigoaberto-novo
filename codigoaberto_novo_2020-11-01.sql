@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.4.14-MariaDB)
 # Database: codigoaberto_novo
-# Generation Time: 2020-11-01 20:38:51 +0000
+# Generation Time: 2020-11-01 21:36:51 +0000
 # ************************************************************
 
 
@@ -108,8 +108,8 @@ CREATE TABLE `slides` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `uri` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cover` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `subtitle` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `post_at` date DEFAULT NULL,
+  `subtitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slide_at` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),

@@ -109,10 +109,9 @@ class Slides extends Admin
             $slide = new Slide();
             $slide->title = $data["title"];
             $slide->subtitle = $data["subtitle"];
-            $slide->url = (!empty($data["url"]) ? slug($data["url"]) : slug($slide->title));
+            $slide->uri = (!empty($data["uri"]) ? slug($data["uri"]) : slug($slide->title));
             $slide->status = $data["status"];
             $slide->slide_at = (empty($data["slide_at"]) ? date("Y-m-d") : date_fmt($data["slide_at"]));
-            $slide->created_at = date("Y-m-d H:i:s");
             $slide->save();
 
             if (!empty($_FILES["cover"])) {

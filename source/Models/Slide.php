@@ -3,10 +3,9 @@
 namespace Source\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
-use Exception;
 
 /**
- * Class Post
+ * Class Slide
  * @package Source\Models
  */
 class Slide extends DataLayer
@@ -16,6 +15,6 @@ class Slide extends DataLayer
      */
     public function __construct()
     {
-        parent::__construct("slides", ["title", "subtitle", "status", "cover"]);
+        parent::__construct("slides", ["title", "subtitle", "status"]);
     }
 }
