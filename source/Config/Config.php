@@ -67,11 +67,11 @@ define("CONF_PASSWD", [
     "OPTION" => ["cost" => 8],
 ]);
 
-/*
+/**
  * MULTIPLO LOGIN
  */
 define("CONF_LOGIN", [
-    "LOGIN_MULTIPLE" => 0,
+    "LOGIN_MULTIPLE" => 1,
     "LOGIN_BLOCK" => 60
 ]);
 
@@ -122,7 +122,7 @@ define("CONF_UPLOAD", [
     "MEDIAS"=> "medias",
 ]);
 
-/*
+/**
  * EMAIL CONNECT
  */
 define("CONF_MAIL", [
@@ -138,7 +138,7 @@ define("CONF_MAIL", [
     "FROM_WHATSAPP"=> "5517991163205"
 ]);
 
-/*
+/**
  * SOCIAL LOGIN: FACEBOOK
  */
 define("FACEBOOK_LOGIN", [
@@ -148,7 +148,7 @@ define("FACEBOOK_LOGIN", [
     "graphApiVersion" => "v4.0"
 ]);
 
-/*
+/**
  * SOCIAL LOGIN: GOOGLE
  */
 define("GOOGLE_LOGIN", [
@@ -157,7 +157,7 @@ define("GOOGLE_LOGIN", [
     "redirectUri" => CONF_URl["TEST"] . "/google"
 ]);
 
-/*
+/**
  * GOOGLE RECAPTCHA
  */
 define("CONF_GOOGLE_RECAPTCHA", [

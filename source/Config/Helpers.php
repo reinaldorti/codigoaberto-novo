@@ -374,11 +374,11 @@ function csrf_input()
  */
 function csrf_verify($request)
 {
-    if (empty($_SESSION['csrf_token'])){
+    if (empty($request)){
         return false;
     }
 
-    if (empty($request)){
+    if (empty($_SESSION['csrf_token'])){
         return false;
     }
 
