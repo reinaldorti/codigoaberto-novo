@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.4.14-MariaDB)
 # Database: codigoaberto_novo
-# Generation Time: 2020-11-01 21:41:57 +0000
+# Generation Time: 2020-11-02 12:42:14 +0000
 # ************************************************************
 
 
@@ -166,18 +166,18 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `logged` bigint(20) DEFAULT NULL,
-  `level` bigint(20) NOT NULL DEFAULT 1,
+  `logged` int(11) DEFAULT NULL,
+  `level` int(11) NOT NULL DEFAULT 1,
+  `genre` int(11) DEFAULT NULL COMMENT '1 male, 2 female',
   `status` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '1 ativo 2 inativo',
   `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `telephone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `telephone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `forget` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `genre` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '1 male, 2 female',
-  `document` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `document` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `facebook_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `google_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,

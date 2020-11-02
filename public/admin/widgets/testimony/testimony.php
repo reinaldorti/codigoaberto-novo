@@ -17,7 +17,7 @@ $v->layout("dash"); ?>
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= url('admin/dash'); ?>">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="<?= url('admin/testimony/home'); ?>">Depoimentos</a></li>
-                        <li class="breadcrumb-item active">Novo</li>
+                        <li class="breadcrumb-item active"><a href="<?= url('admin/testimony/testimony'); ?>">Depoimento</a></li>
                     </ol>
                 </div>
             </div>

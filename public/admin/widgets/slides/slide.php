@@ -16,8 +16,8 @@ $v->layout("dash"); ?>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= url('admin/dash'); ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="<?= url('admin/slides/home'); ?>">Slide</a></li>
-                        <li class="breadcrumb-item active">Novo</li>
+                        <li class="breadcrumb-item"><a href="<?= url('admin/slides/home'); ?>">Slides</a></li>
+                        <li class="breadcrumb-item active"><a href="<?= url('admin/slides/slide'); ?>">Slide</a></li>
                     </ol>
                 </div>
             </div>

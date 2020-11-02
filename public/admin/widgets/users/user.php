@@ -17,7 +17,7 @@ $v->layout("dash"); ?>
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= url('admin/dash'); ?>">Home</a></li>
                         <li class="breadcrumb-item"><a href="<?= url('admin/users/home'); ?>">Usuários</a></li>
-                        <li class="breadcrumb-item active">Perfil</li>
+                        <li class="breadcrumb-item active"><a href="<?= url('admin/users/user'); ?>">Perfil</a></li>
                     </ol>
                 </div>
             </div>
@@ -431,7 +431,7 @@ $v->layout("dash"); ?>
                                     <?php
                                     $photo = (!empty($user->photo) ? image($user->photo) : asset("assets/images/no_avatar.jpg", CONF_VIEW['ADMIN']));
                                     ?>
-                                    <img class="profile-user-img img-fluid img-circle" src="<?= $photo; ?>" style="width: 100px; height: 100px;">
+                                    <img class="profile-user-img img-fluid img-circle" accept="image/jpeg, image/jpg, image/png" src="<?= $photo; ?>" style="width: 100px; height: 100px;">
                                 </div>
 
                                 <h3 class="profile-username text-center"><?= $user->first_name; ?></h3>
@@ -442,8 +442,9 @@ $v->layout("dash"); ?>
                                     <li class="list-group-item">
                                         <b>Cadastro</b> <a class="float-right"><?= date("d/m/Y", strtotime($user->created_at)); ?></a>
                                     </li>
+
                                     <li class="list-group-item">
-                                        <b>Posts</b> <a class="float-right"><?php if (isset($user->posts()->id)) echo $user->posts()->id; ?></a>
+                                        <b>Posts</b> <a class="float-right"><?= $blog->posts; ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -458,24 +459,6 @@ $v->layout("dash"); ?>
 <?php $v->start("scripts"); ?>
     <script>
         $(function () {
-            //THUMB
-            function previewImagem() {
-                var thumb = document.querySelector('input[name=photo]').files[0];
-                var preview = document.querySelector('.profile-user-img');
-
-                var reader = new FileReader();
-
-                reader.onloadend = function () {
-                    preview.src = reader.result;
-                }
-
-                if (thumb) {
-                    reader.readAsDataURL(thumb);
-                } else {
-                    preview.src = "";
-                }
-            }
-
             //SELECT 2
             $('.js-example-basic-single').select2();
         });
