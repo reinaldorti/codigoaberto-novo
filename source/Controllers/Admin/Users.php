@@ -64,7 +64,6 @@ class Users extends Admin
         ]);
     }
 
-
     /**
      * ADMIN TELA USERS CREATE/UPDATE
      * @param array|null $data
@@ -97,33 +96,12 @@ class Users extends Admin
                 return;
             }
 
-            if (!is_email($data["email"])){
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "
-                    <i class='icon fas fa-exclamation-triangle'></i>
-                    Oops! O e-email informado não é válido!
-                "
-                ]);
-                return;
-            }
-
-            if (!is_passwd($data["password"])){
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "
-                    <i class='icon fas fa-exclamation-triangle'></i>
-                    Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
-                "
-                ]);
-                return;
-            }
-
             $user = new User();
             $user->first_name = $data["first_name"];
             $user->last_name = $data["last_name"];
             $user->email = $data["email"];
             $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
+            $user->document = preg_replace('/[^0-9]/', '', $data["document"]);
             $user->genre = $data["genre"];
             $user->level = $data["level"];
             $user->status = $data["status"];
@@ -165,7 +143,7 @@ class Users extends Admin
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "Oops! Selecione uma imagem válida!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! Selecione uma imagem válida!"
                     ]);
                     return;
                 }
@@ -180,9 +158,7 @@ class Users extends Admin
                 $user->save();
             }
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Usuário cadastrado com sucesso!
-            ");
+            flash("success", "<i class='icon fas fa-check'></i> Usuário cadastrado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/users/user/{$user->id}")
             ]);
@@ -198,10 +174,7 @@ class Users extends Admin
             if (!$user) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "
-                        <i class='icon fas fa-ban'></i>
-                        Oops! Você tentou gerenciar um usuário que não existe!
-                    "
+                    "message" => "<i class='icon fas fa-ban'></i>Oops! Você tentou gerenciar um usuário que não existe!"
                 ]);
                 return;
             }
@@ -230,34 +203,11 @@ class Users extends Admin
                 return;
             }
 
-            if (!is_email($data["email"])){
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "
-                        <i class='icon fas fa-exclamation-triangle'></i>
-                        Oops! O e-email informado não é válido!
-                    "
-                ]);
-                return;
-            }
-
-            if (!empty($data["password"])){
-                if (!is_passwd($data["password"])){
-                    echo Message::ajaxResponse("message", [
-                        "type" => "alert",
-                        "message" => "
-                            <i class='icon fas fa-exclamation-triangle'></i>
-                            Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
-                        "
-                    ]);
-                    return;
-                }
-            }
-
             $user->first_name = $data["first_name"];
             $user->last_name = $data["last_name"];
             $user->email = $data["email"];
             $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
+            $user->document = preg_replace('/[^0-9]/', '', $data["document"]);
             $user->level = $data["level"];
             $user->genre = $data["genre"];
             $user->status = $data["status"];
