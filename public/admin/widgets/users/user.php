@@ -90,6 +90,13 @@ $v->layout("dash"); ?>
 
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
+                                                                <label>Documento (*)</label>
+                                                                <input type="text" name="document" class="form-control formCpf" placeholder="CPF">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
                                                                 <label>E-mail (*)</label>
                                                                 <input type="text" name="email" class="form-control" placeholder="E-mail">
                                                             </div>
@@ -208,6 +215,13 @@ $v->layout("dash"); ?>
                                                         <div class="form-group">
                                                             <label>E-mail (*)</label>
                                                             <input type="text" name="email" class="form-control" placeholder="E-mail" value="<?= $user->email; ?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Documento (*)</label>
+                                                            <input type="text" name="document" class="form-control formCpf" placeholder="CPF" value="<?= $user->document; ?>">
                                                         </div>
                                                     </div>
 

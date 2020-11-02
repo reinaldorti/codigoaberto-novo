@@ -35,6 +35,7 @@ class User extends DataLayer
         if (
             !$this->validateEmail()
             || !$this->validatePassword()
+            || !$this->validateCpf()
             || !parent::save()
         ) {
             return false;
@@ -49,10 +50,7 @@ class User extends DataLayer
     protected function validateEmail(): bool
     {
         if (!is_email($this->email)) {
-            $this->fail = new Exception("
-                <i class='icon fas fa-ban'></i> 
-                Oops! O e-email informado não parece ter um formato válido!
-            ");
+            $this->fail = new Exception("<i class='icon fas fa-ban'></i> Oops! O e-email informado não parece ter um formato válido!");
             return false;
         }
 
@@ -77,10 +75,21 @@ class User extends DataLayer
     protected function validatePassword(): bool
     {
         if (!is_passwd($this->password)){
-            $this->fail = new Exception("
-                <i class='icon fas fa-ban'></i> 
-                Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . PASSWD['MAX'] . " caracteres!
-            ");
+            $this->fail = new Exception("<i class='icon fas fa-ban'></i> Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!");
+            return false;
+        }
+
+        $this->password = passwd($this->password);
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function validateCpf(): bool
+    {
+        if (!is_cpf($this->document)) {
+            $this->fail = new Exception("<i class='icon fas fa-ban'></i> Oops! O CPF informado não é válido!");
             return false;
         }
 
