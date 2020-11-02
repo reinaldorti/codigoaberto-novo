@@ -9,7 +9,7 @@ Dentre os itens utilizados neste pacote podemos destacar:
 
 ## Pré Requisitos
 * [TUTORIAL](https://pages.upinside.com.br/codigoaberto/)
-* [PHP 7.1](https://www.php.net/downloads.php)
+* [PHP 7.2](https://www.php.net/downloads.php)
 
 ### Licenças
 open-source [MIT](http://opensource.org/licenses/MIT)<br/>
