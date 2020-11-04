@@ -133,8 +133,6 @@ class Testimonys extends Admin
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $testimony->cover = $cover;
                 $testimony->save();
-
-                var_dump($testimony);
             }
 
             flash("success", "
