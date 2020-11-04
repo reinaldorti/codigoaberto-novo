@@ -134,6 +134,7 @@ define("CONF_MAIL", [
     "FROM_NAME" => "Reinaldo",
     "FROM_LASTNAME" => "Dorti",
     "FROM_EMAIL" => "reinaldorti@gmail.com",
+    "FROM_DOCUMENT" => "653.041.910-13",
     "FROM_TELEPHONE" => "+55 (17) 99116-3205",
     "FROM_WHATSAPP"=> "5517991163205"
 ]);

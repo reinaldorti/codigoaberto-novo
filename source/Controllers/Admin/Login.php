@@ -82,6 +82,7 @@ class Login extends Controller
                 $userAdmin = new User();
                 $userAdmin->first_name = CONF_MAIL["FROM_NAME"];
                 $userAdmin->last_name = CONF_MAIL["FROM_LASTNAME"];
+                $userAdmin->document = CONF_MAIL["FROM_DOCUMENT"];
                 $userAdmin->email = $data["email"];
                 $userAdmin->password = $data["password"];
                 $userAdmin->ip = $_SERVER['REMOTE_ADDR'];
