@@ -19,21 +19,6 @@ abstract class Model
     /** @var Message|null */
     protected $message;
 
-    /** @var string */
-    protected $query;
-
-    /** @var string */
-    protected $params;
-
-    /** @var string */
-    protected $order;
-
-    /** @var int */
-    protected $limit;
-
-    /** @var int */
-    protected $offset;
-
     /** @var string $entity database table */
     protected $entity;
 
