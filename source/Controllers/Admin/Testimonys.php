@@ -169,7 +169,7 @@ class Testimonys extends Admin
                 return;
             }
 
-            $testimony = (new Testimony())->findById("{$data["id"]}");
+            $testimony = (new Testimony())->findById("{$data["testimony_id"]}");
             $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
@@ -225,8 +225,8 @@ class Testimonys extends Admin
         );
 
         $testimony = null;
-        if (!empty($data["id"])) {
-            $postId = filter_var($data["id"], FILTER_VALIDATE_INT);
+        if (!empty($data["testimony_id"])) {
+            $postId = filter_var($data["testimony_id"], FILTER_VALIDATE_INT);
             $testimony = (new Testimony())->findById("{$postId}");
         }
 
@@ -261,7 +261,7 @@ class Testimonys extends Admin
     public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-        $testimony = (new Testimony())->findById("{$data["id"]}");
+        $testimony = (new Testimony())->findById("{$data["testimony_id"]}");
 
         if (!$testimony) {
             flash("error", "Oops! Você tentou gerenciar um depoimento que não existe!");

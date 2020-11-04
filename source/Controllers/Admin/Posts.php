@@ -4,6 +4,7 @@ namespace Source\Controllers\Admin;
 
 use CoffeeCode\Uploader\Image;
 use Source\Models\Post;
+use Source\Models\PostGallery;
 use Source\Models\User;
 use Source\Support\Message;
 use Source\Support\Pager;
@@ -96,10 +97,38 @@ class Posts extends Admin
                 return;
             }
 
+            if (empty($_FILES["cover"])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, informe uma imagem!"
+                ]);
+                return;
+            }
+
+            $upload = new Image("storage", "posts");
+            $file = $_FILES["cover"];
+
+            $size = 1024 * 1024 * 2; // 2mb
+            if ($file['size'] > $size) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Imagem excede o limite de 2MB permitido!"
+                ]);
+                return;
+            }
+
+            if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Selecione uma imagem válida!"
+                ]);
+                return;
+            }
+
             $post = new Post();
             $post->title = $data["title"];
             $post->subtitle = $data["subtitle"];
-            $post->uri = (!empty($data["uri"]) ? slug($data["uri"]) : slug($post->title));
+            $post->uri = slug($post->title);
             $post->tag = $data["tag"];
             $post->video = $data["video"];
             $post->status = $data["status"];
@@ -107,42 +136,18 @@ class Posts extends Admin
             $post->content = str_replace(["{title}"], [$post->title], $content);
             $post->post_at = (empty($data["post_at"]) ? date("Y-m-d") : date_fmt($data["post_at"]));
             $post->created_at = date("Y-m-d H:i:s");
-            $post->save();
 
-            if (!empty($_FILES["cover"])) {
-                $upload = new Image("storage", "posts");
-                $file = $_FILES["cover"];
-
-                $size = 1024 * 1024 * 2; // 2mb
-                if ($file['size'] > $size) {
-                    echo Message::ajaxResponse("message", [
-                        "type" => "error",
-                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
-                    ]);
-                    return;
-                }
-
-                if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
-                    echo Message::ajaxResponse("message", [
-                        "type" => "error",
-                        "message" => "Oops! Selecione uma imagem válida!"
-                    ]);
-                    return;
-                }
-
-                if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$post->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$post->cover}")) {
-                    unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
-                }
-
-                $uploaded = $upload->upload($file, $post->id . "-" . slug($post->title), 730);
-                $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
-                $post->cover = $cover;
-                $post->save();
+            if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$post->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$post->cover}")) {
+                unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
             }
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Post cadastrado com sucesso!
-            ");
+            $uploaded = $upload->upload($file, $post->id . "-" . slug($post->title), 730);
+            $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+            $post->cover = $cover;
+            $post->save();
+
+
+            flash("success", "<i class='icon fas fa-check'></i> Post cadastrado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/posts/post/{$post->id}")
             ]);
@@ -174,10 +179,10 @@ class Posts extends Admin
                 return;
             }
 
-            $post = (new Post())->findById("{$data["id"]}");
+            $post = (new Post())->findById("{$data["post_id"]}");
             $post->title = $data["title"];
             $post->subtitle = $data["subtitle"];
-            $post->uri = (!empty($data["uri"]) ? slug($data["uri"]) : slug($post->title));
+            $post->uri = slug($post->title);
             $post->tag = $data["tag"];
             $post->video = $data["video"];
             $post->status = $data["status"];
@@ -218,9 +223,51 @@ class Posts extends Admin
                 $post->save();
             }
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Post atualizado com sucesso!
-            ");
+            //gallery
+            if (!empty($_FILES["images"])) {
+
+                $images = $_FILES["images"];
+
+                for ($i = 0; $i < count($images["type"]); $i++) {
+                    foreach (array_keys($images) as $keys) {
+                        $imageFiles[$i][$keys] = $images[$keys][$i];
+                    }
+                }
+
+                $upload = new Image("storage", "posts");
+
+                foreach ($imageFiles as $file) {
+                    if (empty($file["type"])) {
+                        echo Message::ajaxResponse("message", [
+                            "type" => "error",
+                            "message" => "<i class='icon fas fa-ban'></i> Oops! Selecione uma imagem válida!"
+                        ]);
+                        return;
+                    } elseif (!in_array($file["type"], $upload::isAllowed())) {
+                        echo Message::ajaxResponse("message", [
+                            "type" => "error",
+                            "message" => "<i class='icon fas fa-ban'></i> O arquivo {$file["name"]} não é válido!"
+                        ]);
+                        return;
+                    } else {
+
+                        ini_set('memory_limit', '-1');
+                        ini_set('max_execution_time', '0');
+                        ini_set('max_input_vars', 3000);
+                        set_time_limit(0);
+
+                        $uploaded = $upload->upload($file, pathinfo($data["post_id"] . "-" .$file["name"], PATHINFO_FILENAME), 730);
+                        $images = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+
+                        $gallery = new PostGallery();
+                        $gallery->images = $images;
+                        $gallery->post_id = $data["post_id"];
+                        $gallery->save();
+                    }
+                }
+            }
+
+            flash("success", "<i class='icon fas fa-check'></i> Post atualizado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/posts/post/{$post->id}")
             ]);
@@ -235,8 +282,8 @@ class Posts extends Admin
         );
 
         $post = null;
-        if (!empty($data["id"])) {
-            $postId = filter_var($data["id"], FILTER_VALIDATE_INT);
+        if (!empty($data["post_id"])) {
+            $postId = filter_var($data["post_id"], FILTER_VALIDATE_INT);
             $post = (new Post())->findById("{$postId}");
         }
 
@@ -245,8 +292,30 @@ class Posts extends Admin
             "head" => $head,
             "csrf" => csrf_input(),
             "post" => $post,
+            "gallery" => (!empty($data["post_id"]) ? (new PostGallery())->find("post_id=:id","id={$data["post_id"]}")->fetch(true) : null),
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
         ]);
+    }
+
+    /**
+     * ADMIN DELETE GALLERY
+     * @param array $data
+     */
+    public function GalleryDelete(array $data): void
+    {
+        $data = filter_var_array($data, FILTER_VALIDATE_INT);
+
+        $gallery = (new PostGallery())->findById("{$data["post_id"]}");
+        $post = (new Post())->findById("{$gallery->post_id}");
+
+        if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$gallery->images}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$gallery->images}")) {
+            unlink(CONF_UPLOAD["STORAGE"] . "/{$gallery->images}");
+        }
+
+        $gallery->destroy();
+
+        flash("success", "<i class='icon fas fa-check'></i> Imagem foi removido com sucesso!");
+        redirect("admin/posts/post/{$post->id}");
     }
 
     /**
@@ -256,7 +325,7 @@ class Posts extends Admin
     public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-        $post = (new Post())->findById("{$data["id"]}");
+        $post = (new Post())->findById("{$data["post_id"]}");
 
         if (!$post) {
             flash("error", "Oops! Você tentou gerenciar um post que não existe!");

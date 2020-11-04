@@ -53,10 +53,10 @@ $v->layout("dash"); ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Foto (Opcional)</label>
+                                    <label>Foto (*)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="cover" class="custom-file-input" accept="image/png, image/jpeg">
+                                            <input type="file" name="cover" class="custom-file-input" accept="image/jpeg, image/jpg, image/png">
                                             <label class="custom-file-label">Imagem</label>
                                         </div>
                                     </div>
@@ -123,18 +123,8 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Data de publicação</label>
-                                            <input type="text" name="post_at" class="js_datepicker form-control"
-                                                   autocomplete="off"
-                                                   placeholder="Data de publicação">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Link alternativo</label>
-                                            <input type="text" name="uri" class="form-control"
-                                                   placeholder="Link alternativo">
+                                            <label>Data (Opcional)</label>
+                                            <input type="text" name="post_at" class="js_datepicker form-control" autocomplete="off" placeholder="Data de publicação">
                                         </div>
                                     </div>
 
@@ -167,7 +157,7 @@ $v->layout("dash"); ?>
                                     <label>Imagem (Opcional)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="cover" class="custom-file-input" accept="image/png, image/jpeg">
+                                            <input type="file" name="cover" class="custom-file-input" accept="image/jpeg, image/jpg, image/png">
                                             <label class="custom-file-label">Imagem</label>
                                         </div>
                                     </div>
@@ -241,20 +231,18 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Data de publicação</label>
-                                            <input type="text" name="post_at" class="js_datepicker form-control"
-                                                   autocomplete="off"
-                                                   value="<?= date("d/m/Y", strtotime($post->post_at)); ?>"
-                                                   placeholder="Data de publicação"
-                                            >
+                                            <label>Data de publicação (Opcional)</label>
+                                            <input type="text" name="post_at" class="js_datepicker form-control" autocomplete="off" value="<?= date("d/m/Y", strtotime($post->post_at)); ?>" placeholder="Data de publicação">
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Link alternativo</label>
-                                            <input type="text" name="uri" class="form-control"
-                                                   value="<?= $post->uri; ?>" placeholder="Link alternativo">
+                                            <label>Galeria (Opciaonal)</label>
+                                            <div class="custom-file">
+                                                <input type="file" name="images[]" multiple="multiple" accept="image/jpeg, image/jpg, image/png" class="custom-file-input">
+                                                <label class="custom-file-label">Imagem</label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -265,8 +253,37 @@ $v->layout("dash"); ?>
                                         </div>
                                     </div>
 
+                                    <div class="row">
+
+                                        <?php
+                                        if (!empty($gallery)):
+                                            foreach ($gallery as $gb):
+                                                $image = (!empty($gb->images) ? image($gb->images) : asset("assets/img/no_image.jpg", CONF_VIEW['ADMIN']));
+                                                ?>
+
+                                                <div class="col-lg-4 col-md-12 mb-4 note" id="<?= $gb->id; ?>">
+                                                    <a><img class="img-thumbnail d-block z-depth-1" src="<?= $image; ?>" width="200"></a>
+
+                                                    <div class="btn-group btn-group-toggle">
+                                                        <a href="#" rel="note" class="btn btn-danger btn-sm rounded-0 js_delete_action" id="<?= $gb->id; ?>" title="Remover">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+
+                                                        <a href="<?= url("/admin/posts/gallery/{$gb->id}"); ?>" rel="note" class="btn btn-warning rounded-0 btn-sm js_delete_action_confirm" id="<?= $gb->id; ?>" title="Remover agora?" style="display: none;">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            <?php
+                                            endforeach;
+                                        endif;
+                                        ?>
+
+                                    </div>
+
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Atualizar Post</button>
+                                        <button type="submit" class="btn btn-primary">Atualizar</button>
                                     </div>
                                 </div>
                             </div>

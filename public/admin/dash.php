@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?= url('shared/css/boot.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/load.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/message.css'); ?>">
+    <link rel="stylesheet" href="<?= url('shared/css/paginator.css'); ?>">
 
     <!--link rel="stylesheet" href="<?//= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>"-->
 

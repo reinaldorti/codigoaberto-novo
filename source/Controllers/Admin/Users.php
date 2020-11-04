@@ -179,7 +179,7 @@ class Users extends Admin
         if (!empty($data["action"]) && $data["action"] == "update") {
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-            $user = (new User())->findById("{$data["id"]}");
+            $user = (new User())->findById("{$data["user_id"]}");
 
             if (!$user) {
                 echo Message::ajaxResponse("message", [
@@ -339,8 +339,8 @@ class Users extends Admin
         }
 
         $user = null;
-        if (!empty($data["id"])) {
-            $user = (new User())->findById(filter_var($data["id"], FILTER_VALIDATE_INT));
+        if (!empty($data["user_id"])) {
+            $user = (new User())->findById(filter_var($data["user_id"], FILTER_VALIDATE_INT));
         }
 
         $head = $this->seo->render(
@@ -367,7 +367,7 @@ class Users extends Admin
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
 
-        $userDelete = (new User())->findById("{$data["id"]}");
+        $userDelete = (new User())->findById("{$data["user_id"]}");
         if (!$userDelete) {
             flash("error", "
                 <i class='icon fas fa-ban'></i>

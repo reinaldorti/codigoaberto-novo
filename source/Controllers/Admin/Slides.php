@@ -178,7 +178,7 @@ class Slides extends Admin
                 return;
             }
 
-            $slide = (new Slide())->findById("{$data["id"]}");
+            $slide = (new Slide())->findById("{$data["slide_id"]}");
             $slide->title = $data["title"];
             $slide->subtitle = $data["subtitle"];
             $slide->url = (!empty($data["url"]) ? slug($data["url"]) : slug($slide->title));
@@ -235,8 +235,8 @@ class Slides extends Admin
         );
 
         $slide = null;
-        if (!empty($data["id"])) {
-            $slideId = filter_var($data["id"], FILTER_VALIDATE_INT);
+        if (!empty($data["slide_id"])) {
+            $slideId = filter_var($data["slide_id"], FILTER_VALIDATE_INT);
             $slide = (new Slide())->findById("{$slideId}");
         }
 
@@ -270,7 +270,7 @@ class Slides extends Admin
     public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-        $slide = (new Slide())->findById("{$data["id"]}");
+        $slide = (new Slide())->findById("{$data["slide_id"]}");
 
         if (!$slide) {
             flash("error", "<i class='icon fas fa-ban'></i> Oops! Você tentou gerenciar um slide que não existe!");
