@@ -141,6 +141,15 @@ class Users extends Admin
                 $upload = new Image("storage", "users");
                 $file = $_FILES["photo"];
 
+                $size = 1024 * 1024 * 2; // 2mb
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
+
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
@@ -225,6 +234,15 @@ class Users extends Admin
             if (!empty($_FILES["photo"])) {
                 $upload = new Image("storage", "users");
                 $file = $_FILES["photo"];
+
+                $size = 1024 * 1024 * 2; // 2mb
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
 
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [

@@ -33,11 +33,11 @@ class Testimonys extends Admin
         }
 
         $search = null;
-        $testimony = (new \Source\Models\Testimony())->find()->order("testimony_order ASC");
+        $testimony = (new Testimony())->find()->order("testimony_order ASC");
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
-            $testimony = (new \Source\Models\Testimony())->find("MATCH(title) AGAINST(:s)", "s={$search}");
+            $testimony = (new Testimony())->find("MATCH(title) AGAINST(:s)", "s={$search}");
             if (!$testimony->count()) {
                 flash("info", "Oops! Sua pesquisa não retornou resultados!");
                 redirect("/admin/testimony/home");
@@ -108,6 +108,15 @@ class Testimonys extends Admin
                 $upload = new Image("storage", "testimony");
                 $file = $_FILES["cover"];
 
+                $size = 1024 * 1024 * 2; // 2mb
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
+
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
@@ -171,8 +180,17 @@ class Testimonys extends Admin
             $testimony->save();
 
             if (!empty($_FILES["cover"])) {
-                $upload = new \CoffeeCode\Uploader\Image("storage", "testimony");
+                $upload = new Image("storage", "testimony");
                 $file = $_FILES["cover"];
+
+                $size = 1024 * 1024 * 2; // 2mb
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
 
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [

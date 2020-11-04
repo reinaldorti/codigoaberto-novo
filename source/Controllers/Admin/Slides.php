@@ -118,6 +118,15 @@ class Slides extends Admin
                 $upload = new Image("storage", "slides");
                 $file = $_FILES["cover"];
 
+                $size = 1024 * 1024 * 2; // 2mb
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
+
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
@@ -179,8 +188,17 @@ class Slides extends Admin
             $slide->save();
 
             if (!empty($_FILES["cover"])) {
-                $upload = new \CoffeeCode\Uploader\Image("storage", "slides");
+                $upload = new Image("storage", "slides");
                 $file = $_FILES["cover"];
+
+                $size = 1024 * 1024 * 2; // 2mb
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
 
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
                     echo Message::ajaxResponse("message", [
