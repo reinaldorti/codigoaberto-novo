@@ -6,7 +6,6 @@ use Source\Support\Message;
 
 /**
  * Class Model
- *
  * @package Source\Models
  */
 abstract class Model

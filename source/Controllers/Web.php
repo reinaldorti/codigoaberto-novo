@@ -288,6 +288,7 @@ class Web extends Controller
     }
 
     /**
+     * SITE ERROR
      * @param $data
      */
     public function error($data): void
