@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.4.14-MariaDB)
 # Database: codigoaberto_novo
-# Generation Time: 2020-11-02 12:42:14 +0000
+# Generation Time: 2020-11-04 18:10:50 +0000
 # ************************************************************
 
 
@@ -41,6 +41,7 @@ CREATE TABLE `address` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `address_user_id_foreign` (`user_id`),
+  FULLTEXT KEY `street` (`street`,`district`,`city`,`state`,`zipcode`),
   CONSTRAINT `address_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -54,12 +55,13 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `status` int(11) NOT NULL DEFAULT 1,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `uri` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `title` (`title`,`content`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -90,6 +92,7 @@ CREATE TABLE `posts` (
   KEY `posts_category_foreign` (`category`),
   KEY `posts_author_foreign` (`author`),
   FULLTEXT KEY `title` (`title`),
+  FULLTEXT KEY `title_2` (`title`,`subtitle`,`content`),
   CONSTRAINT `posts_author_foreign` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `posts_category_foreign` FOREIGN KEY (`category`) REFERENCES `categories` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -131,7 +134,8 @@ CREATE TABLE `slides` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
-  FULLTEXT KEY `title` (`title`)
+  FULLTEXT KEY `title` (`title`),
+  FULLTEXT KEY `title_2` (`title`,`subtitle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -154,6 +158,7 @@ CREATE TABLE `testimonys` (
   PRIMARY KEY (`id`),
   KEY `posts_author_foreign` (`author`),
   FULLTEXT KEY `title` (`name`),
+  FULLTEXT KEY `name` (`name`,`content`),
   CONSTRAINT `testimonys_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -173,11 +178,12 @@ CREATE TABLE `users` (
   `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `document` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `telephone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cell` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `forget` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `document` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `facebook_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `google_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -192,7 +198,8 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   FULLTEXT KEY `first_name` (`first_name`,`last_name`,`email`),
   FULLTEXT KEY `first_name_2` (`first_name`,`last_name`,`email`),
-  FULLTEXT KEY `first_name_3` (`first_name`)
+  FULLTEXT KEY `first_name_3` (`first_name`),
+  FULLTEXT KEY `first_name_4` (`first_name`,`last_name`,`email`,`telephone`,`cell`,`document`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
