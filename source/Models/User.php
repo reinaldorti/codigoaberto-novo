@@ -93,7 +93,6 @@ class User extends DataLayer
             return false;
         }
 
-        $this->password = passwd($this->password);
         return true;
     }
 

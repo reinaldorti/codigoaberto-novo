@@ -12,11 +12,10 @@ use Source\Models\User;
  */
 class Admin extends Controller
 {
-    /**
-     * @var \Source\Models\User|null
-     */
+    /*** @var User */
     protected $user;
 
+    /*** @var Router */
     protected $router;
 
     /**
