@@ -16,7 +16,7 @@
     <div class="container">
         <?php if (empty($about)): ?>
             <div class="alert alert-info text-center">
-                <i class='fa fa-warning'></i>Oops! Ainda não existe slide cadastrados no momento!
+                <i class='fa fa-warning'></i>Oops! Não existe texto cadastrados no momento!
             </div>
         <?php else: ?>
             <div class="row align-items-center">
