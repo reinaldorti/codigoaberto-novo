@@ -4,6 +4,7 @@ namespace Source\Controllers;
 
 use CoffeeCode\Router\Router;
 use Source\Models\Post;
+use Source\Models\Slide;
 use Source\Models\Testimony;
 use Source\Support\Message;
 use Source\Support\Email;
@@ -24,10 +25,8 @@ class Web extends Controller
     {
         parent::__construct(__DIR__ . "/../../public/" . CONF_VIEW['THEME'] . "/");
 
-        $this->router = $router;
-
         $this->view->data([
-            "router" => $this->router
+            "router" => $router
         ]);
     }
 
@@ -43,11 +42,10 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        $testimony = (new Testimony())->find()->order("testimony_order ASC")->fetch(true);
-
         echo $this->view->render("home", [
             "head" => $head,
-            "testimony" => $testimony
+            "slides" => (new Slide())->find()->order("slide_order ASC")->fetch(true),
+            "testimony" => (new Testimony())->find()->order("testimony_order ASC")->fetch(true)
         ]);
     }
 
@@ -97,26 +95,6 @@ class Web extends Controller
     }
 
     /**
-     * SITE BLOG TAG
-     * @param array|null $data
-     */
-    public function tag(?array $data): void
-    {
-        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
-        $search = null;
-
-        if (!empty($data["tag"]) && str_search($data["tag"]) != "all") {
-            $search = str_search($data["tag"]);
-            $tag = (new Post())->find("MATCH(tag) AGAINST(:tag)", "s={$search}");
-            if (!$tag->count()) {
-                flash("info", "Oops! Tag não foi encontrado!");
-                redirect("/blog/");
-            }
-        }
-    }
-
-    /**
      * SITE BLOG SEARCH
      * @param array $data
      */
@@ -161,6 +139,7 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            //"tags" => (new Post())->find()->order("views DESC")->fetch(true),
             "views" => (new Post())->find()->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
@@ -172,6 +151,8 @@ class Web extends Controller
      */
     public function post(array $data): void
     {
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
         $post = (new Post())->find("uri = :url", "url={$data['uri']}")->fetch();
         if (!$post) {
             redirect("/404");
@@ -191,6 +172,45 @@ class Web extends Controller
             "head" => $head,
             "post" => $post,
             "views" => (new Post())->find()->order("views DESC")->fetch(true),
+        ]);
+    }
+
+    /**
+     * SITE BLOG TAG
+     * @param array|null $data
+     */
+    public function tag(?array $data): void
+    {
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
+        $search = null;
+
+        $search = str_search($data["tag"]);
+
+        $tag = (new Post())->find("MATCH(tag) AGAINST(:s)", "s={$search}");
+        if (!$tag->count()) {
+            flash("info", "Oops! Sua pesquisa não retornou resultados!");
+            redirect("/blog/");
+        }
+
+        $all = ($search ?? "all");
+        $pager = new Pager(url("/blog/{$all}/"));
+        $pager->pager($tag->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
+
+        $head = $this->seo->render(
+            "Blog - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
+            url(),
+            asset("/assets/images/logo/logo.png")
+        );
+
+        echo $this->view->render("posts", [
+            "head" => $head,
+            "search" => $search,
+            "posts" => $tag->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "tags" => (new Post())->find()->order("id DESC")->fetch(true),
+            "views" => (new Post())->find()->order("views DESC")->fetch(true),
+            "paginator" => $pager->render()
         ]);
     }
 
@@ -280,6 +300,7 @@ class Web extends Controller
     public function cookiePolicy(array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
         setcookie("cookiePolicy", $data["cookie"], time() + (12 * 43200), "/");
 
         $json["agree"] = true;
@@ -294,6 +315,7 @@ class Web extends Controller
     public function error($data): void
     {
         $error = filter_var($data["errcode"], FILTER_VALIDATE_INT);
+
         $head = $this->seo->render(
             "Oops {$error}" . " | " .  CONF_SITE['NAME'],
             CONF_SITE['DESC'],

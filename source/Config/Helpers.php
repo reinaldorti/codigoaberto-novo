@@ -9,6 +9,19 @@ function user(): ?\Source\Models\User
 }
 
 /**
+ * @param string $image
+ * @return string
+ */
+function image(?string $image): ?string
+{
+    if ($image) {
+        return (file_exists(CONF_UPLOAD["STORAGE"] . "/{$image}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$image}") ? url() . "/" . CONF_UPLOAD["STORAGE"] . "/{$image}" : asset("assets/images/no_avatar.jpg", CONF_VIEW['ADMIN']));
+    }
+
+    return null;
+}
+
+/**
  * @param $cpf
  * @return string
  */
@@ -38,19 +51,6 @@ function is_cpf($cpf): string
         }
     }
     return true;
-}
-
-/**
- * @param string $image
- * @return string
- */
-function image(?string $image): ?string
-{
-    if ($image) {
-        return (file_exists(CONF_UPLOAD["STORAGE"] . "/{$image}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$image}") ? url() . "/" . CONF_UPLOAD["STORAGE"] . "/{$image}" : asset("assets/images/no_avatar.jpg", CONF_VIEW['ADMIN']));
-    }
-
-    return null;
 }
 
 /**
@@ -106,7 +106,7 @@ function str_search(?string $search): string
  * @param string $string
  * @return string
  */
-function slug(string $string): string
+function str_slug(string $string): string
 {
     $string = filter_var(mb_strtolower($string), FILTER_SANITIZE_STRIPPED);
     $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
@@ -203,10 +203,11 @@ function flash(string $type = null, string $message = null): ?string
     return null;
 }
 
+
 /**
- * Executa validação de formato de e-mail.
- * @param STRING $email = Uma conta de e-mail
- * @return BOOL = True para um email válido, ou false
+ * valida formato de e-mail.
+ * @param $email
+ * @return mixed
  */
 function is_email($email)
 {

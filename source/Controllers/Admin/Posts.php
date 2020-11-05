@@ -128,7 +128,7 @@ class Posts extends Admin
             $post = new Post();
             $post->title = $data["title"];
             $post->subtitle = $data["subtitle"];
-            $post->uri = slug($post->title);
+            $post->uri = str_slug($post->title);
             $post->tag = $data["tag"];
             $post->video = $data["video"];
             $post->status = $data["status"];
@@ -141,7 +141,7 @@ class Posts extends Admin
                 unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
             }
 
-            $uploaded = $upload->upload($file, $post->id . "-" . slug($post->title), 730);
+            $uploaded = $upload->upload($file, $post->id . "-" . str_slug($post->title), 730);
             $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
             $post->cover = $cover;
             $post->save();
@@ -182,7 +182,7 @@ class Posts extends Admin
             $post = (new Post())->findById("{$data["post_id"]}");
             $post->title = $data["title"];
             $post->subtitle = $data["subtitle"];
-            $post->uri = slug($post->title);
+            $post->uri = str_slug($post->title);
             $post->tag = $data["tag"];
             $post->video = $data["video"];
             $post->status = $data["status"];
@@ -217,7 +217,7 @@ class Posts extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $post->id . "-" . slug($post->title), 730);
+                $uploaded = $upload->upload($file, $post->id . "-" . str_slug($post->title), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $post->cover = $cover;
                 $post->save();

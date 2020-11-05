@@ -109,7 +109,7 @@ class Slides extends Admin
             $slide = new Slide();
             $slide->title = $data["title"];
             $slide->subtitle = $data["subtitle"];
-            $slide->uri = (!empty($data["uri"]) ? slug($data["uri"]) : slug($slide->title));
+            $slide->uri = (!empty($data["uri"]) ? str_slug($data["uri"]) : str_slug($slide->title));
             $slide->status = $data["status"];
             $slide->slide_at = (empty($data["slide_at"]) ? date("Y-m-d") : date_fmt($data["slide_at"]));
             $slide->save();
@@ -139,7 +139,7 @@ class Slides extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$slide->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $slide->id . "-" . slug($slide->title), 730);
+                $uploaded = $upload->upload($file, $slide->id . "-" . str_slug($slide->title), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $slide->cover = $cover;
                 $slide->save();
@@ -181,7 +181,7 @@ class Slides extends Admin
             $slide = (new Slide())->findById("{$data["slide_id"]}");
             $slide->title = $data["title"];
             $slide->subtitle = $data["subtitle"];
-            $slide->url = (!empty($data["url"]) ? slug($data["url"]) : slug($slide->title));
+            $slide->url = (!empty($data["url"]) ? str_slug($data["url"]) : str_slug($slide->title));
             $slide->status = $data["status"];
             $slide->slide_at = date_fmt($data["slide_at"]);
             $slide->updated_at = date("Y-m-d H:i:s");
@@ -212,7 +212,7 @@ class Slides extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$slide->cover}");
                 }
 
-                $uploaded = $upload->upload($file, $slide->id . "-" . slug($slide->title), 730);
+                $uploaded = $upload->upload($file, $slide->id . "-" . str_slug($slide->title), 730);
                 $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $slide->cover = $cover;
                 $slide->save();

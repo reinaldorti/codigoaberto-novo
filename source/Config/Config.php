@@ -45,7 +45,8 @@ define("COOKIEPOLICY", filter_input(INPUT_COOKIE, "cookiePolicy", FILTER_SANITIZ
 define("CONF_VIEW", [
     "PATH" => __DIR__ . "/../../shared",
     "EXT" => "php",
-    "THEME" => "web",
+    "THEME" => "anipat",
+    //"THEME" => "burger",
     "ADMIN" => "admin",
 ]);
 
@@ -87,11 +88,11 @@ define("CONF_SITE", [
     "ADDR_STREET" => "Votuporanga",   
     "ADDR_NUMBER" => "2562",
     "ADDR_DISTRICT" => "Eldorado",
-    "ADDR_COMPLEMENT" => "Fundos",
+    "ADDR_COMPLEMENT" => "Casa",
     "ADDR_CITY" => "São José do Rio Preto",
     "ADDR_STATE" => "SP",
-    "ADDR_ZIPCODE" => "15043040",
-    "ADDR_TELEPHONE" => "17999-9999"
+    "ADDR_ZIPCODE" => "15.043-040",
+    "ADDR_TELEPHONE" => "17 99116-3205"
 ]);
 
 /**

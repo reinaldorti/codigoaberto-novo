@@ -25,8 +25,7 @@ if ($minify) {
     $minJS->add(dirname(__DIR__, 2) . "/public/" . CONF_VIEW['THEME'] . "/assets/js/vendor/jquery-1.12.4.min.js");
     $minJS->add(dirname(__DIR__, 2) . "/shared/js/jquery.form.js");
     $minJS->add(dirname(__DIR__, 2) . "/shared/js/jquery-ui.js");
-    $minJS->add(dirname(__DIR__, 2) . "/shared/js/scripts.js");
-    $minJS->add(dirname(__DIR__, 2) . "/shared/js/tinymce/tinymce.min.js");
+    $minJS->add(dirname(__DIR__, 2) . "/shared/js/web.js");
     $minJS->add(dirname(__DIR__, 2) . "/public/" . CONF_VIEW['THEME'] . "/assets/js/vendor/modernizr-3.5.0.min.js");
     $jsDir = scandir(dirname(__DIR__, 2) . "/public/" . CONF_VIEW['THEME'] . "/assets/js");
     foreach ($jsDir as $jsItem) {

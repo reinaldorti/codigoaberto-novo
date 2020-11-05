@@ -86,7 +86,7 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Vídeo</label>
+                                            <label>Vídeo (Opcional)</label>
                                             <input type="text" name="video" class="form-control"
                                                    placeholder="Nome">
                                         </div>
@@ -187,7 +187,7 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Vídeo</label>
+                                            <label>Vídeo (Opcional)</label>
                                             <input type="text" name="video" class="form-control" value="<?= $post->video; ?>" placeholder="Nome">
                                         </div>
                                     </div>

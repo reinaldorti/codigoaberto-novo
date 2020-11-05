@@ -162,7 +162,7 @@ class Users extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$user->photo}");
                 }
 
-                $uploaded = $upload->upload($file, $user->id . "-" . slug($user->first_name), 500);
+                $uploaded = $upload->upload($file, $user->id . "-" . str_slug($user->first_name), 500);
                 $photo = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $user->photo = $photo;
                 $user->save();
@@ -256,7 +256,7 @@ class Users extends Admin
                     unlink(CONF_UPLOAD["STORAGE"] . "/{$user->photo}");
                 }
 
-                $uploaded = $upload->upload($file, $user->id . "-" . slug($user->first_name), 500);
+                $uploaded = $upload->upload($file, $user->id . "-" . str_slug($user->first_name), 500);
                 $photo = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
                 $user->photo = $photo;
                 $user->save();
