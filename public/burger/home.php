@@ -1,6 +1,36 @@
 
 <?php $v->layout("_theme"); ?>
 
+<div class="slider_area">
+    <?php if (empty($slides)): ?>
+        <div class="single_slider d-flex align-items-center justify-content-center overlay">
+            <div class="alert alert-info text-center">
+                <i class='fa fa-warning'></i>Oops! Ainda não existe slide cadastrados no momento!
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="slider_active owl-carousel">
+            <?php foreach ($slides as $slide): ?>
+                <div class="single_slider  d-flex align-items-center overlay" style="background-image:url(<?= image($slide->cover); ?>)">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-xl-9 col-md-9 col-md-12">
+                                <div class="slider_text text-center">
+                                    <div class="deal_text">
+                                        <span><?= $slide->title; ?></span>
+                                    </div>
+                                    <h3><?= $slide->subtitle; ?></h3>
+                                    <!--<h4>Maxican</h4>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>
+
 <div class="best_burgers_area">
     <div class="container">
         <div class="row">
@@ -120,7 +150,7 @@
         </div>
     </div>
 </div>
-<!-- features_room_startt -->
+
 <div class="Burger_President_area">
     <div class="Burger_President_here">
         <div class="single_Burger_President">
@@ -153,35 +183,38 @@
     </div>
 </div>
 
-<div class="about_area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-6 col-md-6">
-                <div class="about_thumb2">
-                    <div class="img_1">
-                        <img src="<?= asset("assets/img/about/1.png"); ?>" alt="">
-                    </div>
-                    <div class="img_2">
-                        <img src="<?= asset("assets/img/about/2.png"); ?>" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6">
-                <div class="about_info">
-                    <div class="section_title mb-20px">
-                        <span>About Us</span>
-                        <h3>Best Burger <br>
-                            in your City</h3>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate</p>
-                    <div class="img_thumb">
-                        <img src="<?= asset("assets/img/jessica-signature.png"); ?>" alt="">
+<?php if (!empty($about)): ?>
+    <div class="about_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <?php foreach ($about as $row): ?>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="about_thumb2">
+                        <div class="img_1">
+                            <img src="<?= asset("assets/img/about/1.png"); ?>" alt="">
+                        </div>
+                        <div class="img_2">
+                            <img src="<?= asset("assets/img/about/2.png"); ?>" alt="">
+                        </div>
                     </div>
                 </div>
+                <div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6">
+                    <div class="about_info">
+                        <div class="section_title mb-20px">
+                            <span>Sobre</span>
+                            <h3><?= str_limit_chars($row->title, 50); ?></h3>
+                        </div>
+                        <p><?= str_limit_chars($row->content, 500); ?></p>
+                        <div class="img_thumb">
+                            <img src="<?= asset("assets/img/jessica-signature.png"); ?>" alt="">
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="video_area video_bg overlay">
     <div class="video_area_inner text-center">
@@ -196,144 +229,9 @@
     </div>
 </div>
 
-<div class="testimonial_area ">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section_title mb-60 text-center">
-                    <span>Testimonials</span>
-                    <h3>Happy Customers</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="testmonial_active owl-carousel">
-                    <div class="single_carousel">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="single_testmonial text-center">
-                                    <p>“Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor
-                                        sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec
-                                        sed
-                                        neque.</p>
-                                    <div class="testmonial_author">
-                                        <div class="thumb">
-                                            <img src="<?= asset("assets/img/testmonial/1.png")?>" alt="">
-                                        </div>
-                                        <h4>Kristiana Chouhan</h4>
-                                        <div class="stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_carousel">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="single_testmonial text-center">
-                                    <p>“Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor
-                                        sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec
-                                        sed
-                                        neque.</p>
-                                    <div class="testmonial_author">
-                                        <div class="thumb">
-                                            <img src="<?= asset("assets/img/testmonial/2.png")?>" alt="">
-                                        </div>
-                                        <h4>Arafath Hossain</h4>
-                                        <div class="stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_carousel">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="single_testmonial text-center">
-                                    <p>“Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor
-                                        sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec
-                                        sed
-                                        neque.</p>
-                                    <div class="testmonial_author">
-                                        <div class="thumb">
-                                            <img src="<?= asset("assets/img/testmonial/3.png")?>" alt="">
-                                        </div>
-                                        <h4>A.H Shemanto</h4>
-                                        <div class="stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?php $v->insert("testimonial"); ?>
 
-<div class="instragram_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="single_instagram">
-                    <img src="<?= asset("assets/img/instragram/1.png")?>" alt="">
-                    <div class="ovrelay">
-                        <a href="#">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single_instagram">
-                    <img src="<?= asset("assets/img/instragram/2.png")?>" alt="">
-                    <div class="ovrelay">
-                        <a href="#">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single_instagram">
-                    <img src="<?= asset("assets/img/instragram/3.png")?>" alt="">
-                    <div class="ovrelay">
-                        <a href="#">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single_instagram">
-                    <img src="<?= asset("assets/img/instragram/4.png")?>" alt="">
-                    <div class="ovrelay">
-                        <a href="#">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- instragram_area_end -->
+<?php $v->insert("instagram"); ?>
+
+
+

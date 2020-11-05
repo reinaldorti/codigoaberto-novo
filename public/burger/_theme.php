@@ -92,36 +92,6 @@
     </div>
 </header>
 
-<div class="slider_area">
-    <?php if (empty($slides)): ?>
-        <div class="single_slider d-flex align-items-center justify-content-center overlay">
-            <div class="alert alert-info text-center">
-                <i class='fa fa-warning'></i>Oops! Ainda não existe slide cadastrados no momento!
-            </div>
-        </div>
-    <?php else: ?>
-        <div class="slider_active owl-carousel">
-            <?php foreach ($slides as $slide): ?>
-                <div class="single_slider  d-flex align-items-center overlay" style="background-image:url(<?= image($slide->cover); ?>)">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-xl-9 col-md-9 col-md-12">
-                                <div class="slider_text text-center">
-                                    <div class="deal_text">
-                                        <span><?= $slide->title; ?></span>
-                                    </div>
-                                    <h3><?= $slide->subtitle; ?></h3>
-<!--                                    <h4>Maxican</h4>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
-</div>
-
 <?= $v->section("content"); ?>
 
 <footer class="footer">

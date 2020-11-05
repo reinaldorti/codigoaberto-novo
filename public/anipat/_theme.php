@@ -37,7 +37,6 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                         <div class="short_contact_list">
                             <ul>
                                 <li><a href="#"><?= CONF_MAIL['FROM_TELEPHONE']; ?></a></li>
-                                <li><a href="#">Mon - Sat 10:00 - 7:00</a></li>
                             </ul>
                         </div>
                     </div>
@@ -60,6 +59,7 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
                 </div>
             </div>
         </div>
+
         <div id="sticky-header" class="main-header-area">
             <div class="container">
                 <div class="row align-items-center">

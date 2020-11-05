@@ -46,7 +46,7 @@ define("CONF_VIEW", [
     "PATH" => __DIR__ . "/../../shared",
     "EXT" => "php",
     "THEME" => "anipat",
-    //"THEME" => "burger",
+//    "THEME" => "burger",
     "ADMIN" => "admin",
 ]);
 

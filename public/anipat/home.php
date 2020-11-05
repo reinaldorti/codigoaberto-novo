@@ -75,31 +75,32 @@
     </div>
 </div>
 
-<div class="pet_care_area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5 col-md-6">
-                <div class="pet_thumb">
-                    <img src="<?= asset('assets/img/about/pet_care.png'); ?>" alt="">
-                </div>
-            </div>
-            <div class="col-lg-6 offset-lg-1 col-md-6">
-                <div class="pet_info">
-                    <div class="section_title">
-                        <h3><span>We care your pet </span> <br>
-                            As you care</h3>
-                        <p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br>
-                            iusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                            Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
-                            viverra maecenas accumsan.
-                        </p>
-                        <a href="<?= $router->route("web.about"); ?>" class="boxed-btn3">About Us</a>
+<?php if (!empty($about)): ?>
+    <div class="pet_care_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <?php foreach ($about as $row): ?>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="pet_thumb">
+                            <img src="<?= asset('assets/img/about/pet_care.png'); ?>" alt="">
+                        </div>
                     </div>
-                </div>
+                    <div class="col-lg-6 offset-lg-1 col-md-6">
+                        <div class="pet_info">
+                            <div class="section_title">
+                                <h3><span><?= str_chars($row->title, 50); ?></span> <br>
+                                    As you care</h3>
+                                <p><?= str_chars($row->content, 500); ?>
+                                </p>
+                                <a href="<?= $router->route("web.about"); ?>" class="boxed-btn3">About Us</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="adapt_area">
     <div class="container">

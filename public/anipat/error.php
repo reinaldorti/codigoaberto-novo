@@ -3,7 +3,6 @@
 
 <?= $head; ?>
 
-<!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg">
     <div class="container">
         <div class="row">

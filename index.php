@@ -53,6 +53,16 @@ $router->post("/users/user/{user_id}", "Users:user");
 $router->get("/users/delete/{user_id}", "Users:delete");
 $router->post("/users/address/{user_id}", "Address:address");
 
+//ABOUT
+$router->get("/about/home", "About:home");
+$router->post("/about/home", "About:home");
+$router->get("/about/home/{search}/{page}", "About:home");
+$router->get("/about/about", "About:about");
+$router->post("/about/about", "About:about");
+$router->get("/about/about/{about_id}", "About:about");
+$router->post("/about/about/{about_id}", "About:about");
+$router->get("/about/delete/{about_id}", "About:delete");
+
 //SLIDES
 $router->get("/slides/home", "Slides:home");
 $router->post("/slides/home", "Slides:home");

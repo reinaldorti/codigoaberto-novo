@@ -3,12 +3,14 @@
 namespace Source\Controllers;
 
 use CoffeeCode\Router\Router;
+use Source\Models\About;
 use Source\Models\Post;
 use Source\Models\Slide;
 use Source\Models\Testimony;
 use Source\Support\Message;
 use Source\Support\Email;
 use Source\Support\Pager;
+
 /**
  * Class Web
  * @package Source\Controllers
@@ -44,25 +46,27 @@ class Web extends Controller
 
         echo $this->view->render("home", [
             "head" => $head,
+            "about" => (new About())->find()->order("id DESC")->limit(1)->fetch(true),
             "slides" => (new Slide())->find()->order("slide_order ASC")->fetch(true),
             "testimony" => (new Testimony())->find()->order("testimony_order ASC")->fetch(true)
         ]);
     }
 
     /**
-     * SITE SOBRE
+     * SITE ABOUT
      */
     public function about(): void
     {
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            "Sobre - " . CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
             CONF_SITE['DESC'],
-            url(),
+            url("sobre"),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("about", [
-            "head" => $head
+            "head" => $head,
+            "about" => (new About())->find()->order("id DESC")->limit(1)->fetch(true)
         ]);
     }
 

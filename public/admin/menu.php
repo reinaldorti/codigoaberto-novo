@@ -30,6 +30,7 @@
 
         echo $nav("tachometer-alt", "dash", "Dashboard");
         echo $nav("users", "users/home", "Usuários");
+        echo $nav("coffee", "about/home", "Sobre");
         echo $nav("images", "slides/home", "Destaque");
         echo $nav("comments", "testimony/home", "Depoimentos");
         echo $nav("edit", "posts/home", "Posts");
