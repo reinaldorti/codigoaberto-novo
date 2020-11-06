@@ -40,7 +40,7 @@ $router->post("/reset", "Login:reset");
 //DASHBOARD
 $router->get("/dash", "Dash:home");
 $router->post("/dash", "Dash:dashboard");
-$router->get("/dash/sair", "Dash:logoff");
+$router->get("/logoff", "Dash:logoff");
 
 //USERS
 $router->get("/users/home", "Users:home");

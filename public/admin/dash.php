@@ -51,7 +51,7 @@
 
     <ul class="navbar-nav ml-auto">
         <div class="print" style="padding: 10px;">
-            <a title="Sair!" href="<?= url('admin/dash/sair'); ?>" class="icon-exit icon-notext btn btn-danger">
+            <a title="Sair!" href="<?= url('admin/logoff'); ?>" class="icon-exit icon-notext btn btn-danger">
                 SAIR!
             </a>
         </div>
