@@ -88,9 +88,9 @@
                     <div class="col-lg-6 offset-lg-1 col-md-6">
                         <div class="pet_info">
                             <div class="section_title">
-                                <h3><span><?= str_chars($row->title, 50); ?></span> <br>
+                                <h3><span><?= str_limit_words($row->title, 50); ?></span> <br>
                                     As you care</h3>
-                                <p><?= str_chars($row->content, 500); ?>
+                                <p><?= str_limit_words($row->content, 500); ?>
                                 </p>
                                 <a href="<?= $router->route("web.about"); ?>" class="boxed-btn3">About Us</a>
                             </div>

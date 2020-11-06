@@ -76,7 +76,7 @@ function date_fmt(?string $date): ?string
  * @param int $limit
  * @return string
  */
-function str_chars(string $string, int $limit): string
+function str_limit_words(string $string, int $limit): string
 {
     $data = strip_tags($string);
     $format = $limit;

@@ -82,7 +82,7 @@ $v->layout("dash"); ?>
                                         ?>
                                         <tr>
                                             <td><?= str_pad($post->id, 4, 0, STR_PAD_LEFT); ?></td>
-                                            <td><?= str_chars($post->title, 60); ?></td>
+                                            <td><?= str_limit_words($post->title, 60); ?></td>
                                             <td><?= status($post->status); ?></td>
                                             <td><?= date('d/m/Y', strtotime($post->created_at)); ?></td>
                                             <td>

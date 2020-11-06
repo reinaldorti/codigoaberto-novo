@@ -83,7 +83,7 @@ $v->layout("dash"); ?>
                                     <?php foreach ($slides as $slide): ?>
                                         <tr class="j_draganddrop" id="<?= $slide->id; ?>">
                                             <td><?= str_pad($slide->id, 4, 0, STR_PAD_LEFT); ?></td>
-                                            <td><?= str_chars($slide->title, 60); ?></td>
+                                            <td><?= str_limit_words($slide->title, 60); ?></td>
                                             <td><?= status($slide->status); ?></td>
                                             <td><?= date('d/m/Y', strtotime($slide->created_at)); ?></td>
                                             <td>

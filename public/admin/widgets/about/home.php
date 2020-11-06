@@ -84,7 +84,7 @@ $v->layout("dash"); ?>
                                     <?php foreach ($about as $row): ?>
                                         <tr>
                                             <td><?= str_pad($row->id, 4, 0, STR_PAD_LEFT); ?></td>
-                                            <td><?= str_limit_chars($row->title, 60); ?></td>
+                                            <td><?= str_limit_words($row->title, 60); ?></td>
                                             <td><?= status($row->status); ?></td>
                                             <td><?= date('d/m/Y', strtotime($row->created_at)); ?></td>
                                             <td>

@@ -202,9 +202,9 @@
                     <div class="about_info">
                         <div class="section_title mb-20px">
                             <span>Sobre</span>
-                            <h3><?= str_limit_chars($row->title, 50); ?></h3>
+                            <h3><?= str_limit_words($row->title, 50); ?></h3>
                         </div>
-                        <p><?= str_limit_chars($row->content, 500); ?></p>
+                        <p><?= str_limit_words($row->content, 500); ?></p>
                         <div class="img_thumb">
                             <img src="<?= asset("assets/img/jessica-signature.png"); ?>" alt="">
                         </div>

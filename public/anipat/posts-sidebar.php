@@ -69,7 +69,7 @@
                         
                         <div class="media-body">
                             <a href="<?= $link; ?>" title="<?= $view->title; ?>">
-                                <h3><?= str_chars($view->title, 60); ?></h3>
+                                <h3><?= str_limit_words($view->title, 60); ?></h3>
                             </a>
                             <p><?= date("d/m/Y", strtotime($view->created_at)); ?></p>
                         </div>

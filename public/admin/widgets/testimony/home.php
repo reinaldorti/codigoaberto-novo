@@ -84,7 +84,7 @@ $v->layout("dash"); ?>
                                         ?>
                                         <tr class="j_draganddrop" id="<?= $comment->id; ?>">
                                             <td><?= str_pad($comment->id, 4, 0, STR_PAD_LEFT); ?></td>
-                                            <td><?= str_chars($comment->name, 60); ?></td>
+                                            <td><?= str_limit_words($comment->name, 60); ?></td>
                                             <td><?= status($comment->status); ?></td>
                                             <td><?= date('d/m/Y', strtotime($comment->created_at)); ?></td>
                                             <td>
