@@ -74,7 +74,7 @@ class Web extends Controller
      * SITE BLOG
      * @param array|null $data
      */
-    public function posts(?array $data): void
+    public function blog(?array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
@@ -89,7 +89,7 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("posts", [
+        echo $this->view->render("blog", [
             "head" => $head,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
             "views" => (new Post())->find()->order("views DESC")->fetch(true),
@@ -102,7 +102,7 @@ class Web extends Controller
      * SITE BLOG SEARCH
      * @param array $data
      */
-    public function postSearch(array $data): void
+    public function blogSearch(array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
@@ -139,7 +139,7 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("posts", [
+        echo $this->view->render("blog", [
             "head" => $head,
             "search" => $search,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
@@ -153,7 +153,7 @@ class Web extends Controller
      * SITE BLOG POST
      * @param array $data
      */
-    public function post(array $data): void
+    public function blogPost(array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
@@ -172,7 +172,7 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("post", [
+        echo $this->view->render("blog-post", [
             "head" => $head,
             "post" => $post,
             "views" => (new Post())->find()->order("views DESC")->fetch(true),
@@ -208,7 +208,7 @@ class Web extends Controller
             asset("/assets/images/logo/logo.png")
         );
 
-        echo $this->view->render("posts", [
+        echo $this->view->render("blog", [
             "head" => $head,
             "search" => $search,
             "posts" => $tag->limit($pager->limit())->offset($pager->offset())->fetch(true),

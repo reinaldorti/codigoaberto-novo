@@ -19,10 +19,10 @@ $router->post("/cookie", "Web:cookiePolicy", "web.cookie.policy");
 
 //BLOG
 $router->group("/blog");
-$router->get("/", "Web:posts", "web.blog");
-$router->post("/buscar", "Web:postSearch");
-$router->get("/buscar/{search}/{page}", "Web:postSearch");
-$router->get("/{uri}", "Web:post");
+$router->get("/", "Web:blog", "web.blog");
+$router->post("/buscar", "Web:blogSearch");
+$router->get("/buscar/{search}/{page}", "Web:blogSearch");
+$router->get("/{uri}", "Web:blogPost");
 $router->get("/tag/{tag}", "Web:tag");
 
 //ADMIN ROUTES
@@ -74,7 +74,7 @@ $router->post("/slides/slide/{slide_id}", "Slides:slide");
 $router->get("/slides/delete/{slide_id}", "Slides:delete");
 $router->post("/slides/order", "Slides:SlideOrder");
 
-//POSTS
+//BLOG
 $router->get("/posts/home", "Posts:home");
 $router->post("/posts/home", "Posts:home");
 $router->get("/posts/home/{search}/{page}", "Posts:home");

@@ -41,6 +41,7 @@
                                     <li><a href="<?= url("sobre"); ?>">Sobre</a></li>
                                     <li><a href="<?= url("blog"); ?>">Blog</a></li>
                                     <li><a href="<?= url("contato"); ?>">Contato</a></li>
+                                    <li><a href="<?= url("admin"); ?>">Login</a></li>
                                 </ul>
                             </nav>
                         </div>

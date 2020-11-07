@@ -72,8 +72,8 @@ define("CONF_PASSWD", [
  * MULTIPLO LOGIN
  */
 define("CONF_LOGIN", [
-    "LOGIN_MULTIPLE" => 1,
-    "LOGIN_BLOCK" => 60
+    "MULTIPLE" => 1,
+    "BLOCK" => 60
 ]);
 
 /**

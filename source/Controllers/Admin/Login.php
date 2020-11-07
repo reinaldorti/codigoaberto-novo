@@ -129,12 +129,12 @@ class Login extends Controller
             }
 
             /** MULTIPLO LOGIN **/
-            if (CONF_LOGIN["LOGIN_MULTIPLE"]) {
+            if (CONF_LOGIN["MULTIPLE"]) {
                 $LoginTrue = true;
             } else {
 
                 $LoginCookieFree = filter_input(INPUT_COOKIE, "user_cookie", FILTER_DEFAULT);
-                $LoginTimeFree = (!empty($user->user_login) ? $user->user_login + (CONF_LOGIN["LOGIN_BLOCK"] * 60) : 0);
+                $LoginTimeFree = (!empty($user->user_login) ? $user->user_login + (CONF_LOGIN["BLOCK"] * 60) : 0);
 
                 if (!$user->user_cookie || time() > $LoginTimeFree || ($LoginCookieFree && $LoginCookieFree == $user->user_cookie)) {
                     $login_cookie = hash("sha512", time());
