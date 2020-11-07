@@ -24,7 +24,7 @@
                         </div>
                     <?php else: ?>
                         <div class="feature-img">
-                            <img class="img-fluid" src="<?= (!empty($post->cover) ? image($post->cover, 730) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME'])); ?>" alt="">
+                            <img class="img-fluid" src="<?= (!empty($post->cover) ? image($post->cover) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME'])); ?>" alt="">
                         </div>
                     <?php endif; ?>
 
