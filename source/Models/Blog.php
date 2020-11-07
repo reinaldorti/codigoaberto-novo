@@ -6,10 +6,10 @@ use CoffeeCode\DataLayer\DataLayer;
 use Exception;
 
 /**
- * Class Post
+ * Class Blog
  * @package Source\Models
  */
-class Post extends DataLayer
+class Blog extends DataLayer
 {
     /**
      * User constructor.
@@ -24,7 +24,7 @@ class Post extends DataLayer
      */
     public function save(): bool
     {
-        $uri = (new Post())->find("uri = :uri AND id != :id", "uri={$this->uri}&id={$this->id}");
+        $uri = (new Blog())->find("uri = :uri AND id != :id", "uri={$this->uri}&id={$this->id}");
         if ($uri->count()) {
             $this->uri = "{$this->uri}-". time();
         }

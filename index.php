@@ -75,15 +75,15 @@ $router->get("/slides/delete/{slide_id}", "Slides:delete");
 $router->post("/slides/order", "Slides:SlideOrder");
 
 //BLOG
-$router->get("/posts/home", "Posts:home");
-$router->post("/posts/home", "Posts:home");
-$router->get("/posts/home/{search}/{page}", "Posts:home");
-$router->get("/posts/post", "Posts:post");
-$router->post("/posts/post", "Posts:post");
-$router->get("/posts/post/{post_id}", "Posts:post");
-$router->post("/posts/post/{post_id}", "Posts:post");
-$router->get("/posts/delete/{post_id}", "Posts:delete");
-$router->get("/posts/gallery/{post_id}", "Posts:GalleryDelete");
+$router->get("/blog/home", "Blog:home");
+$router->post("/blog/home", "Blog:home");
+$router->get("/blog/home/{search}/{page}", "Blog:home");
+$router->get("/blog/blog", "Blog:blog");
+$router->post("/blog/blog", "Blog:blog");
+$router->get("/blog/blog/{post_id}", "Blog:blog");
+$router->post("/blog/blog/{post_id}", "Blog:blog");
+$router->get("/blog/delete/{post_id}", "Blog:delete");
+$router->get("/blog/gallery/{post_id}", "Blog:GalleryDelete");
 
 //TESTIMONY
 $router->get("/testimony/home", "Testimonys:home");

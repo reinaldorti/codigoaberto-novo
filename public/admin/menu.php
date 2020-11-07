@@ -33,7 +33,7 @@
         echo $nav("coffee", "about/home", "Sobre");
         echo $nav("images", "slides/home", "Destaque");
         echo $nav("comments", "testimony/home", "Depoimentos");
-        echo $nav("edit", "posts/home", "Posts");
+        echo $nav("edit", "blog/home", "Blog");
 
         echo"
             <li class='nav-item has-treeview menu-open'>

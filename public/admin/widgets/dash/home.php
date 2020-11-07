@@ -45,7 +45,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="<?= url('admin/posts/home'); ?>" class="small-box-footer">
+                        <a href="<?= url('admin/blog/home'); ?>" class="small-box-footer">
                             Ver posts <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>

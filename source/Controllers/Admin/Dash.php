@@ -1,7 +1,7 @@
 <?php
 
 namespace Source\Controllers\Admin;
-use Source\Models\Post;
+use Source\Models\Blog;
 use Source\Models\Slide;
 use Source\Models\User;
 use Source\Support\Message;
@@ -32,7 +32,7 @@ class Dash extends Admin
                 "users" => (new User())->find()->count(),
             ],
             "blog" => (object)[
-                "posts" => (new Post())->find()->count(),
+                "posts" => (new Blog())->find()->count(),
             ],
             "slides" => (object)[
                 "slides" => (new Slide())->find()->count(),

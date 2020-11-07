@@ -5,10 +5,10 @@ namespace Source\Models;
 use CoffeeCode\DataLayer\DataLayer;
 
 /**
- * Class PostGallery
+ * Class BlogGallery
  * @package Source\Models
  */
-class PostGallery extends DataLayer
+class BlogGallery extends DataLayer
 {
     /**
      * PostGallery constructor.
