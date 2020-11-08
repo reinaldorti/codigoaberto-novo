@@ -74,7 +74,7 @@ class User extends DataLayer
      */
     protected function validatePassword(): bool
     {
-        if (!is_passwd($this->password)){
+        if (!is_passwd($this->password)) {
             $this->fail = new Exception("<i class='icon fas fa-ban'></i> Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!");
             return false;
         }
@@ -102,7 +102,7 @@ class User extends DataLayer
     public static function user(): ?User
     {
         if (!empty($_SESSION["user"])) {
-            return (new User())->find("id = :id","id={$_SESSION["user"]}")->fetch();
+            return (new User())->find("id = :id", "id={$_SESSION["user"]}")->fetch();
         }
     }
 
@@ -118,12 +118,12 @@ class User extends DataLayer
     }
 
     /**
-     * @return null|Post
+     * @return null|Blog
      */
-    public function posts(): ?Post
+    public function posts(): ?Blog
     {
         if ($this->id) {
-            return (new Post())->find("user_id = :id", "id={$this->id}")->fetch();
+            return (new Blog())->find("user_id = :id", "id={$this->id}")->fetch();
         }
         return null;
     }

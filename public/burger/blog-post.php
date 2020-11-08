@@ -10,7 +10,7 @@
             <div class="col-lg-8 posts-list">
                 <div class="single-post">
                     <div class="feature-img">
-                        <img class="img-fluid" src="img/blog/single_blog_1.png" alt="">
+                        <img class="img-fluid" src="<?= asset("assets/img/blog/single_blog_1.png"); ?>" alt="">
                     </div>
                     <div class="blog_details">
                         <h2>Second divided from form fish beast made every of seas
@@ -54,8 +54,12 @@
                 </div>
                 <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
-                        <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                            people like this</p>
+                        <p class="like-info">
+                            <span class="align-middle">
+                                <i class="fa fa-heart"></i>
+                            </span>
+                            Lily and 4 people like this
+                        </p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                         </div>
@@ -72,7 +76,7 @@
                                     class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                                 <div class="thumb">
                                     <a href="#">
-                                        <img class="img-fluid" src="img/post/preview.png" alt="">
+                                        <img class="img-fluid" src="<?= asset("assets/img/post/preview.png");?>" alt="">
                                     </a>
                                 </div>
                                 <div class="arrow">
@@ -102,7 +106,7 @@
                                 </div>
                                 <div class="thumb">
                                     <a href="#">
-                                        <img class="img-fluid" src="img/post/next.png" alt="">
+                                        <img class="img-fluid" src="<?= asset("assets/img/post/next.png");?>" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -111,7 +115,7 @@
                 </div>
                 <div class="blog-author">
                     <div class="media align-items-center">
-                        <img src="img/blog/author.png" alt="">
+                        <img src="<?= asset("assets/img/blog/author.png");?>" alt="">
                         <div class="media-body">
                             <a href="#">
                                 <h4>Harvard milan</h4>
@@ -127,7 +131,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/comment/comment_1.png" alt="">
+                                    <img src="<?= asset("assets/img/comment/comment_1.png");?>" alt="">
                                 </div>
                                 <div class="desc">
                                     <p class="comment">
@@ -153,7 +157,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/comment/comment_2.png" alt="">
+                                    <img src="<?= asset("assets/img/comment/comment_2.png");?>" alt="">
                                 </div>
                                 <div class="desc">
                                     <p class="comment">
@@ -179,7 +183,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/comment/comment_3.png" alt="">
+                                    <img src="<?= asset("assets/img/comment/comment_4.png");?>" alt="">
                                 </div>
                                 <div class="desc">
                                     <p class="comment">
@@ -188,9 +192,7 @@
                                     </p>
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
+                                            <h5><a href="#">Emilly Blunt</a></h5>
                                             <p class="date">December 4, 2017 at 3:12 pm </p>
                                         </div>
                                         <div class="reply-btn">
@@ -202,14 +204,14 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="comment-form">
                     <h4>Leave a Reply</h4>
                     <form class="form-contact comment_form" action="#" id="commentForm">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                        placeholder="Write Comment"></textarea>
+                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">

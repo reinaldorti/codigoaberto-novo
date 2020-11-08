@@ -3,8 +3,8 @@
 namespace Source\Controllers\Admin;
 
 use CoffeeCode\Uploader\Image;
-use Source\Models\Post;
 use Source\Models\User;
+use Source\Models\Blog;
 use Source\Support\Email;
 use Source\Support\Message;
 use Source\Support\Pager;
@@ -355,7 +355,7 @@ class Users extends Admin
             "head" => $head,
             "csrf" => csrf_input(),
             "user" => $user,
-            "blog" => (!empty($user)? (object)["posts" => (new Post())->find("author=:user","user={$user->id}")->count()] : "")
+            "blog" => (!empty($user)? (object)["posts" => (new Blog())->find("author=:user","user={$user->id}")->count()] : "")
         ]);
     }
 

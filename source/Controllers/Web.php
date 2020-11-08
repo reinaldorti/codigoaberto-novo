@@ -4,7 +4,7 @@ namespace Source\Controllers;
 
 use CoffeeCode\Router\Router;
 use Source\Models\About;
-use Source\Models\Post;
+use Source\Models\Blog;
 use Source\Models\Slide;
 use Source\Models\Testimony;
 use Source\Support\Message;
@@ -78,7 +78,7 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        $posts = (new Post())->find()->order("id DESC");
+        $posts = (new Blog())->find()->order("id DESC");
 
         $pager = new Pager(url("/blog/"));
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
@@ -92,8 +92,8 @@ class Web extends Controller
         echo $this->view->render("blog", [
             "head" => $head,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "views" => (new Post())->find()->order("views DESC")->fetch(true),
-            "tags" => (new Post())->find()->order("views DESC")->fetch(true),
+            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find()->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -117,11 +117,11 @@ class Web extends Controller
         }
 
         $search = null;
-        $posts = (new Post())->find()->order("id DESC")->fetch();
+        $posts = (new Blog())->find()->order("id DESC")->fetch();
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
-            $posts = (new Post())->find("MATCH(title) AGAINST(:s)", "s={$search}");
+            $posts = (new Blog())->find("MATCH(title) AGAINST(:s)", "s={$search}");
             if (!$posts->count()) {
                 flash("info", "Oops! Sua pesquisa não retornou resultados!");
                 redirect("/blog/");
@@ -143,8 +143,8 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            //"tags" => (new Post())->find()->order("views DESC")->fetch(true),
-            "views" => (new Post())->find()->order("views DESC")->fetch(true),
+            //"tags" => (new Blog())->find()->order("views DESC")->fetch(true),
+            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -157,7 +157,7 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        $post = (new Post())->find("uri = :url", "url={$data['uri']}")->fetch();
+        $post = (new Blog())->find("uri = :url", "url={$data['uri']}")->fetch();
         if (!$post) {
             redirect("/404");
         }
@@ -175,7 +175,7 @@ class Web extends Controller
         echo $this->view->render("blog-post", [
             "head" => $head,
             "post" => $post,
-            "views" => (new Post())->find()->order("views DESC")->fetch(true),
+            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
         ]);
     }
 
@@ -191,7 +191,7 @@ class Web extends Controller
 
         $search = str_search($data["tag"]);
 
-        $tag = (new Post())->find("MATCH(tag) AGAINST(:s)", "s={$search}");
+        $tag = (new Blog())->find("MATCH(tag) AGAINST(:s)", "s={$search}");
         if (!$tag->count()) {
             flash("info", "Oops! Sua pesquisa não retornou resultados!");
             redirect("/blog/");
@@ -212,8 +212,8 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $tag->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "tags" => (new Post())->find()->order("id DESC")->fetch(true),
-            "views" => (new Post())->find()->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find()->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
