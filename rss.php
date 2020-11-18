@@ -25,7 +25,7 @@ echo '<language>pt-br</language>' . "\r\n";
 switch ($feed):
 
     default:
-        $posts = (new \Source\Models\Blog())->find()->order("id DESC")->fetch(true);
+        $posts = (new \Source\Models\Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true);
         if ($posts):
             foreach ($posts as $post):
                 $cover = (!empty($post->cover) ? image($post->cover) : asset("assets/img/no_image.jpg", CONF_VIEW['THEME']));
@@ -38,7 +38,7 @@ switch ($feed):
                 echo '</item>' . "\r\n";
             endforeach;
         endif;
-        break;
+    break;
 endswitch;
 
 echo '</channel>' . "\r\n";

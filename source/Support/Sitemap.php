@@ -40,7 +40,7 @@ class Sitemap
         $this->sitemap .= '</url>' . "\r\n";
 
         //POSTS
-        $posts = (new Blog())->find()->order("id DESC")->fetch(true);
+        $posts = (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true);
         if ($posts):
             foreach ($posts as $post):
                 $this->sitemap .= '<url>' . "\r\n";

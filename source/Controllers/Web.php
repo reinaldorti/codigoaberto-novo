@@ -78,7 +78,7 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        $posts = (new Blog())->find()->order("id DESC");
+        $posts = (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC");
 
         $pager = new Pager(url("/blog/"));
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
@@ -92,8 +92,8 @@ class Web extends Controller
         echo $this->view->render("blog", [
             "head" => $head,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
-            "tags" => (new Blog())->find()->order("views DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -117,7 +117,7 @@ class Web extends Controller
         }
 
         $search = null;
-        $posts = (new Blog())->find()->order("id DESC")->fetch();
+        $posts = (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch();
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
@@ -143,8 +143,8 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            //"tags" => (new Blog())->find()->order("views DESC")->fetch(true),
-            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -157,7 +157,7 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        $post = (new Blog())->find("uri = :url", "url={$data['uri']}")->fetch();
+        $post = (new Blog())->find("status = :status AND uri = :url AND post_at <= NOW() ", "status=1&url={$data['uri']}")->fetch();
         if (!$post) {
             redirect("/404");
         }
@@ -175,7 +175,8 @@ class Web extends Controller
         echo $this->view->render("blog-post", [
             "head" => $head,
             "post" => $post,
-            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
         ]);
     }
 
@@ -212,8 +213,8 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $tag->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "tags" => (new Blog())->find()->order("id DESC")->fetch(true),
-            "views" => (new Blog())->find()->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
