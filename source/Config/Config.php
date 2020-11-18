@@ -45,8 +45,8 @@ define("COOKIEPOLICY", filter_input(INPUT_COOKIE, "cookiePolicy", FILTER_SANITIZ
 define("CONF_VIEW", [
     "PATH" => __DIR__ . "/../../shared",
     "EXT" => "php",
-//    "THEME" => "anipat",
-    "THEME" => "burger",
+    "THEME" => "anipat",
+//    "THEME" => "burger",
     "ADMIN" => "admin",
 ]);
 

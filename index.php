@@ -51,7 +51,6 @@ $router->post("/users/user", "Users:user");
 $router->get("/users/user/{user_id}", "Users:user");
 $router->post("/users/user/{user_id}", "Users:user");
 $router->get("/users/delete/{user_id}", "Users:delete");
-$router->post("/users/address/{user_id}", "Address:address");
 
 //ABOUT
 $router->get("/about/home", "About:home");

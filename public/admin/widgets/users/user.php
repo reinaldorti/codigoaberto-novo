@@ -344,9 +344,8 @@ $v->layout("dash"); ?>
 
                                     <div class="tab-pane" id="timeline">
                                         <div class=" timeline-inverse">
-                                            <form action="<?= url("admin/users/address/{$user->id}"); ?>" method="post">
-                                                <input type="hidden" name="id" value="<?php if (isset($user->addr()->id)) echo $user->addr()->id; ?>"/>
-                                                <input type="hidden" name="user_id" value="<?= $user->id; ?>"/>
+                                            <form action="<?= url("admin/users/user/{$user->id}"); ?>" method="post">
+                                                <input type="hidden" name="action" value="address"/>
                                                 <?= $csrf; ?>
 
                                                 <div class="login_form_callback">
