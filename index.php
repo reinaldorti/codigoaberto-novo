@@ -4,6 +4,18 @@ session_start();
 
 require __DIR__ . "/vendor/autoload.php";
 
+//SITEMAP GENERATE (1X DAY)
+$SiteMapCheck = fopen('sitemap.txt', "a+");
+$SiteMapCheckDate = fgets($SiteMapCheck);
+if ($SiteMapCheckDate != date('Y-m-d')):
+    $SiteMapCheck = fopen('sitemap.txt', "w");
+    fwrite($SiteMapCheck, date('Y-m-d'));
+    fclose($SiteMapCheck);
+
+    $SiteMap = new \Source\Support\Sitemap();
+    $SiteMap->exeSitemap(1);
+endif;
+
 use CoffeeCode\Router\Router;
 
 $router = new Router(url(), ":");
