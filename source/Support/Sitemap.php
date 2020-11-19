@@ -3,6 +3,7 @@
 
 namespace Source\Support;
 
+use Source\Models\About;
 use Source\Models\Blog;
 
 class Sitemap
