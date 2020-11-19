@@ -23,7 +23,7 @@ https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber<br/>
 3º Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
 
-# Author desse projeto
+## Author desse projeto
 https://linktr.ee/reinaldorti<br/><br/>
 
 ## Licenças
