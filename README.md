@@ -15,13 +15,13 @@ Dentre os itens utilizados neste pacote podemos destacar:
 
 
 ## Tutorial de Instalação
-Acompanhar este tutorial em vídeo:<br/>
-https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber<br/>
-
 1º - Crie um banco de dados com o nome que preferir nesse caso (codigoaberto_novo)<br/>
 2º Importe o arquivo codigoaberto_novo.sql<br/>
 3º Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
+
+Acompanhar este tutorial em vídeo:<br/>
+https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber
 
 ## Author
 https://linktr.ee/reinaldorti
