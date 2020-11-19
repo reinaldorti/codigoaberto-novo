@@ -17,17 +17,14 @@ Dentre os itens utilizados neste pacote podemos destacar:
 open-source [MIT](http://opensource.org/licenses/MIT)<br/>
 
 ### tutorial de instalação
-Acompanhar este tutorial em vídeo:
-https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber
+Acompanhar este tutorial em vídeo:<br/>
+https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber<br/><br/>
 
 # Instalar banco de dados
-1º - Crie o banco de dados com o nome que preferir nesse caso (codigoaberto_novo).
-
-2º Importe o banco codigoaberto_novo.sql.
-
-3º Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco.
-
-4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta.
+1º - Crie o banco de dados com o nome que preferir nesse caso (codigoaberto_novo)<br/>
+2º Importe o banco codigoaberto_novo.sql<br/>
+3º Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco<br/>
+4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
 
 ## Author desse projeto
 https://linktr.ee/reinaldorti
