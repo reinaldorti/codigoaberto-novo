@@ -13,8 +13,6 @@ Dentre os itens utilizados neste pacote podemos destacar:
 * [PHP 7.4](https://www.php.net/downloads.php)
 * [COMPOSER](https://getcomposer.org/)
 
-## Licenças
-open-source [MIT](http://opensource.org/licenses/MIT)<br/>
 
 ## Tutorial de Instalação
 Acompanhar este tutorial em vídeo:<br/>
@@ -26,4 +24,7 @@ https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
 
 # Author desse projeto
-https://linktr.ee/reinaldorti
+https://linktr.ee/reinaldorti<br/><br/>
+
+## Licenças
+open-source [MIT](http://opensource.org/licenses/MIT)<br/>
