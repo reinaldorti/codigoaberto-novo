@@ -64,7 +64,7 @@ $v->layout("dash"); ?>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="alert alert-info text-center">
-                                                <i class='icon fas fa-info'></i>Oops! Não existe posts cadastrados no momento!
+                                                <i class='icon fas fa-info'></i>Oops! Não existe conteúdo cadastrados no momento!
                                             </div>
                                         </div>
                                     </div>

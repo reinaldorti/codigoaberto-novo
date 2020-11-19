@@ -432,7 +432,7 @@ class Users extends Admin
             redirect("admin/users/home");
         }
 
-        if (User::user()->id == $data['id']) {
+        if (User::user()->id == $data['user_id']) {
             flash("error", "
                 <i class='icon fas fa-ban'></i> 
                 Oops! Por questões de segurança, o sistema não permite que você remova sua própria conta!
@@ -444,7 +444,7 @@ class Users extends Admin
             unlink(CONF_UPLOAD["STORAGE"] . "/{$userDelete->photo}");
         }
 
-        $userDelete->destroy();
+        //$userDelete->destroy();
 
         flash("success", "<i class='icon fas fa-check'></i>Usuário foi removido com sucesso!");
         redirect("admin/users/home");
