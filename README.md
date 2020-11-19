@@ -24,7 +24,7 @@ https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
 
 ## Author
-https://linktr.ee/reinaldorti<br/>
+https://linktr.ee/reinaldorti
 
 ## Licenças
-open-source [MIT](http://opensource.org/licenses/MIT)<br/>
+open-source [MIT](http://opensource.org/licenses/MIT)
