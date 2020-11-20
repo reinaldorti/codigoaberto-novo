@@ -22,7 +22,7 @@ Dentre os itens utilizados neste pacote podemos destacar:
 Tutorial de instação em vídeo:<br/>
 https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber
 
-Tutorial de base do coidgo aberto em vídeo:<br/>
+Tutorial de base do código aberto em vídeo:<br/>
 https://www.youtube.com/watch?v=TVK3sJi1GQE&list=PLi_gvjv-JgXpyYOJA-8TDQ0BLLugiX4jO
 https://www.youtube.com/watch?v=Zl1ZgfM9rSQ&list=PLi_gvjv-JgXqsmCAOrueT1-4JrnMW8_Gg
 
