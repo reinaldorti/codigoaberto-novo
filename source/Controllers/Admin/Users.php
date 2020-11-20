@@ -444,7 +444,7 @@ class Users extends Admin
             unlink(CONF_UPLOAD["STORAGE"] . "/{$userDelete->photo}");
         }
 
-        //$userDelete->destroy();
+        $userDelete->destroy();
 
         flash("success", "<i class='icon fas fa-check'></i>Usuário foi removido com sucesso!");
         redirect("admin/users/home");

@@ -19,8 +19,8 @@ Dentre os itens utilizados neste pacote podemos destacar:
 3º Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
 
-Tutorial de instação em vídeo:<br/>
-https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA?view_as=subscriber
+Tutorial de como instalar em vídeo:<br/>
+https://youtu.be/CsBnSR3Qzto
 
 Tutorial de base do código aberto em vídeo:<br/>
 https://www.youtube.com/watch?v=TVK3sJi1GQE&list=PLi_gvjv-JgXpyYOJA-8TDQ0BLLugiX4jO
