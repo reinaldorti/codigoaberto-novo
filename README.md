@@ -21,7 +21,7 @@ Dentre os itens utilizados neste pacote podemos destacar:
 5º - Abra o terminal direto no projeto e depois execute o comando composer update
 
 Tutorial de como instalar em vídeo:<br/>
-https://youtu.be/CsBnSR3Qzto
+https://www.youtube.com/playlist?list=PLt7F4K_McRxnXBWawE35bd08igHTGgosK
 
 Tutorial de base do código aberto em vídeo:<br/>
 https://www.youtube.com/watch?v=TVK3sJi1GQE&list=PLi_gvjv-JgXpyYOJA-8TDQ0BLLugiX4jO
