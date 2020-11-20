@@ -18,6 +18,7 @@ Dentre os itens utilizados neste pacote podemos destacar:
 2º - Importe o arquivo codigoaberto_novo.sql<br/>
 3º - Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
+5º - Abra o terminal direto no projeto e depois execute o comando composer update
 
 Tutorial de como instalar em vídeo:<br/>
 https://youtu.be/CsBnSR3Qzto
