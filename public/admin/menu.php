@@ -35,6 +35,10 @@
         echo $nav("comments", "testimony/home", "Depoimentos");
         echo $nav("edit", "blog/home", "Blog");
 
+        if (user()->level == 10):
+            echo $nav("cog", "config/home", "Backup");
+        endif;
+
         echo"
             <li class='nav-item has-treeview menu-open'>
                 <ul class='nav nav-treeview'>

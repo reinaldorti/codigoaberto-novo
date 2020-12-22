@@ -32,6 +32,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <div class="ajax_load">
@@ -71,15 +72,25 @@
 
   <?= $v->section("content"); ?>
 
-  <footer class="main-footer">
-    <strong>
-        Copyright &copy; 2014-2020 <a href="mailto:<?= CONF_MAIL['FROM_EMAIL']; ?>?subject=Código Aberto">Reinaldo Dorti</a>.
-    </strong>
-    Todos os direitos reservados.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.2
-    </div>
-  </footer>
+    <footer class="main-footer">
+        <strong>
+            Copyright &copy; 2014-2020
+            <a href="mailto:<?= CONF_MAIL['FROM_EMAIL']; ?>?subject=Código Aberto">
+                Reinaldo Dorti
+            </a>.
+        </strong>
+        Todos os direitos reservados.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.0.2
+        </div>
+    </footer>
+
+    <?php if (file_exists("./" . DATA_LAYER_CONFIG['dbname'] . '.sql.gz')): ?>
+        <span class="database">
+            <i class="icon fas fa-info"></i> IMPORTANTE: Para sua segurança delete o arquivo <b><?= DATA_LAYER_CONFIG['dbname']; ?>.sql.gz</b> assim que baixar da pasta do projeto!
+        </span>
+    <?php endif; ?>
+
 </div>
 
 <!-- jQuery -->

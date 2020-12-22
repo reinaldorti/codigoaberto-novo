@@ -7,7 +7,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
         "driver" => "mysql",
         "host" => "localhost",
         "port" => "3306",
-        "dbname" => "codigoaberto_novo",
+        "dbname" => "codigoaberto-novo",
         "username" => "root",
         "passwd" => "",
         "options" => [
