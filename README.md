@@ -14,11 +14,11 @@ Dentre os itens utilizados neste pacote podemos destacar:
 * [COMPOSER](https://getcomposer.org/)
 
 ## Tutorial de Instalação
-1º - Crie um banco de dados com o nome que preferir nesse caso (codigoaberto_novo)<br/>
-2º - Importe o arquivo codigoaberto_novo.sql<br/>
+1º - Crie um banco de dados com o nome que preferir, nesse caso (codigoaberto_novo)<br/>
+2º - Importe o arquivo codigoaberto_novo.sql.gz<br/>
 3º - Renomei o nome do banco no arquivo source/Config/Config.php linha 10 caso tenha mudado o nome do banco<br/>
 4º - Altere a url do projeto na source/Config/Config.php linha 57 caso tenha colocado o projeto em outra pasta<br/>
-5º - Abra o terminal direto no projeto e depois execute o comando composer update
+5º - Abra o terminal direto na pasta do projeto e depois execute o comando composer update
 
 Tutorial de como instalar em vídeo:<br/>
 https://www.youtube.com/playlist?list=PLt7F4K_McRxnXBWawE35bd08igHTGgosK
