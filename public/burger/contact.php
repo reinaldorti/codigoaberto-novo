@@ -12,7 +12,7 @@
                 <h2 class="contact-title">Para entrar em contato preencha o formulario abaixo</h2>
             </div>
             <div class="col-lg-8">
-                <form class="form-contact contact_form" action="<?= $router->route("web.contact"); ?>" method="post">
+                <form class="form-contact form" action="<?= $router->route("web.contact"); ?>" method="post">
                     <input type="hidden" name="action" value="contact"/>
                     <?= $csrf; ?>
 
@@ -23,25 +23,25 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input class="form-control" name="name" type="text" placeholder="Nome" required>
+                                <input class="form-control" name="name" type="text" placeholder="Nome">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input class="form-control" name="email" type="email" placeholder="E-mail" required>
+                                <input class="form-control" name="email" type="email" placeholder="E-mail">
                             </div>
                         </div>
 
                         <div class="col-12">
                             <div class="form-group">
-                                <input class="form-control" name="subject" type="text" placeholder="assunto" required>
+                                <input class="form-control" name="subject" type="text" placeholder="assunto">
                             </div>
                         </div>
 
                         <div class="col-12">
                             <div class="form-group">
-                                <textarea class="form-control w-100" name="message" cols="30" rows="9" placeholder="Mensagem" required></textarea>
+                                <textarea class="form-control w-100" name="message" cols="30" rows="9" placeholder="Mensagem"></textarea>
                             </div>
                         </div>
                     </div>

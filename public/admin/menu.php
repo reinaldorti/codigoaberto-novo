@@ -36,7 +36,7 @@
         echo $nav("edit", "blog/home", "Blog");
 
         if (user()->level == 10):
-            echo $nav("cog", "config/home", "Backup");
+            echo $nav("cog", "database/home", "Backup Database");
         endif;
 
         echo"

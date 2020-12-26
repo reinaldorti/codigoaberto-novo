@@ -47,11 +47,7 @@ class Login extends Controller
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                        <i class='icon fas fa-exclamation-triangle'></i>
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -59,9 +55,7 @@ class Login extends Controller
             if (!is_email($data["email"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                    <i class='icon fas fa-exclamation-triangle'></i> Oops! E-email informado não válido!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! E-email informado não válido!"
                 ]);
                 return;
             }
@@ -69,9 +63,7 @@ class Login extends Controller
             if (!is_passwd($data["password"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                    <i class='icon fas fa-exclamation-triangle'></i>Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i>Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!"
                 ]);
                 return;
             }
@@ -118,12 +110,7 @@ class Login extends Controller
             if ($user->status != 1) {
                 echo Message::ajaxResponse("message", [
                     "type" => "info",
-                    "message" => "
-                        <i class='icon fas fa-info'></i>
-                        Oops, {$user->first_name}!<br>
-                        Você não tem permissão para acessar!<br>
-                        Por favor, entre em contato pelo e-mail: " . CONF_MAIL["FROM_EMAIL"] . "!
-                    "
+                    "message" => "<i class='icon fas fa-info'></i> Oops, {$user->first_name}! Você não tem permissão para acessar! Por favor, entre em contato pelo e-mail: " . CONF_MAIL["FROM_EMAIL"] . "!"
                 ]);
                 return;
             }
@@ -150,13 +137,7 @@ class Login extends Controller
                 } else {
                     echo Message::ajaxResponse("message", [
                         "type" => "info",
-                        "message" => "
-                            <i class='icon fas fa-info'></i>
-                            Oops, {$user->first_name}!<br>
-                            sua <b>conta já esta conectada por outro dispositivo!</b><br>                       
-                            Caso tenha efetuado login em outro dispositivo, você pode conectar por ele agora,
-                            ou espere até as " . date("H\hi", $LoginTimeFree + 60) . " para conectar novamente!<br>                  
-                        "
+                        "message" => "<i class='icon fas fa-info'></i> Oops, {$user->first_name}! sua <b>conta já esta conectada por outro dispositivo!</b> Caso tenha efetuado login em outro dispositivo, você pode conectar por ele agora, ou espere até as " . date("H\hi", $LoginTimeFree + 60) . " para conectar novamente!"
                     ]);
                     return;
                 }
@@ -243,11 +224,7 @@ class Login extends Controller
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                        <i class='icon fas fa-exclamation-triangle'></i>                
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -255,10 +232,7 @@ class Login extends Controller
             if (!is_email($data["email"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                    <i class='icon fas fa-exclamation-triangle'></i>
-                    Oops! E-email informado não válido!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! E-email informado não válido!"
                 ]);
                 return;
             }
@@ -275,12 +249,7 @@ class Login extends Controller
             if ($user->status != 1) {
                 echo Message::ajaxResponse("message", [
                     "type" => "info",
-                    "message" => "
-                        <i class='icon fas fa-info'></i>
-                        Oops, {$user->first_name}!<br>
-                        Você não tem permissão de acesso!<br>
-                        Por favor, entre em contato pelo e-mail: " . CONF_MAIL["FROM_EMAIL"] . "!
-                    "
+                    "message" => "<i class='icon fas fa-info'></i> Oops, {$user->first_name}! Você não tem permissão de acesso! Por favor, entre em contato pelo e-mail: " . CONF_MAIL["FROM_EMAIL"] . "!"
                 ]);
                 return;
             }
@@ -307,12 +276,8 @@ class Login extends Controller
 
             echo Message::ajaxResponse("message", [
                 "type" => "success",
-                "message" => "<i class='icon fas fa-check'></i> Tudo certo, {$user->first_name}!<br> 
-                    Enviamos um link de recuperação para seu e-mail!
-                ",
-                "clear" => [
-                    "clear" => true,
-                ],
+                "message" => "<i class='icon fas fa-check'></i> Tudo certo, {$user->first_name}! Enviamos um link de recuperação para seu e-mail!",
+                "clear" => true
             ]);
             return;
         }
@@ -355,11 +320,7 @@ class Login extends Controller
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                        <i class='icon fas fa-exclamation-triangle'></i>
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -367,10 +328,7 @@ class Login extends Controller
             if (!is_passwd($data["password"])):
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                        <i class='icon fas fa-exclamation-triangle'></i>
-                        Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!"
                 ]);
                 return;
             endif;
@@ -384,10 +342,7 @@ class Login extends Controller
             }
 
             if (empty($_SESSION["forget"]) || !$user = (new User())->findById("{$_SESSION["forget"]}")) {
-                flash("info", "
-                    <i class='icon fas fa-info'></i>
-                    Oops! Não foi possivel recuperar sua senha! <br>Por favor, tente novamente!
-                ");
+                flash("info", "<i class='icon fas fa-info'></i> Oops! Não foi possivel recuperar sua senha! <br>Por favor, tente novamente!");
                 echo Message::ajaxResponse("redirect", [
                     "url" => url("admin/recuperar")
                 ]);
@@ -428,10 +383,7 @@ class Login extends Controller
 
             unset($_SESSION["forget"]);
 
-            flash("success", "
-                <i class='icon fas fa-check'></i>
-                Pronto, {$user->first_name}! <br> Sua senha foi atualizada com sucesso!
-            ");
+            flash("success", "<i class='icon fas fa-check'></i> Pronto, {$user->first_name}! <br> Sua senha foi atualizada com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin")
             ]);
@@ -441,19 +393,13 @@ class Login extends Controller
         $email = filter_var($data["email"], FILTER_VALIDATE_EMAIL);
         $forget = filter_var($data["forget"], FILTER_DEFAULT);
         if (!$email || !$forget) {
-            flash("info", "
-                <i class='icon fas fa-info'></i>
-                Oops! Não foi possivel recuperar sua senha! <br>
-                Por favor, tente novamente!
-            ");
+            flash("info", "<i class='icon fas fa-info'></i>Oops! Não foi possivel recuperar sua senha! Por favor, tente novamente!");
             redirect("admin/recuperar");
         }
 
         $user = (new User())->find("email = :e AND forget = :f", "e={$email}&f={$forget}")->fetch();
         if (!$user) {
-            flash("info", "
-                <i class='icon fas fa-info'></i> Oops! Usuário não encontrado! <br>Por favor, tente novamente!
-            ");
+            flash("info", "<i class='icon fas fa-info'></i> Oops! Usuário não encontrado! <br>Por favor, tente novamente!");
             redirect("admin/recuperar");
         }
 

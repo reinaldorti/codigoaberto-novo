@@ -15,7 +15,7 @@ function user(): ?\Source\Models\User
 function image(?string $image): ?string
 {
     if ($image) {
-        return (file_exists(CONF_UPLOAD["STORAGE"] . "/{$image}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$image}") ? url() . "/" . CONF_UPLOAD["STORAGE"] . "/{$image}" : asset("assets/images/no_avatar.jpg", CONF_VIEW['ADMIN']));
+        return (file_exists(CONF_UPLOAD["STORAGE"] . "/{$image}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$image}") ? url() . "/" . CONF_UPLOAD["STORAGE"] . "/{$image}" : asset("assets/images/no_image.jpg", CONF_VIEW['ADMIN']));
     }
 
     return null;

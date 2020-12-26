@@ -88,10 +88,7 @@ class Blog extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "                 
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -107,11 +104,11 @@ class Blog extends Admin
             $upload = new Image("storage", "blog");
             $file = $_FILES["cover"];
 
-            $size = 1024 * 1024 * 2; // 2mb
+            $size = 2048 * 2048 * 2;
             if ($file['size'] > $size) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "<i class='icon fas fa-ban'></i> Oops! Imagem excede o limite de 2MB permitido!"
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
                 ]);
                 return;
             }
@@ -170,10 +167,7 @@ class Blog extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "                 
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -195,11 +189,11 @@ class Blog extends Admin
                 $upload = new Image("storage", "blog");
                 $file = $_FILES["cover"];
 
-                $size = 1024 * 1024 * 2; // 2mb
+                $size = 2048 * 2048 * 2;
                 if ($file['size'] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
                     ]);
                     return;
                 }

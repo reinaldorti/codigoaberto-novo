@@ -88,10 +88,7 @@ class Testimonys extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "                 
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -135,9 +132,7 @@ class Testimonys extends Admin
                 $testimony->save();
             }
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Depoimento cadastrado com sucesso!
-            ");
+            flash("success", "<i class='icon fas fa-check'></i> Depoimento cadastrado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/testimony/testimony/{$testimony->id}")
             ]);
@@ -161,10 +156,7 @@ class Testimonys extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "                 
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -208,9 +200,7 @@ class Testimonys extends Admin
                 $testimony->save();
             }
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Post atualizado com sucesso!
-            ");
+            flash("success", "<i class='icon fas fa-check'></i> Post atualizado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/testimony/testimony/{$testimony->id}")
             ]);

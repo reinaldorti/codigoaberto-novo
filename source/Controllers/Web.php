@@ -233,40 +233,39 @@ class Web extends Controller
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "<i class='fa fa-warning'></i> Oops! Por favor, preencha todos os campos para continuar!"
+                    "message" => "<i class='fa fa-warning'></i> Oops! Por favor, preencha todos os campos para continuar!",
+                    "top" => true,
                 ]);
+
                 return;
             }
 
             //VERIFY CSRF TOKEN
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "
-                    <i class='fa fa-warning'></i> 
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "type" => "error",
+                    "message" => "<i class='fa fa-warning'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!",
+                    "top" => true,
                 ]);
+
                 return;
             }
 
             //VALIDATE EMAIL
             if (!is_email($data["email"])){
                 echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "
-                    <i class='fa fa-warning'></i>
-                    Oops! O e-email informado não é válido!
-                "
+                    "type" => "error",
+                    "message" => "<i class='fa fa-warning'></i>Oops! O e-email informado não é válido!",
+                    "top" => true,
                 ]);
+
                 return;
             }
           
             $mail = new Email();
             $mail->add(
                 $data["subject"],
-                $this->view->render("templates/contact", [
+                $this->view->render("../../shared/templates/contact", [
                     "message" => $data["message"],
                     "link" => url(),
                 ]),
@@ -276,14 +275,9 @@ class Web extends Controller
 
             echo Message::ajaxResponse("message", [
                 "type" => "success",
-                "message" => "
-                    <i class='fa fa-check'></i> 
-                    Pronto, {$data["name"]}! <br>
-                    Sua mensagem foi enviada com sucesso!
-                ",
-                "clear" => [
-                    "clear" => true,
-                ],
+                "message" => "<i class='fa fa-check'></i>Pronto, {$data["name"]}! Sua mensagem foi enviada com sucesso!",
+                "clear" => true,
+                "top" => true
             ]);
             return;
         }

@@ -107,8 +107,8 @@ $router->post("/testimony/testimony/{testimony_id}", "Testimonys:testimony");
 $router->get("/testimony/delete/{testimony_id}", "Testimonys:delete");
 $router->post("/testimony/order", "Testimonys:TestimonyOrder");
 
-//CONFIG
-$router->get("/config/home", "Backup:home");
+//DATABASE
+$router->get("/database/home", "Database:home");
 
 //END ADMIN
 $router->namespace("Source\Controllers");

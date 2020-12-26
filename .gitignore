@@ -6,7 +6,6 @@
 composer.lock
 composer.phar
 /vendor/
-/storage/
 
 ### XML ###
 sitemap.txt

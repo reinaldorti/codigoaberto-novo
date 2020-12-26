@@ -1,28 +1,5 @@
 $(function () {
 
-    //COOKIE POLICY
-    $("[data-cookie]").click(function (e) {
-        e.preventDefault();
-        var cookiePolicy = $("#cookiePolicy");
-        var route = $(this).data("route");
-        var dataset = $(this).data();
-
-        $(".main_footer").css("margin-bottom", 0);
-        cookiePolicy.fadeOut();
-
-        $.post(route, dataset, function (response) {
-            //agree
-            if (response.agree) {
-                window.location.reload();
-            }
-        }, "json");
-    });
-
-    var cookiePolicy = $("#cookiePolicy");
-    if (!cookiePolicy.hasClass("ds-none")) {
-        $(".main_footer").css("margin-bottom", cookiePolicy.outerHeight());
-    }
-
     $("form:not('.ajax_off')").submit(function (e) {
         e.preventDefault();
 
@@ -55,28 +32,38 @@ $(function () {
             success: function (su) {
                 ajax_load("close");
 
-                if (su.message) {
-                    var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';
-                    $(".login_form_callback").html(view);
-                    $(".message").effect("bounce");
+                //ANIMATE TOP
+                if (data.message.top) {
+                    $('html, body').animate({
+                            scrollTop: $('html').position().top
+                        },
+                        1000
+                    );
+                }
 
-                    if (su.message.clear) {
-                        $('form').each(function () {
-                            this.reset();
-                        });
-                    }
-                    return;
+                if (data.message.clear) {
+                    $('form').each(function () {
+                        this.reset();
+                    });
                 }
 
                 //REDIRECT
-                if (su.redirect) {
-                    window.location.href = su.redirect.url;
+                if (data.message.redirect) {
+                    window.location.href = data.redirect.url;
+                }
+
+                if (data.message) {
+                    var view = '<div class="message ' + data.message.type + '">' + data.message.message + '</div>';
+                    $(".login_form_callback").html(view);
+                    $(".message").effect("bounce");
+
+                    return;
                 }
 
                 //IMAGE MCE UPLOAD
-                if (su.mce_image) {
+                if (data.mce_image) {
                     $('.mce_upload').fadeOut(200);
-                    tinyMCE.activeEditor.insertContent(su.mce_image);
+                    tinyMCE.activeEditor.insertContent(data.mce_image);
                 }
             }
         });

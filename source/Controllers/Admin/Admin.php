@@ -39,9 +39,7 @@ class Admin extends Controller
                 $_SESSION['logout_time']
             );
 
-            flash("error", "
-                <i class='icon fas fa-ban'></i> Oops! Acesso negado! Por favor, faça o login!
-            ");
+            flash("error", "<i class='icon fas fa-ban'></i> Oops! Acesso negado! Por favor, faça o login!");
             redirect("/admin");
         }
 
@@ -53,20 +51,13 @@ class Admin extends Controller
 
         if ($user->level < 6) {
             unset($_SESSION["user"]);
-            flash("error", "
-                <i class='icon fas fa-ban'></i>Oops! Esse nível de acesso não tem permissão para logar!
-            ");
+            flash("error", "<i class='icon fas fa-ban'></i>Oops! Esse nível de acesso não tem permissão para logar!");
             redirect("/admin");
         }
 
         if ($user->status != 1) {
             unset($_SESSION["user"]);
-            flash("info", "
-                <i class='icon fas fa-ban'></i>
-                 Oops, {$user->first_name}!<br>
-                 Você não tem permissão para acessar!<br>
-                 Por favor, entre em contato pelo e-mail: " . CONF_MAIL["FROM_EMAIL"] . "!
-            ");
+            flash("info", "<i class='icon fas fa-ban'></i> Oops, {$user->first_name}! Você não tem permissão para acessar! Por favor, entre em contato pelo e-mail: " . CONF_MAIL["FROM_EMAIL"] . "!");
             redirect("/admin");
         }
 

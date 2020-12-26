@@ -39,9 +39,7 @@ class Users extends Admin
             $search = str_search($data["search"]);
             $users = (new User())->find("MATCH(first_name, last_name, email) AGAINST(:s)", "s={$search}");
             if (!$users->count()) {
-                flash("info", "
-                    <i class='icon fas fa-info'></i> Oops! Sua pesquisa não retornou resultados!
-                ");
+                flash("info", "<i class='icon fas fa-info'></i> Oops! Sua pesquisa não retornou resultados!");
                 redirect("/admin/users/home");
             }
         }
@@ -89,11 +87,7 @@ class Users extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                        <i class='icon fas fa-exclamation-triangle'></i>               
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i>Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -142,11 +136,11 @@ class Users extends Admin
                 $upload = new Image("storage", "users");
                 $file = $_FILES["photo"];
 
-                $size = 1024 * 1024 * 2; // 2mb
+                $size = 2048 * 2048 * 2;
                 if ($file['size'] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
                     ]);
                     return;
                 }
@@ -194,10 +188,7 @@ class Users extends Admin
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "
-                        <i class='icon fas fa-ban'></i>
-                        Oops! Por favor, preencha todos os campos (*) obrigatórios!
-                    "
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, preencha todos os campos (*) obrigatórios!"
                 ]);
                 return;
             }
@@ -205,11 +196,7 @@ class Users extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                        <i class='icon fas fa-exclamation-triangle'></i>                  
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -236,11 +223,11 @@ class Users extends Admin
                 $upload = new Image("storage", "users");
                 $file = $_FILES["photo"];
 
-                $size = 1024 * 1024 * 2; // 2mb
+                $size = 2048 * 2048 * 2;
                 if ($file['size'] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
                     ]);
                     return;
                 }
@@ -285,11 +272,7 @@ class Users extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                        <i class='icon fas fa-exclamation-triangle'></i>              
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -297,10 +280,7 @@ class Users extends Admin
             if (!is_passwd($data["password"])){
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "
-                        <i class='icon fas fa-exclamation-triangle'></i>
-                        Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!"
                 ]);
                 return;
             }
@@ -328,13 +308,8 @@ class Users extends Admin
 
             echo Message::ajaxResponse("message", [
                 "type" => "success",
-                "message" => "
-                    <i class='icon fas fa-check'></i> 
-                    Tudo certo, {$user->first_name}! Senha foi alterada com sucesso!
-                ",
-                "clear" => [
-                    "clear" => true,
-                ],
+                "message" => "<i class='icon fas fa-check'></i> Tudo certo, {$user->first_name}! Senha foi alterada com sucesso!",
+                "clear" => true
             ]);
             return;
         }
@@ -346,10 +321,7 @@ class Users extends Admin
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
-                    "message" => "
-                    <i class='icon fas fa-ban'></i>
-                    Oops! Por favor, preencha todos os campos (*) obrigatórios!
-                "
+                    "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, preencha todos os campos (*) obrigatórios!"
                 ]);
                 return;
             }
@@ -357,11 +329,7 @@ class Users extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                    <i class='icon fas fa-exclamation-triangle'></i>            
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -387,9 +355,6 @@ class Users extends Admin
             echo Message::ajaxResponse("message", [
                 "type" => "success",
                 "message" => "<i class='icon fas fa-check'></i> Endereço atualizado com sucesso!",
-                // "clear" => [
-                //     "clear" => true,
-                // ],
             ]);
             return;
         }
@@ -425,18 +390,12 @@ class Users extends Admin
 
         $userDelete = (new User())->findById("{$data["user_id"]}");
         if (!$userDelete) {
-            flash("error", "
-                <i class='icon fas fa-ban'></i>
-                Oops! Você tentou deletar um usuário que não existe!
-            ");
+            flash("error", "<i class='icon fas fa-ban'></i> Oops! Você tentou deletar um usuário que não existe!");
             redirect("admin/users/home");
         }
 
         if (User::user()->id == $data['user_id']) {
-            flash("error", "
-                <i class='icon fas fa-ban'></i> 
-                Oops! Por questões de segurança, o sistema não permite que você remova sua própria conta!
-            ");
+            flash("error", "<i class='icon fas fa-ban'></i> Oops! Por questões de segurança, o sistema não permite que você remova sua própria conta!");
             redirect("admin/users/home");
         }
 

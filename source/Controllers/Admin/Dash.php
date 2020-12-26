@@ -54,10 +54,7 @@ class Dash extends Admin
                 $_SESSION['logout_time']
             );
 
-            flash("success", "
-                <i class='fa fa-info-circle'></i>
-                Oops, {$user->first_name}! Sua sessão expirou!
-            ");
+            flash("success", "<i class='fa fa-info-circle'></i> Oops, {$user->first_name}! Sua sessão expirou!");
 
             echo Message::ajaxResponse("redirect", [
                 "url" => url("/admin")

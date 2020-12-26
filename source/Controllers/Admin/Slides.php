@@ -97,11 +97,7 @@ class Slides extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                    <i class='icon fas fa-exclamation-triangle'></i>                
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -118,11 +114,11 @@ class Slides extends Admin
                 $upload = new Image("storage", "slides");
                 $file = $_FILES["cover"];
 
-                $size = 1024 * 1024 * 2; // 2mb
+                $size = 2048 * 2048 * 2;
                 if ($file['size'] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
                     ]);
                     return;
                 }
@@ -169,11 +165,7 @@ class Slides extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                    <i class='icon fas fa-exclamation-triangle'></i>                
-                        Oops! Erro ao enviar o formulário!<br>
-                        Por favor, atualize a página e tente novamente!
-                    "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -191,11 +183,11 @@ class Slides extends Admin
                 $upload = new Image("storage", "slides");
                 $file = $_FILES["cover"];
 
-                $size = 1024 * 1024 * 2; // 2mb
+                $size = 2048 * 2048 * 2;
                 if ($file['size'] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
-                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite de 2MB permitido. Por favor, informe uma imagem menor!"
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
                     ]);
                     return;
                 }
@@ -218,9 +210,7 @@ class Slides extends Admin
                 $slide->save();
             }
 
-            flash("success", "
-                <i class='icon fas fa-check'></i> Post atualizado com sucesso!
-            ");
+            flash("success", "<i class='icon fas fa-check'></i> Post atualizado com sucesso!");
             echo Message::ajaxResponse("redirect", [
                 "url" => url("admin/slides/slide/{$slide->id}")
             ]);

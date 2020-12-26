@@ -82,11 +82,7 @@ class About extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                    <i class='icon fas fa-exclamation-triangle'></i>                
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -108,12 +104,8 @@ class About extends Admin
 
             echo Message::ajaxResponse("message", [
                 "type" => "success",
-                "message" => "
-                    <i class='icon fas fa-check'></i> Texto cadastrado com sucesso!
-                ",
-                "clear" => [
-                    "clear" => true,
-                ],
+                "message" => "<i class='icon fas fa-check'></i> Texto cadastrado com sucesso!",
+                "clear" => true,
             ]);
             return;
         }
@@ -136,11 +128,7 @@ class About extends Admin
             if (!csrf_verify($data['csrf_token'])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "  
-                    <i class='icon fas fa-exclamation-triangle'></i>                
-                    Oops! Erro ao enviar o formulário!<br>
-                    Por favor, atualize a página e tente novamente!
-                "
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -154,9 +142,7 @@ class About extends Admin
 
             echo Message::ajaxResponse("message", [
                 "type" => "success",
-                "message" => "
-                    <i class='icon fas fa-check'></i> Texto foi atualizado com sucesso!
-                "
+                "message" => "<i class='icon fas fa-check'></i> Texto foi atualizado com sucesso!"
             ]);
             return;
         }

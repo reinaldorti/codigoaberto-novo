@@ -36,7 +36,7 @@
                                     $backup->generate();
 
                                     echo"<div class='alert alert-success alert-dismissible text-center'><i class='icon fas fa-check'></i>Backup foi gerado com sucesso!</div>";
-                                    header("refresh: 3; " . url("admin/config/home") . "");
+                                    header("refresh: 3; " . url("admin/database/home") . "");
                                 endif;
 
                                 $delete = filter_input(INPUT_GET, 'delete', FILTER_VALIDATE_BOOLEAN);
@@ -44,7 +44,7 @@
                                     unlink("./" . DATA_LAYER_CONFIG['dbname'] . '.sql.gz');
 
                                     echo"<div class='alert alert-success alert-dismissible text-center'><i class='icon fas fa-check'></i>Backup foi deletado com sucesso!</div>";
-                                    header("refresh: 3; " . url("admin/config/home") . "");
+                                    header("refresh: 3; " . url("admin/database/home") . "");
                                endif;
                                 ?>
 
