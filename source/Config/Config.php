@@ -1,8 +1,7 @@
 <?php
-/*
- * DATABASE CONNECT
- */
-if ($_SERVER['HTTP_HOST'] == 'localhost') {
+
+// DATABASE CONNECT
+if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",
         "host" => "localhost",
@@ -34,33 +33,25 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     ]);
 }
 
-/**
- * COOKIE POLICY
- */
+// COOKIE POLICY
 define("COOKIEPOLICY", filter_input(INPUT_COOKIE, "cookiePolicy", FILTER_SANITIZE_STRIPPED));
 
-/**
- * VIEW
- */
+// VIEW
 define("CONF_VIEW", [
     "PATH" => __DIR__ . "/../../shared",
     "EXT" => "php",
-//    "THEME" => "anipat",
-    "THEME" => "burger",
+    "THEME" => "anipat",
+//    "THEME" => "burger",
     "ADMIN" => "admin",
 ]);
 
-/**
- * PROJECT URLs
- */
+// PROJECT URLs
 define("CONF_URl", [
     "TEST" => "https://localhost/cursos/youtube/codigoaberto-novo",
     "BASE" => "https://www.seudominio.com.br"
 ]);
 
-/**
- * PASSWORD
- */
+// PASSWORD
 define("CONF_PASSWD", [
     "MIN" => 6,
     "MAX" => 40,
@@ -68,17 +59,13 @@ define("CONF_PASSWD", [
     "OPTION" => ["cost" => 8],
 ]);
 
-/**
- * MULTIPLO LOGIN
- */
+// MULTIPLO LOGIN
 define("CONF_LOGIN", [
     "MULTIPLE" => 1,
     "BLOCK" => 60
 ]);
 
-/**
- * SITE
- */
+// SITE
 define("CONF_SITE", [
     "NAME" => "Código aberto - Auth em MVC com php",
     "TITLE" => "Código aberto - Auth em MVC com php",
@@ -95,9 +82,7 @@ define("CONF_SITE", [
     "ADDR_TELEPHONE" => "17 99116-3205"
 ]);
 
-/**
- * SOCIAL
- */
+// SOCIAL
 define("CONF_SOCIAL", [
     "TWITTER_CREATOR" => "@creator",
     "TWITTER_PUBLISHER" => "@creator",
@@ -112,9 +97,7 @@ define("CONF_SOCIAL", [
     "YOUTUBE_PAGE" => "https://www.youtube.com/channel/UCfB0XRFZgoCFSi0wNYebUFA"
 ]);
 
-/**
- * UPLOAD
- */
+// UPLOAD
 define("CONF_UPLOAD", [
     "STORAGE"=> "storage",
     "IMAGES"=> "images",
@@ -123,9 +106,7 @@ define("CONF_UPLOAD", [
     "MEDIAS"=> "medias",
 ]);
 
-/**
- * EMAIL CONNECT
- */
+// EMAIL CONNECT
 define("CONF_MAIL", [
     "HOST" => "smtp.sendgrid.net",
     "PORT" => "587",
@@ -140,9 +121,7 @@ define("CONF_MAIL", [
     "FROM_WHATSAPP"=> "5517991163205"
 ]);
 
-/**
- * SOCIAL LOGIN: FACEBOOK
- */
+// SOCIAL LOGIN: FACEBOOK
 define("FACEBOOK_LOGIN", [
     "clientId" => "",
     "clientSecret" => "",
@@ -150,18 +129,14 @@ define("FACEBOOK_LOGIN", [
     "graphApiVersion" => "v4.0"
 ]);
 
-/**
- * SOCIAL LOGIN: GOOGLE
- */
+// SOCIAL LOGIN: GOOGLE
 define("GOOGLE_LOGIN", [
     "clientId" => "",
     "clientSecret" => "",
     "redirectUri" => CONF_URl["TEST"] . "/google"
 ]);
 
-/**
- * GOOGLE RECAPTCHA
- */
+// GOOGLE RECAPTCHA
 define("CONF_GOOGLE_RECAPTCHA", [
     "SITE" => "",
     "SERET" => ""
