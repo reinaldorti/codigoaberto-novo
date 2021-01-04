@@ -4,14 +4,28 @@ namespace Source\Support;
 
 use \Ifsnop\Mysqldump\Mysqldump;
 
+/**
+ * Class BackupDatabase
+ * @package Source\Support
+ */
 class BackupDatabase
 {
+    /*** @var string $backupFolder */
     private $backupFolder;
+
+    /*** @var int $maxNumberFiles */
     private $maxNumberFiles;
 
+    /*** @var $host*/
     private $host;
+
+    /*** @var $database*/
     private $database;
+
+    /*** @var $username*/
     private $username;
+
+    /*** @var $password */
     private $password;
 
     /**
@@ -52,8 +66,7 @@ class BackupDatabase
         }
 
         // Gerando nome único para o arquivo
-        $fileName = DATA_LAYER_CONFIG['dbname'] . '.sql.gz';
-        $filePath = $this->backupFolder . '/' . $fileName;
+        $filePath = $this->backupFolder . '/' . DATA_LAYER_CONFIG['dbname'] . '.sql.gz';
 
         // Definindo informações para geração do backup
         $dump = new Mysqldump("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password, array(
@@ -105,5 +118,4 @@ class BackupDatabase
         }
 
     }
-
 }
