@@ -15,7 +15,7 @@ use Source\Support\Pager;
 class Slides extends Admin
 {
     /**
-     * ADMIN SLIDE HOME
+     * HOME SLIDE
      * @param array|null $data
      */
     public function home(?array $data): void
@@ -65,7 +65,7 @@ class Slides extends Admin
     }
 
     /**
-     * ADMIN SLIDE
+     * MANAGER SLIDE
      * @param array|null $data
      * @throws \Exception
      */
@@ -239,6 +239,7 @@ class Slides extends Admin
     }
 
     /**
+     * ORDER SLIDE
      * @param array|null $data
      */
     public function SlideOrder(?array $data): void
@@ -254,7 +255,7 @@ class Slides extends Admin
     }
 
     /**
-     * ADMIN SLIDE DELETE
+     * DELETE SLIDE
      * @param int $data
      */
     public function delete($data): void

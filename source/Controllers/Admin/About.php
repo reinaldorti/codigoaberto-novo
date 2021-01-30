@@ -13,6 +13,7 @@ use Source\Support\Pager;
 class About extends Admin
 {
     /**
+     * HOME ABOUT
      * @param array|null $data
      */
     public function home(?array $data): void
@@ -61,6 +62,7 @@ class About extends Admin
     }
 
     /**
+     * MANAGER ABOUT
      * @param array $data
      */
     public function about(?array $data): void
@@ -169,6 +171,7 @@ class About extends Admin
     }
 
     /**
+     * DELETE ABOUT
      * @param array $data
      */
     public function delete(array $data): void

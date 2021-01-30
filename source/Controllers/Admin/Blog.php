@@ -15,7 +15,7 @@ use Source\Support\Pager;
 class Blog extends Admin
 {
     /**
-     * ADMIN BLOG HOME
+     * BLOG HOME
      * @param array|null $data
      */
     public function home(?array $data): void
@@ -65,7 +65,7 @@ class Blog extends Admin
     }
 
     /**
-     * ADMIN BLOG POST
+     * MANAGER BLOG
      * @param array|null $data
      * @throws \Exception
      */
@@ -291,7 +291,7 @@ class Blog extends Admin
     }
 
     /**
-     * ADMIN DELETE GALLERY
+     * DELETE GALLERY
      * @param array $data
      */
     public function GalleryDelete(array $data): void
@@ -312,14 +312,14 @@ class Blog extends Admin
     }
 
     /**
-     * ADMIN BLOG DELETE
+     * DELETE BLOG
      * @param int $data
      */
     public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-        $post = (new \Source\Models\Blog())->findById("{$data["post_id"]}");
 
+        $post = (new \Source\Models\Blog())->findById("{$data["post_id"]}");
         if (!$post) {
             flash("error", "Oops! Você tentou gerenciar um post que não existe!");
             redirect("admin/blog/home");

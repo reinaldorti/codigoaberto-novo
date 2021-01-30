@@ -15,7 +15,7 @@ use Source\Support\Pager;
 class Testimonys extends Admin
 {
     /**
-     * ADMIN TESTIMONY HOME
+     * TESTIMONY HOME
      * @param array|null $data
      */
     public function home(?array $data): void
@@ -65,7 +65,7 @@ class Testimonys extends Admin
     }
 
     /**
-     * ADMIN DEPOIMENTO
+     * MANAGER TESTMANYS
      * @param array|null $data
      * @throws \Exception
      */
@@ -230,6 +230,7 @@ class Testimonys extends Admin
     }
 
     /**
+     * ORDER TESTIMYS
      * @param array|null $data
      */
     public function TestimonyOrder(?array $data): void
@@ -245,7 +246,7 @@ class Testimonys extends Admin
     }
 
     /**
-     * ADMIN COMMENTS DELETE
+     * DELETE COMMENTS
      * @param int $data
      */
     public function delete($data): void

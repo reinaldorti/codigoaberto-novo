@@ -27,8 +27,8 @@
   },
   "require": {
     "ext-json": "*",
-    "php": "^7.2.5",
-    "ext-pdo": "^7.2.5",
+    "php": "^7.2",
+    "ext-pdo": "^7.2",
     "coffeecode/router": "^1.0",
     "coffeecode/datalayer": "1.1.4",
     "coffeecode/paginator": "^1.0",

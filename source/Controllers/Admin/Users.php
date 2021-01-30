@@ -17,7 +17,7 @@ use Source\Support\Pager;
 class Users extends Admin
 {
     /**
-     * ADMIN TELA USERS HOME
+     * USERS HOME
      * @param array|null $data
      */
     public function home(?array $data): void
@@ -65,7 +65,7 @@ class Users extends Admin
     }
 
     /**
-     * ADMIN TELA USERS CREATE/UPDATE
+     * MANAGER USERS
      * @param array|null $data
      * @throws \Exception
      */
@@ -381,7 +381,7 @@ class Users extends Admin
     }
 
     /**
-     * ADMIN USERS DELETE
+     * DELETE USERS
      * @param array $data
      */
     public function delete($data): void

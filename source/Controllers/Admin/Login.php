@@ -296,7 +296,7 @@ class Login extends Controller
     }
 
     /**
-     * ADMIN TELA RESET
+     * VIEW RESET
      * @param array $data
      */
     public function reset(?array $data): void

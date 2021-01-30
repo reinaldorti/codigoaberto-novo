@@ -9,9 +9,12 @@ namespace Source\Controllers\Admin;
 class Database extends Admin
 {
 
+
+    /**
+     * VIEW HOME DATABASE
+     */
     public function home(): void
     {
-
         $head = $this->seo->render(
             CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
             CONF_SITE['DESC'],

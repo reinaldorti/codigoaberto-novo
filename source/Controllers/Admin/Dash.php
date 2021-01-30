@@ -70,7 +70,7 @@ class Dash extends Admin
     }
 
     /**
-     * ADMIN LOGOUT
+     * LOGOUT
      */
     public function logoff(): void
     {
