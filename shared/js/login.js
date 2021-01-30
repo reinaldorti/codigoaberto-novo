@@ -29,36 +29,27 @@ $(function () {
                     load_title.text("Aguarde, carregando...");
                 }
             },
-            success: function (su) {
+            success: function (data) {
                 ajax_load("close");
 
-                //ANIMATE TOP
-                if (data.message.top) {
-                    $('html, body').animate({
-                            scrollTop: $('html').position().top
-                        },
-                        1000
-                    );
-                }
-
-                if (data.message.clear) {
-                    $('form').each(function () {
-                        this.reset();
-                    });
-                }
-
                 //REDIRECT
-                if (data.message.redirect) {
-                    window.location.href = data.redirect.url;
+                if (data.redirect) {
+                    window.setTimeout(function () {
+                        window.location.href = data.redirect.url;
+                    }, 1000);
                 }
 
-                if (su.message) {
-                    var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';
+                if (data.clear) {
+                    $('.clear_value').val('');
+                }
+
+                if (data.message) {
+                    var view = '<div class="message ' + data.message.type + '">' + data.message.message + '</div>';
                     $(".login_form_callback").html(view);
                     $(".message").effect("bounce");
 
                     //DATA REORDER
-                    if (su.order) {
+                    if (data.order) {
                         $('.j_drag_active').removeClass('btn_yellow');
                         $('.j_draganddrop').removeAttr('draggable');
                     }
@@ -67,9 +58,9 @@ $(function () {
                 }
 
                 //IMAGE MCE UPLOAD
-                if (su.mce_image) {
+                if (data.mce_image) {
                     $('.mce_upload').fadeOut(200);
-                    tinyMCE.activeEditor.insertContent(su.mce_image);
+                    tinyMCE.activeEditor.insertContent(data.mce_image);
                 }
             }
         });

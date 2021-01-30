@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="<?= url('shared/css/load.css'); ?>">
     <link rel="stylesheet" href="<?= url('shared/css/message.css'); ?>">
 
-    <!--link rel="stylesheet" href="<?//= asset('assets/style.min.css', CONF_VIEW['ADMIN']); ?>"-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
@@ -32,8 +31,9 @@
 <?= $v->section("content"); ?>
 
 <script src="<?= url('/shared/js/jquery.min.js'); ?>"></script>
-<script src="<?= url('/shared/js/jquery.form.js'); ?>"></script>
+
 <script src="<?= url('/shared/js/jquery-ui.js'); ?>"></script>
+<script src="<?= url('/shared/js/jquery.form.js'); ?>"></script>
 <script src="<?= url('/shared/js/login.js'); ?>"></script>
 
 <!--script src="<?//= asset('assets/scripts.min.js', CONF_VIEW['ADMIN']); ?>"></script-->

@@ -78,7 +78,7 @@ class Dash extends Admin
         $user->user_login = null;
         $user->save();
 
-        flash("success", "<i class='icon fas fa-check'></i>Você saiu com sucesso, volte logo {$user->first_name}!");
+        flash("success", "<i class='icon fas fa-check'></i> Você saiu com sucesso, volte logo {$user->first_name}!");
 
         unset($_SESSION["user"], $_SESSION['start_login'], $_SESSION['logout_time']);
         redirect('admin');

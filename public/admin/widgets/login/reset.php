@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Nova senha">
+                    <input type="password" name="password" class="form-control clear_value" placeholder="Nova senha">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" name="password_re" class="form-control" placeholder="Confirmar nova senha">
+                    <input type="password" name="password_re" class="form-control clear_value" placeholder="Confirmar nova senha">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

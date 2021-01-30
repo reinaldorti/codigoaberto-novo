@@ -55,7 +55,7 @@ class Login extends Controller
             if (!is_email($data["email"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! E-email informado não válido!"
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! E-email informado não é válido!"
                 ]);
                 return;
             }
@@ -69,19 +69,19 @@ class Login extends Controller
             }
 
             /** ADMIN CREATED DEFAULT **/
-            $userAdmin = (new User())->find("email = :e", "e={$data["email"]}")->count();
-            if (!$userAdmin && CONF_MAIL["FROM_EMAIL"] == $data["email"]) {
-                $userAdmin = new User();
-                $userAdmin->first_name = CONF_MAIL["FROM_NAME"];
-                $userAdmin->last_name = CONF_MAIL["FROM_LASTNAME"];
-                $userAdmin->document = CONF_MAIL["FROM_DOCUMENT"];
-                $userAdmin->email = $data["email"];
-                $userAdmin->password = $data["password"];
-                $userAdmin->ip = $_SERVER['REMOTE_ADDR'];
-                $userAdmin->level = 10;
-                $userAdmin->status = 1;
-                $userAdmin->genre = 1;
-                $userAdmin->save();
+            $admin = (new User())->find("email = :e", "e={$data["email"]}")->count();
+            if (!$admin && CONF_MAIL["FROM_EMAIL"] == $data["email"]) {
+                $admin = new User();
+                $admin->first_name = CONF_MAIL["FROM_NAME"];
+                $admin->last_name = CONF_MAIL["FROM_LASTNAME"];
+                $admin->document = CONF_MAIL["FROM_DOCUMENT"];
+                $admin->email = $data["email"];
+                $admin->password = $data["password"];
+                $admin->ip = $_SERVER['REMOTE_ADDR'];
+                $admin->level = 10;
+                $admin->status = 1;
+                $admin->genre = 1;
+                $admin->save();
             }
 
             $user = (new User())->find("email = :e", "e={$data["email"]}")->fetch();
