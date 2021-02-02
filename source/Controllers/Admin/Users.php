@@ -341,7 +341,7 @@ class Users extends Admin
                 $addr->created_at = date("Y-d-m H:i:s");
             }
 
-            $addr->zipcode = $data['zipcode'];
+            $addr->zipcode = preg_replace('/[^0-9]/', '', $data["zipcode"]);
             $addr->street = mb_convert_case($data['street'], MB_CASE_TITLE);
             $addr->number = $data['number'];
             $addr->complement = (!empty($data['complement']) ? mb_convert_case($data['complement'], MB_CASE_TITLE) : "Não informado");
