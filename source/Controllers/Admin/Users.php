@@ -344,7 +344,7 @@ class Users extends Admin
             $addr->zipcode = preg_replace('/[^0-9]/', '', $data["zipcode"]);
             $addr->street = mb_convert_case($data['street'], MB_CASE_TITLE);
             $addr->number = $data['number'];
-            $addr->complement = (!empty($data['complement']) ? mb_convert_case($data['complement'], MB_CASE_TITLE) : "Não informado");
+            $addr->complement = (!empty($data['complement']) ? preg_replace('/[^0-9]/', '', $data["zipcode"]) : "Não informado");
             $addr->district = mb_convert_case($data['district'], MB_CASE_TITLE);
             $addr->city = mb_convert_case($data['city'], MB_CASE_TITLE);
             $addr->state = mb_convert_case($data['state'], MB_CASE_UPPER);
