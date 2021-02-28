@@ -5,6 +5,7 @@ namespace Source\Controllers\Admin;
 use CoffeeCode\Router\Router;
 use Source\Controllers\Controller;
 use Source\Models\User;
+use Source\Support\Message;
 
 /**
  * Class Admin
@@ -64,5 +65,35 @@ class Admin extends Controller
         $user->user_login = time();
         $user->lastaccess = date('Y-m-d H:i:s');
         $user->save();
+    }
+
+
+    /**
+     * Redireciona o usuario depois de ficar 30 sem mexer no admin
+     */
+    public function dashboard(): void
+    {
+        $user = (new User())->find("id=:id", "id={$_SESSION["user"]}")->fetch();
+
+        if (time() >= $_SESSION['logout_time']) {
+            unset(
+                $_SESSION["user"],
+                $_SESSION['start_login'],
+                $_SESSION['logout_time']
+            );
+
+            flash("success", "<i class='fa fa-info-circle'></i> Oops, {$user->first_name}! Sua sessão expirou!");
+
+            echo Message::ajaxResponse("redirect", [
+                "url" => url("/admin")
+            ]);
+            return;
+        }
+
+        echo Message::ajaxResponse("message", [
+            "type" => "info",
+            "message" => "Que a força esteja com você {$user->first_name}!"
+        ]);
+        return;
     }
 }

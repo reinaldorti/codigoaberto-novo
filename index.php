@@ -53,8 +53,10 @@ $router->post("/reset", "Login:reset");
 
 //DASHBOARD
 $router->get("/dash", "Dash:home");
-$router->post("/dash", "Dash:dashboard");
 $router->get("/logoff", "Dash:logoff");
+
+//redirect user login
+$router->post("/dash", "Admin:dashboard");
 
 //USERS
 $router->get("/users/home", "Users:home");

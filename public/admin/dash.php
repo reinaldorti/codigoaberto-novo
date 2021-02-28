@@ -114,6 +114,17 @@
 <script src="<?= asset('assets/datepicker/datepicker.pt-BR.js', CONF_VIEW['ADMIN']); ?>"></script>
 <script src="<?= asset('assets/bootstrap/plugins/select2/js/select2.full.min.js', CONF_VIEW['ADMIN']); ?>"></script>
 
+<script>
+    setInterval(function () {
+        $.post('<?= url('admin/dash'); ?>', function (data) {
+            if (data.redirect) {
+                window.location.href = data.redirect.url;
+            }
+        }, 'json');
+        //}, 1000);
+    }, 5 * 60 * 1000);
+</script>
+
 <?= $v->section("scripts"); ?>
 
 </body>
