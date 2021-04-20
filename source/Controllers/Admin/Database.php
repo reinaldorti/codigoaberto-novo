@@ -28,6 +28,9 @@ class Database extends Admin
         ]);
     }
 
+    /**
+     * DELETE BACKUP
+     */
     public function delete(): void
     {
         unlink(__DIR__ . "/../../../" . DATA_LAYER_CONFIG['dbname'] . ".sql.gz");
@@ -37,6 +40,10 @@ class Database extends Admin
 
     }
 
+    /**
+     * GENERATE BACKUP
+     * @throws \Exception
+     */
     public function backup(): void
     {
         set_time_limit(0);
