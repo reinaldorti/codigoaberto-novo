@@ -1,5 +1,6 @@
 $(function () {
 
+    //FORMS DATA
     $("form:not('.ajax_off')").submit(function (e) {
         e.preventDefault();
 
@@ -12,8 +13,7 @@ $(function () {
         }
 
         form.ajaxSubmit({
-            //url: action,
-            url: form.attr("action"),
+            url: action,
             data: data,
             type: "post",
             dataType: "json",
@@ -29,7 +29,7 @@ $(function () {
                     load_title.text("Aguarde, carregando...");
                 }
             },
-            success: function (su) {
+            success: function (data) {
                 ajax_load("close");
 
                 //ANIMATE TOP
@@ -48,8 +48,19 @@ $(function () {
                 }
 
                 //REDIRECT
-                if (data.message.redirect) {
-                    window.location.href = data.redirect.url;
+                if (data.redirect) {
+                    window.setTimeout(function () {
+                        window.location.href = data.redirect;
+                        if (window.location.hash) {
+                            window.location.reload();
+                        }
+                    }, 200);
+                }
+
+                //IMAGE MCE UPLOAD
+                if (data.mce_image) {
+                    $('.mce_upload').fadeOut(200);
+                    tinyMCE.activeEditor.insertContent(data.mce_image);
                 }
 
                 if (data.message) {
@@ -58,12 +69,6 @@ $(function () {
                     $(".message").effect("bounce");
 
                     return;
-                }
-
-                //IMAGE MCE UPLOAD
-                if (data.mce_image) {
-                    $('.mce_upload').fadeOut(200);
-                    tinyMCE.activeEditor.insertContent(data.mce_image);
                 }
             }
         });

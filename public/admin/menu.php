@@ -36,6 +36,7 @@
         echo $nav("edit", "blog/home", "Blog");
 
         if (user()->level == 10):
+            $backup = $router->route("admin.config.backup");
             echo $nav("cog", "database/home", "Backup Database");
         endif;
 

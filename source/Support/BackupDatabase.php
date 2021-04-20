@@ -78,7 +78,7 @@ class BackupDatabase
         //echo "Gerado backup '{$filePath}'" . PHP_EOL;
 
         // Limpando backups antigos
-        $this->clearOldFiles();
+        //$this->clearOldFiles(); COMENTANDO POIS ESTA MUDANDO A VERSAO DO PHP EM PRODUCAO
     }
 
     /**

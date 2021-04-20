@@ -52,8 +52,8 @@ $router->get("/senha/{email}/{forget}", "Login:reset");
 $router->post("/reset", "Login:reset");
 
 //DASHBOARD
-$router->get("/dash", "Dash:home");
-$router->get("/logoff", "Dash:logoff");
+$router->get("/dash", "Dash:home", "dash.home");
+$router->get("/logoff", "Dash:logoff", "dash.logoff");
 
 //redirect user login
 $router->post("/dash", "Admin:dashboard");
@@ -112,7 +112,9 @@ $router->get("/testimony/delete/{testimony_id}", "Testimonys:delete");
 $router->post("/testimony/order", "Testimonys:TestimonyOrder");
 
 //DATABASE
-$router->get("/database/home", "Database:home");
+$router->get("/database/home", "Database:home", "admin.backup.home");
+$router->get("/database/delete", "Database:delete", "admin.backup.delete");
+$router->get("/database/backup", "Database:backup", "admin.backup.backup");
 
 //END ADMIN
 $router->namespace("Source\Controllers");
