@@ -53,7 +53,7 @@ $v->layout("dash"); ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Foto (*)</label>
+                                    <label>Foto (Opcional)</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" name="cover" class="custom-file-input" accept="image/jpeg, image/jpg, image/png">
@@ -66,14 +66,14 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Título (*)</label>
-                                            <input type="text" name="title" class="form-control" placeholder="Título">
+                                            <input type="text" name="title" class="form-control" placeholder="Título" required>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Subtítulo (*)</label>
-                                            <input type="text" name="subtitle" class="form-control" placeholder="Subtítulo">
+                                            <input type="text" name="subtitle" class="form-control" placeholder="Subtítulo" required>
                                         </div>
                                     </div>
 
@@ -94,7 +94,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Status (*)</label>
-                                            <select class="form-control js-example-basic-single" name="status">
+                                            <select class="form-control js-example-basic-single" name="status" required>
                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                 <?php
                                                 $status = status();
@@ -109,7 +109,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Author (*)</label>
-                                            <select class="js-example-basic-single form-control" name="author">
+                                            <select class="js-example-basic-single form-control" name="author" required>
                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                 <?php foreach ($authors as $author): ?>
                                                     <option value="<?= $author->id; ?>">
@@ -129,7 +129,7 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Conteúdo</label>
+                                            <label>Conteúdo (*)</label>
                                             <textarea class="mce" name="content"></textarea>
                                         </div>
                                     </div>
@@ -166,14 +166,14 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Título (*)</label>
-                                            <input type="text" name="title" class="form-control" value="<?= $post->title; ?>" placeholder="Título">
+                                            <input type="text" name="title" class="form-control" value="<?= $post->title; ?>" placeholder="Título" required>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Subtítulo (*)</label>
-                                            <input type="text" name="subtitle" class="form-control" value="<?= $post->subtitle; ?>" placeholder="Subtítulo">
+                                            <input type="text" name="subtitle" class="form-control" value="<?= $post->subtitle; ?>" placeholder="Subtítulo" required>
                                         </div>
                                     </div>
 
@@ -194,7 +194,7 @@ $v->layout("dash"); ?>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Status (*)</label>
-                                            <select class="form-control js-example-basic-single" name="status">
+                                            <select class="form-control js-example-basic-single" name="status" required>
                                                 <option value="" selected="selected" disabled>Selecione...</option>
                                                 <?php
                                                 $status = status();
@@ -247,13 +247,12 @@ $v->layout("dash"); ?>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Conteúdo</label>
+                                            <label>Conteúdo (*)</label>
                                             <textarea class="mce" name="content"><?= $post->content; ?></textarea>
                                         </div>
                                     </div>
 
                                     <div class="row">
-
                                         <?php
                                         if (!empty($gallery)):
                                             foreach ($gallery as $gb):
@@ -278,7 +277,6 @@ $v->layout("dash"); ?>
                                             endforeach;
                                         endif;
                                         ?>
-
                                     </div>
 
                                     <div class="col-12">

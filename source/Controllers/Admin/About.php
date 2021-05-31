@@ -69,11 +69,12 @@ class About extends Admin
     { 
         //create
         if (!empty($data["action"]) && $data["action"] == "create") {
+
             $content = $data["content"];
+
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-            
-            $form = [$data["title"]];
-            if (in_array("", $form)) {
+
+            if (in_array("", $data)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, preencha os campos com (*) para continuar!"
@@ -96,18 +97,9 @@ class About extends Admin
             $about->created_at = date("Y-m-d H:i:s");
             $about->save();
 
-//            flash("success", "
-//                <i class='icon fas fa-check'></i> Texto cadastrado com sucesso!
-//            ");
-//            echo Message::ajaxResponse("redirect", [
-//                "url" => url("admin/about/about")
-//            ]);
-//            return;
-
-            echo Message::ajaxResponse("message", [
-                "type" => "success",
-                "message" => "<i class='icon fas fa-check'></i> Texto cadastrado com sucesso!",
-                "clear" => true,
+            flash("success", "<i class='icon fas fa-check'></i> Texto cadastrado com sucesso!");
+            echo Message::ajaxResponse("redirect", [
+                "url" => url("admin/about/about/{$about->id}")
             ]);
             return;
         }

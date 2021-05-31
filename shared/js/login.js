@@ -39,19 +39,14 @@ $(function () {
                     }, 1000);
                 }
 
-                if (data.clear) {
-                    $('.clear_value').val('');
-                }
-
                 if (data.message) {
                     var view = '<div class="message ' + data.message.type + '">' + data.message.message + '</div>';
                     $(".login_form_callback").html(view);
                     $(".message").effect("bounce");
 
-                    //DATA REORDER
-                    if (data.order) {
-                        $('.j_drag_active').removeClass('btn_yellow');
-                        $('.j_draganddrop').removeAttr('draggable');
+                    //CLEAR
+                    if (data.message.clear) {
+                        $(".clear_value").val("");
                     }
 
                     return;

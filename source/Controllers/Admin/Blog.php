@@ -71,12 +71,18 @@ class Blog extends Admin
      */
     public function blog(?array $data): void
     {
+        if (!empty($data["content"])) {
+            $content = $data["content"];
+        }
+
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
         //create
         if (!empty($data["action"]) && $data["action"] == "create") {
-            $content = $data["content"];
-            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-            $form = [$data["title"], $data["subtitle"], $data["tag"], $data["status"], $data["author"]];
+            unset($data["cover"]);
+
+            $form = [$data["title"], $data["subtitle"], $data["tag"], $data["status"], $data["author"], $data["content"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -93,34 +99,6 @@ class Blog extends Admin
                 return;
             }
 
-            if (empty($_FILES["cover"])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "error",
-                    "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, informe uma imagem!"
-                ]);
-                return;
-            }
-
-            $upload = new Image("storage", "blog");
-            $file = $_FILES["cover"];
-
-            $size = 2048 * 2048 * 2;
-            if ($file['size'] > $size) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "error",
-                    "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
-                ]);
-                return;
-            }
-
-            if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "error",
-                    "message" => "<i class='icon fas fa-ban'></i> Oops! Selecione uma imagem válida!"
-                ]);
-                return;
-            }
-
             $post = new \Source\Models\Blog();
             $post->title = $data["title"];
             $post->subtitle = $data["subtitle"];
@@ -133,15 +111,33 @@ class Blog extends Admin
             $post->post_at = (empty($data["post_at"]) ? date("Y-m-d") : date_fmt($data["post_at"]));
             $post->created_at = date("Y-m-d H:i:s");
 
-            if (file_exists(CONF_UPLOAD["STORAGE"] . "/{$post->cover}") && !is_dir(CONF_UPLOAD["STORAGE"] . "/{$post->cover}")) {
-                unlink(CONF_UPLOAD["STORAGE"] . "/{$post->cover}");
+            if (!empty($_FILES["cover"])) {
+                $upload = new Image("storage", "blog");
+                $file = $_FILES["cover"];
+
+                $size = 2048 * 2048 * 2;
+                if ($file['size'] > $size) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
+                    ]);
+                    return;
+                }
+
+                if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())) {
+                    echo Message::ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => "Oops! Selecione uma imagem válida!"
+                    ]);
+                    return;
+                }
+
+                $uploaded = $upload->upload($file, str_slug($data["title"]) . time() . "-", 730);
+                $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+                $post->cover = $cover;
             }
 
-            $uploaded = $upload->upload($file, $post->id . "-" . str_slug($post->title), 730);
-            $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
-            $post->cover = $cover;
             $post->save();
-
 
             flash("success", "<i class='icon fas fa-check'></i> Post cadastrado com sucesso!");
             echo Message::ajaxResponse("redirect", [
@@ -152,8 +148,6 @@ class Blog extends Admin
 
         //update
         if (!empty($data["action"]) && $data["action"] == "update") {
-            $content = $data["content"];
-            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $form = [$data["title"], $data["subtitle"], $data["tag"], $data["status"], $data["author"]];
             if (in_array("", $form)) {

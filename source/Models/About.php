@@ -15,6 +15,6 @@ class About extends DataLayer
      */
     public function __construct()
     {
-        parent::__construct("about",  ["title", "status", "content"]);
+        parent::__construct("about",  ["title", "content"]);
     }
 }

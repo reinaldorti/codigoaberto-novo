@@ -58,7 +58,7 @@ class Web extends Controller
     public function about(): void
     {
         $head = $this->seo->render(
-            "Sobre - " . CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            "Sobre - " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
             url("sobre"),
             asset("/assets/images/logo/logo.png")
@@ -78,7 +78,7 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        $posts = (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC");
+        $posts = (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("id DESC");
 
         $pager = new Pager(url("/blog/"));
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
@@ -92,8 +92,8 @@ class Web extends Controller
         echo $this->view->render("blog", [
             "head" => $head,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
-            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("id DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -117,7 +117,7 @@ class Web extends Controller
         }
 
         $search = null;
-        $posts = (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch();
+        $posts = (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("id DESC")->fetch();
 
         if (!empty($data["search"]) && str_search($data["search"]) != "all") {
             $search = str_search($data["search"]);
@@ -143,8 +143,8 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $posts->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
-            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -175,8 +175,8 @@ class Web extends Controller
         echo $this->view->render("blog-post", [
             "head" => $head,
             "post" => $post,
-            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
-            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("views DESC")->fetch(true),
         ]);
     }
 
@@ -213,8 +213,8 @@ class Web extends Controller
             "head" => $head,
             "search" => $search,
             "posts" => $tag->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("id DESC")->fetch(true),
-            "views" => (new Blog())->find("status = :status AND post_at <= NOW()","status=1")->order("views DESC")->fetch(true),
+            "tags" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("id DESC")->fetch(true),
+            "views" => (new Blog())->find("status = :status AND post_at <= NOW()", "status=1")->order("views DESC")->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -252,7 +252,7 @@ class Web extends Controller
             }
 
             //VALIDATE EMAIL
-            if (!is_email($data["email"])){
+            if (!is_email($data["email"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='fa fa-warning'></i>Oops! O e-email informado não é válido!",
@@ -261,7 +261,7 @@ class Web extends Controller
 
                 return;
             }
-          
+
             $mail = new Email();
             $mail->add(
                 $data["subject"],
@@ -276,8 +276,7 @@ class Web extends Controller
             echo Message::ajaxResponse("message", [
                 "type" => "success",
                 "message" => "<i class='fa fa-check'></i>Pronto, {$data["name"]}! Sua mensagem foi enviada com sucesso!",
-                "clear" => true,
-                "top" => true
+                "clear" => true
             ]);
             return;
         }
@@ -316,7 +315,7 @@ class Web extends Controller
         $error = filter_var($data["errcode"], FILTER_VALIDATE_INT);
 
         $head = $this->seo->render(
-            "Oops {$error}" . " | " .  CONF_SITE['NAME'],
+            "Oops {$error}" . " | " . CONF_SITE['NAME'],
             CONF_SITE['DESC'],
             url("/ops/{$error}"),
             asset("/assets/images/logo/logo.png"),

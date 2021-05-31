@@ -8,11 +8,7 @@ $(function () {
         var action = form.attr("action");
         var data = form.serialize();
 
-        if (typeof tinyMCE !== 'undefined') {
-            tinyMCE.triggerSave();
-        }
-
-        form.ajaxSubmit({
+        $.ajax({
             url: action,
             data: data,
             type: "post",
@@ -20,55 +16,32 @@ $(function () {
             beforeSend: function (load) {
                 ajax_load("open");
             },
-            uploadProgress: function (event, position, total, completed) {
-                var loaded = completed;
-                var load_title = $(".ajax_load_box_title");
-                load_title.text("Enviando (" + loaded + "%)");
-
-                if (completed >= 100) {
-                    load_title.text("Aguarde, carregando...");
-                }
-            },
             success: function (data) {
                 ajax_load("close");
-
-                //ANIMATE TOP
-                if (data.message.top) {
-                    $('html, body').animate({
-                            scrollTop: $('html').position().top
-                        },
-                        1000
-                    );
-                }
-
-                if (data.message.clear) {
-                    $('form').each(function () {
-                        this.reset();
-                    });
-                }
-
-                //REDIRECT
-                if (data.redirect) {
-                    window.setTimeout(function () {
-                        window.location.href = data.redirect;
-                        if (window.location.hash) {
-                            window.location.reload();
-                        }
-                    }, 200);
-                }
-
-                //IMAGE MCE UPLOAD
-                if (data.mce_image) {
-                    $('.mce_upload').fadeOut(200);
-                    tinyMCE.activeEditor.insertContent(data.mce_image);
-                }
 
                 if (data.message) {
                     var view = '<div class="message ' + data.message.type + '">' + data.message.message + '</div>';
                     $(".login_form_callback").html(view);
                     $(".message").effect("bounce");
 
+                    //ANIMATE TOP
+                    if (data.message.top) {
+                        $("html, body").animate({
+                                scrollTop: $("html").position().top
+                            }, 1000
+                        );
+                    }
+
+                    //CLEAR
+                    if (data.message.clear) {
+                        $(".clear_value").val("");
+                    }
+
                     return;
+                }
+
+                if (data.redirect) {
+                    window.location.href = data.redirect.url;
                 }
             }
         });

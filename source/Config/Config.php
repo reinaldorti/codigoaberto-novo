@@ -16,7 +16,7 @@ if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
             PDO::ATTR_CASE => PDO::CASE_NATURAL
         ]
     ]);
-}else{
+} else {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",
         "host" => "localhost",
@@ -41,7 +41,6 @@ define("CONF_VIEW", [
     "PATH" => __DIR__ . "/../../shared",
     "EXT" => "php",
     "THEME" => "anipat",
-//    "THEME" => "burger",
     "ADMIN" => "admin",
 ]);
 
@@ -72,7 +71,7 @@ define("CONF_SITE", [
     "DESC" => "Aprenda a construir uma plicação de autenticação em MVC com php do Jeito Certo",
     "LANG" => "pt_BR",
     "DOMAIN" => "www.dortistudio.com.br",
-    "ADDR_STREET" => "Votuporanga",   
+    "ADDR_STREET" => "Votuporanga",
     "ADDR_NUMBER" => "2562",
     "ADDR_DISTRICT" => "Eldorado",
     "ADDR_COMPLEMENT" => "Casa",
@@ -99,11 +98,11 @@ define("CONF_SOCIAL", [
 
 // UPLOAD
 define("CONF_UPLOAD", [
-    "STORAGE"=> "storage",
-    "IMAGES"=> "images",
-    "CACHE"=> "cache",
-    "FILES"=> "files",
-    "MEDIAS"=> "medias",
+    "STORAGE" => "storage",
+    "IMAGES" => "images",
+    "CACHE" => "cache",
+    "FILES" => "files",
+    "MEDIAS" => "medias",
 ]);
 
 // EMAIL CONNECT
@@ -117,8 +116,8 @@ define("CONF_MAIL", [
     "FROM_LASTNAME" => "Dorti",
     "FROM_EMAIL" => "reinaldorti@gmail.com",
     "FROM_DOCUMENT" => "653.041.910-13",
-    "FROM_TELEPHONE" => "+55 (17) 99116-3205",
-    "FROM_WHATSAPP"=> "5517991163205"
+    "FROM_TELEPHONE" => "+55 (99) 99999-9999",
+    "FROM_WHATSAPP" => "5599999999999"
 ]);
 
 // SOCIAL LOGIN: FACEBOOK

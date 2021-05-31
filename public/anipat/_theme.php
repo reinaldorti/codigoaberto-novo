@@ -196,8 +196,9 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
 </footer>
 <!-- footer_end  -->
 
+<!--LGPD-->
 <?php if (!COOKIEPOLICY): ?>
-    <!--GDPR-->
+
     <div id="cookiePolicy" class="al-center">
         <div class="container">
             <p>Este website utiliza cookies próprios e de terceiros a fim de personalizar o conteúdo, melhorar a experiência do usuário, fornecer funções de mídias sociais e analisar o tráfego. Para continuar navegando você deve concordar com nossa <a href="<?= url("/politica-de-privacidade"); ?>">Política de Privacidade</a>.</p>
@@ -206,7 +207,6 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
             </a>
         </div>
     </div>
-    <!--/GDPR-->
 <?php endif; ?>
 
 <!-- JS here -->

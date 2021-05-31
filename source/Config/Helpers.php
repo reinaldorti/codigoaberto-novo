@@ -249,7 +249,7 @@ function new_password($size = 8, $letters = true, $numbers = true, $symbols = tr
         $rand = mt_rand(1, $len);
         $return .= $characters[$rand - 1];
     }
-    
+
     return $return;
 }
 
@@ -278,11 +278,11 @@ function status($data = null)
         2 => 'Inativo'
     ];
 
-    if (!empty($data)):
+    if (!empty($data)) {
         return $status[$data];
-    else:
+    } else {
         return $status;
-    endif;
+    }
 }
 
 /**
@@ -296,11 +296,11 @@ function genre($data = null)
         2 => 'Feminino'
     ];
 
-    if (!empty($data)):
+    if (!empty($data)) {
         return $genre[$data];
-    else:
+    } else {
         return $genre;
-    endif;
+    }
 }
 
 /**
@@ -318,11 +318,11 @@ function level($data = null)
         10 => 'Super Admin',
     ];
 
-    if (!empty($data)):
+    if (!empty($data)) {
         return $level[$data];
-    else:
+    } else {
         return $level;
-    endif;
+    }
 }
 
 /**
@@ -375,15 +375,15 @@ function csrf_input()
  */
 function csrf_verify($request)
 {
-    if (empty($request)){
+    if (empty($request)) {
         return false;
     }
 
-    if (empty($_SESSION['csrf_token'])){
+    if (empty($_SESSION['csrf_token'])) {
         return false;
     }
 
-    if ($request != $_SESSION['csrf_token']){
+    if ($request != $_SESSION['csrf_token']) {
         return false;
     }
 
