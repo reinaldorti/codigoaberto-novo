@@ -3,6 +3,7 @@
 namespace Source\Controllers;
 
 use CoffeeCode\Router\Router;
+use ElePHPant\Cookie\Cookie;
 use Source\Models\About;
 use Source\Models\Blog;
 use Source\Models\Slide;
@@ -17,6 +18,9 @@ use Source\Support\Pager;
  */
 class Web extends Controller
 {
+    /**
+     * @var
+     */
     protected $router;
 
     /**
@@ -295,13 +299,23 @@ class Web extends Controller
         ]);
     }
 
-    public function cookiePolicy(array $data): void
+    /**
+     * SITE COOKIE POLICY
+     * @param array $data
+     */
+    public function cookieConsent(array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        setcookie("cookiePolicy", $data["cookie"], time() + (12 * 43200), "/");
+        Cookie::set("cookieConsent", $data["cookie"], (12 * 43200)); // 1 year
 
-        $json["agree"] = true;
+        //ACCEPT
+        if ($data["cookie"] == "accept") {
+            $json["gtmHead"] = $this->view->render("gtm/gtm-head");
+            $json["gtmBody"] = $this->view->render("gtm/gtm-body");
+        }
+
+        $json["cookie"] = true;
         echo json_encode($json);
         return;
     }

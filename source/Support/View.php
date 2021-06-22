@@ -49,7 +49,7 @@ class View
      * @param array $data
      * @return string
      */
-    public function render(string $templateName, array $data): string
+    public function render(string $templateName, array $data = []): string
     {
         return $this->engine->render($templateName, $data);
     }

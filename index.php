@@ -29,7 +29,7 @@ $router->get("/", "Web:home", "web.home");
 $router->get("/sobre", "Web:about", "web.about");
 $router->get("/contato", "Web:contact", "web.contact");
 $router->post("/contato", "Web:contact", "web.contact");
-$router->post("/cookie", "Web:cookiePolicy", "web.cookie.policy");
+$router->post("/cookie-consent", "Web:cookieConsent", "web.cookie.consent");
 
 //BLOG
 $router->group("/blog");

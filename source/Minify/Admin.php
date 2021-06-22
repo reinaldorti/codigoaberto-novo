@@ -13,7 +13,7 @@ if ($minify) {
             $minCSS->add($cssFile);
         }
     }
-    $minCSS->minify(dirname(__DIR__, 2) . "/public/" . CONF_VIEW['ADMIN'] . "/assets/style.min.css");
+    $minCSS->minify(dirname(__DIR__, 2) . "/public/" . CONF_VIEW["ADMIN"] . "/assets/style.min.css");
 
     /*
      * MINIFY JS
@@ -27,5 +27,5 @@ if ($minify) {
             $minJS->add($jsFile);
         }
     }
-    $minJS->minify(dirname(__DIR__, 2) . "/public/" . CONF_VIEW['ADMIN'] . "/assets/scripts.min.js");
+    $minJS->minify(dirname(__DIR__, 2) . "/public/" . CONF_VIEW["ADMIN"] . "/assets/scripts.min.js");
 }

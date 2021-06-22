@@ -1,28 +1,5 @@
 $(function () {
 
-    //COOKIE POLICY
-    $("[data-cookie]").click(function (e) {
-        e.preventDefault();
-        var cookiePolicy = $("#cookiePolicy");
-        var route = $(this).data("route");
-        var dataset = $(this).data();
-
-        $(".main_footer").css("margin-bottom", 0);
-        cookiePolicy.fadeOut();
-
-        $.post(route, dataset, function (response) {
-            //agree
-            if (response.agree) {
-                window.location.reload();
-            }
-        }, "json");
-    });
-
-    var cookiePolicy = $("#cookiePolicy");
-    if (!cookiePolicy.hasClass("ds-none")) {
-        $(".main_footer").css("margin-bottom", cookiePolicy.outerHeight());
-    }
-
     $("form:not('.ajax_off')").submit(function (e) {
         e.preventDefault();
 

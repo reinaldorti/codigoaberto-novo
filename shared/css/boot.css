@@ -1,17 +1,3 @@
-.database {
-    background-color: #DC3545;
-    padding: 20px;
-    text-align: center;
-    font-weight: 600;
-    color: #fff;
-    text-shadow: 1px 1px 0px #855E5E;
-    z-index: 9999;
-    width: 100%;
-    position: fixed;
-    clear: both;
-    bottom: 0;
-}
-
 /*VARIABLES*/
 :root {
     --font-min: 0.8em;
@@ -54,6 +40,20 @@
     --index-fold: 2;
     --index-menu: 3;
     --index-modal: 4;
+}
+
+.database {
+    background-color: #DC3545;
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 1px 1px 0px #855E5E;
+    z-index: 9999;
+    width: 100%;
+    position: fixed;
+    clear: both;
+    bottom: 0;
 }
 
 .mce_upload {
@@ -108,40 +108,4 @@ iframe[style]{
     left: 0;
     width: 100%;
     height: 100%;
-}
-
-/*COOKIE POLICY*/
-#cookiePolicy {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    background-color: #000;
-    text-align: center;
-}
-
-#cookiePolicy .container {
-    padding: 30px 0;
-}
-
-#cookiePolicy p {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #FFF;
-    font-size: var(--font-small);
-}
-
-#cookiePolicy p a {
-    color: var(--color-green);
-    font-weight: var(--weight-bold);
-    text-decoration: none;
-    transition-duration: var(--hover-duration);
-}
-
-#cookiePolicy .footer_optout_btn {
-    padding: 12px 24px;
-    font-size: var(--font-normal);
-    font-weight: var(--weight-bold);
-    color:#FFF;
 }

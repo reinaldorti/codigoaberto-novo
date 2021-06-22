@@ -34,7 +34,7 @@ if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
 }
 
 // COOKIE POLICY
-define("COOKIEPOLICY", filter_input(INPUT_COOKIE, "cookiePolicy", FILTER_SANITIZE_STRIPPED));
+define("COOKIE_CONSENT", filter_input(INPUT_COOKIE, "cookieConsent", FILTER_SANITIZE_STRIPPED));
 
 // VIEW
 define("CONF_VIEW", [

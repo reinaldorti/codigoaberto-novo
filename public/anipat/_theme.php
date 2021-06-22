@@ -2,6 +2,10 @@
 <html class="no-js" lang="zxx">
 
 <head>
+    <?php if(COOKIE_CONSENT): ?>
+        <?= $v->insert("gtm/gtm-head"); ?>
+    <?php endif; ?>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +18,9 @@
 </head>
 
 <body>
+<?php if(COOKIE_CONSENT): ?>
+    <?= $v->insert("gtm/gtm-body"); ?>
+<?php endif; ?>
 
 <div class="ajax_load">
     <div class="ajax_load_box">
@@ -197,16 +204,19 @@ Please <a href="https://browsehappy.com/"> upgrade your browser</a> to improve y
 <!-- footer_end  -->
 
 <!--LGPD-->
-<?php if (!COOKIEPOLICY): ?>
-
-    <div id="cookiePolicy" class="al-center">
+<?php if (!COOKIE_CONSENT): ?>
+    <div class="cookieConsent al-center">
         <div class="container">
-            <p>Este website utiliza cookies próprios e de terceiros a fim de personalizar o conteúdo, melhorar a experiência do usuário, fornecer funções de mídias sociais e analisar o tráfego. Para continuar navegando você deve concordar com nossa <a href="<?= url("/politica-de-privacidade"); ?>">Política de Privacidade</a>.</p>
-            <a data-route="<?= $router->route("web.cookie.policy"); ?>" data-cookie="agree" href="#" class="btn btn-primary">
+            <p>Este website utiliza cookies próprios e de terceiros a fim de personalizar o conteúdo, melhorar a experiência do usuário, fornecer funções de mídias sociais e analisar o tráfego. Para continuar navegando você deve concordar com nossa <a href="<?= $router->route('web.terms'); ?>">Política de Privacidade</a>.</p>
+            <a data-action="<?= $router->route('web.cookie.consent'); ?>" data-cookie="accept" href="#" class="btn btn-primary icon-thumbs-up">
                 Sim, eu aceito.
+            </a>
+            <a data-action="<?= $router->route('web.cookie.consent'); ?>" data-cookie="decline" href="#" class="btn btn-danger icon-thumbs-down">
+                Não, eu não aceito.
             </a>
         </div>
     </div>
+    <!--/cookie consent notification-->
 <?php endif; ?>
 
 <!-- JS here -->

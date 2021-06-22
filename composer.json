@@ -43,6 +43,7 @@
     "symfony/var-dumper": "^5.1",
     "google/recaptcha": "^1.2",
     "ifsnop/mysqldump-php": "2.*",
-    "vlucas/phpdotenv": "^5.2"
+    "vlucas/phpdotenv": "^5.2",
+    "elephpant/cookie": "1.0.*"
   }
 }
