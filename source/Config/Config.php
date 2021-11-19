@@ -1,7 +1,7 @@
 <?php
 
 // DATABASE CONNECT
-if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
+if (strpos($_SERVER["HTTP_HOST"], "localhost")) {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",
         "host" => "localhost",
@@ -36,6 +36,9 @@ if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
 // COOKIE POLICY
 define("COOKIE_CONSENT", filter_input(INPUT_COOKIE, "cookieConsent", FILTER_SANITIZE_STRIPPED));
 
+define("APP_COOKIE", 1); //COOKIE
+define("APP_TREATMENT", 1); //Atendimento
+
 // VIEW
 define("CONF_VIEW", [
     "PATH" => __DIR__ . "/../../shared",
@@ -46,7 +49,7 @@ define("CONF_VIEW", [
 
 // PROJECT URLs
 define("CONF_URl", [
-    "TEST" => "https://www.localhost/cursos/youtube/codigoaberto-novo",
+    "TEST" => "https://www.localhost/cursos/codigoaberto-novo",
     "BASE" => "https://www.seudominio.com.br"
 ]);
 
@@ -78,7 +81,8 @@ define("CONF_SITE", [
     "ADDR_CITY" => "São José do Rio Preto",
     "ADDR_STATE" => "SP",
     "ADDR_ZIPCODE" => "15.043-040",
-    "ADDR_TELEPHONE" => "17 99116-3205"
+    "ADDR_TELEPHONE" => "(17) 99624-7870",
+    "ADDR_WHATSAPP" => "5517996247870"
 ]);
 
 // SOCIAL
@@ -110,7 +114,7 @@ define("CONF_MAIL", [
     "HOST" => "smtp.sendgrid.net",
     "PORT" => "587",
     "USER" => "apikey",
-    "PASSWD" => "",
+    "PASSWD" => "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",
     "MODE" => "tls",
     "FROM_NAME" => "Reinaldo",
     "FROM_LASTNAME" => "Dorti",

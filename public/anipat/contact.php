@@ -22,7 +22,7 @@
             <div class="col-lg-8" >
                 <form class="form-contact contact_form" action="<?= $router->route("web.contact"); ?>" method="post">
                     <input type="hidden" name="action" value="contact"/>
-                    <?= $csrf; ?>
+
                     <div class="login_form_callback">
                         <?= flash(); ?>
                     </div>

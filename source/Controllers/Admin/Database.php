@@ -16,9 +16,9 @@ class Database extends Admin
     public function home(): void
     {
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
-            CONF_SITE['DESC'],
-            url('admin/database/home'),
+            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
+            CONF_SITE["DESC"],
+            url("admin/database/home"),
             asset("/assets/images/logo/logo.png")
         );
 
@@ -33,9 +33,9 @@ class Database extends Admin
      */
     public function delete(): void
     {
-        unlink(__DIR__ . "/../../../" . DATA_LAYER_CONFIG['dbname'] . ".sql.gz");
+        unlink(__DIR__ . "/../../../" . DATA_LAYER_CONFIG["dbname"] . ".sql.gz");
 
-        flash("success", "Backup <b>" . DATA_LAYER_CONFIG['dbname'] . ".sql.gz</b> foi deletado com sucesso da raiz do projeto");
+        flash("success", "Backup <b>" . DATA_LAYER_CONFIG["dbname"] . ".sql.gz</b> foi deletado com sucesso da raiz do projeto");
         redirect("admin/database/home");
 
     }
@@ -48,11 +48,11 @@ class Database extends Admin
     {
         set_time_limit(0);
 
-        $backup = new \Source\Support\BackupDatabase('./', 10);
-        $backup->setDatabase(DATA_LAYER_CONFIG['host'], DATA_LAYER_CONFIG['dbname'], DATA_LAYER_CONFIG['username'], DATA_LAYER_CONFIG['passwd']);
+        $backup = new \Source\Support\BackupDatabase("./", 10);
+        $backup->setDatabase(DATA_LAYER_CONFIG["host"], DATA_LAYER_CONFIG["dbname"], DATA_LAYER_CONFIG["username"], DATA_LAYER_CONFIG["passwd"]);
         $backup->generate();
 
-        flash("success", "Backup <b>" . DATA_LAYER_CONFIG['dbname'] . ".sql.gz</b> gerado com sucesso");
+        flash("success", "Backup <b>" . DATA_LAYER_CONFIG["dbname"] . ".sql.gz</b> gerado com sucesso");
         redirect("admin/database/home");
 
     }

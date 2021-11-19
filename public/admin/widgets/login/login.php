@@ -11,7 +11,6 @@
 
             <form action="<?= url("/admin/login"); ?>" method="post">
                 <input type="hidden" name="action" value="login"/>
-                <?= $csrf; ?>
 
                 <div class="login_form_callback">
                     <?= flash(); ?>

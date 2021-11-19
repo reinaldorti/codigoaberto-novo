@@ -49,9 +49,9 @@ class Users extends Admin
         $pager->pager($users->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
 
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
-            CONF_SITE['DESC'],
-            url('admin/users/home'),
+            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
+            CONF_SITE["DESC"],
+            url("admin/users/home"),
             asset("/assets/images/logo/logo.png")
         );
 
@@ -84,20 +84,12 @@ class Users extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i>Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
-                ]);
-                return;
-            }
-
             $user = new User();
             $user->first_name = $data["first_name"];
             $user->last_name = $data["last_name"];
             $user->email = $data["email"];
-            $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
-            $user->document = preg_replace('/[^0-9]/', '', $data["document"]);
+            $user->telephone = is_number($data["telephone"]);
+            $user->document = is_number($data["document"]);
             $user->genre = $data["genre"];
             $user->level = $data["level"];
             $user->status = $data["status"];
@@ -113,19 +105,20 @@ class Users extends Admin
 
             if($data["send_email"] == 1){
 
-                $password =$data["password"];
-
-                $link = url('admin');
+                $password = $data["password"];
+                $url = url("/admin");
                 $button = "ACESSAR CONTA";
+                $subject = "Bem-vindo (a) {$data["first_name"]}! | " . CONF_SITE["NAME"];
 
                 $email = new Email();
                 $email->add(
-                    "Bem-vindo (a) {$data["first_name"]}! | " . CONF_SITE['NAME'],
-                    $this->view->render("templates/newuser", [
+                    "{$subject}",
+                    $this->view->render(__DIR__ . "/../../../shared/views/email/admin/newuser", [
                         "user" => $user,
                         "password" => $password,
+                        "subject" => $subject,
                         "button" => $button,
-                        "link" => $link
+                        "url" => $url
                     ]),
                     "{$data["first_name"]} {$data["last_name"]}",
                     $data["email"]
@@ -137,7 +130,7 @@ class Users extends Admin
                 $file = $_FILES["photo"];
 
                 $size = 2048 * 2048 * 2;
-                if ($file['size'] > $size) {
+                if ($file["size"] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
                         "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
@@ -158,7 +151,7 @@ class Users extends Admin
                 }
 
                 $uploaded = $upload->upload($file, $user->id . "-" . str_slug($user->first_name), 500);
-                $photo = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+                $photo = substr($uploaded, strrpos($uploaded, "storage/") + 8);
                 $user->photo = $photo;
                 $user->save();
             }
@@ -175,7 +168,6 @@ class Users extends Admin
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $user = (new User())->findById("{$data["user_id"]}");
-
             if (!$user) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -193,23 +185,14 @@ class Users extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
-                ]);
-                return;
-            }
-
             $user->first_name = $data["first_name"];
             $user->last_name = $data["last_name"];
             $user->email = $data["email"];
-            $user->telephone = preg_replace('/[^0-9]/', '', $data["telephone"]);
-            $user->document = preg_replace('/[^0-9]/', '', $data["document"]);
+            $user->telephone = is_number($data["telephone"]);
+            $user->document = is_number($data["document"]);
             $user->level = $data["level"];
             $user->genre = $data["genre"];
             $user->status = $data["status"];
-            $user->updated_at = date("Y-m-d H:i:s");
 
             if (!$user->save()) {
                 echo Message::ajaxResponse("message", [
@@ -224,7 +207,7 @@ class Users extends Admin
                 $file = $_FILES["photo"];
 
                 $size = 2048 * 2048 * 2;
-                if ($file['size'] > $size) {
+                if ($file["size"] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
                         "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
@@ -245,7 +228,7 @@ class Users extends Admin
                 }
 
                 $uploaded = $upload->upload($file, $user->id . "-" . str_slug($user->first_name), 500);
-                $photo = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+                $photo = substr($uploaded, strrpos($uploaded, "storage/") + 8);
                 $user->photo = $photo;
                 $user->save();
             }
@@ -269,18 +252,10 @@ class Users extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
-                ]);
-                return;
-            }
-
             if (!is_passwd($data["password"])){
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! A senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!"
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! A senha deve ter entre " . CONF_PASSWD["MIN"] . " e " . CONF_PASSWD["MAX"] . " caracteres!"
                 ]);
                 return;
             }
@@ -326,30 +301,21 @@ class Users extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
-                ]);
-                return;
-            }
-
             $addr = (new Address())->find("user_id = :id", "id={$data["user_id"]}")->fetch();
             if(!$addr){
                 $addr = new Address();
-                $addr->user_id = $data['user_id'];
+                $addr->user_id = $data["user_id"];
                 $addr->created_at = date("Y-d-m H:i:s");
             }
 
-            $addr->zipcode = preg_replace('/[^0-9]/', '', $data["zipcode"]);
-            $addr->street = mb_convert_case($data['street'], MB_CASE_TITLE);
-            $addr->number = $data['number'];
-            $addr->complement = (!empty($data['complement']) ? preg_replace('/[^0-9]/', '', $data["zipcode"]) : "Não informado");
-            $addr->district = mb_convert_case($data['district'], MB_CASE_TITLE);
-            $addr->city = mb_convert_case($data['city'], MB_CASE_TITLE);
-            $addr->state = mb_convert_case($data['state'], MB_CASE_UPPER);
-            $addr->country = (!empty($data['country']) ? mb_convert_case($data['country'], MB_CASE_TITLE) : "Brasil");
-            $addr->updated_at = date("Y-d-m H:i:s");
+            $addr->zipcode = is_number($data["zipcode"]);
+            $addr->street = mb_convert_case($data["street"], MB_CASE_TITLE);
+            $addr->number = $data["number"];
+            $addr->complement = (!empty($data["complement"]) ? is_number($data["zipcode"]) : "Não informado");
+            $addr->district = mb_convert_case($data["district"], MB_CASE_TITLE);
+            $addr->city = mb_convert_case($data["city"], MB_CASE_TITLE);
+            $addr->state = mb_convert_case($data["state"], MB_CASE_UPPER);
+            $addr->country = (!empty($data["country"]) ? mb_convert_case($data["country"], MB_CASE_TITLE) : "Brasil");
             $addr->save();
 
             echo Message::ajaxResponse("message", [
@@ -365,16 +331,15 @@ class Users extends Admin
         }
 
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
-            CONF_SITE['DESC'],
-            url('admin/users/create'),
+            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
+            CONF_SITE["DESC"],
+            url("admin/users/create"),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("widgets/users/user", [
             "app" => "users/user",
             "head" => $head,
-            "csrf" => csrf_input(),
             "user" => $user,
             "blog" => (!empty($user)? (object)["posts" => (new Blog())->find("author=:user","user={$user->id}")->count()] : "")
         ]);
@@ -384,7 +349,7 @@ class Users extends Admin
      * DELETE USERS
      * @param array $data
      */
-    public function delete($data): void
+    public function delete(?array $data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
 
@@ -394,7 +359,7 @@ class Users extends Admin
             redirect("admin/users/home");
         }
 
-        if (User::user()->id == $data['user_id']) {
+        if (User::user()->id == $data["user_id"]) {
             flash("error", "<i class='icon fas fa-ban'></i> Oops! Por questões de segurança, o sistema não permite que você remova sua própria conta!");
             redirect("admin/users/home");
         }

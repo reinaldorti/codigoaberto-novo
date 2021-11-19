@@ -49,9 +49,9 @@ class Blog extends Admin
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
 
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
-            CONF_SITE['DESC'],
-            url('admin/users/home'),
+            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
+            CONF_SITE["DESC"],
+            url("admin/users/home"),
             asset("/assets/images/logo/logo.png")
         );
 
@@ -91,7 +91,7 @@ class Blog extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
+            if (!csrf_verify($data["csrf_token"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
                     "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
@@ -116,7 +116,7 @@ class Blog extends Admin
                 $file = $_FILES["cover"];
 
                 $size = 2048 * 2048 * 2;
-                if ($file['size'] > $size) {
+                if ($file["size"] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
                         "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
@@ -133,7 +133,7 @@ class Blog extends Admin
                 }
 
                 $uploaded = $upload->upload($file, str_slug($data["title"]) . time() . "-", 730);
-                $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+                $cover = substr($uploaded, strrpos($uploaded, "storage/") + 8);
                 $post->cover = $cover;
             }
 
@@ -158,7 +158,7 @@ class Blog extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
+            if (!csrf_verify($data["csrf_token"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
                     "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
@@ -184,7 +184,7 @@ class Blog extends Admin
                 $file = $_FILES["cover"];
 
                 $size = 2048 * 2048 * 2;
-                if ($file['size'] > $size) {
+                if ($file["size"] > $size) {
                     echo Message::ajaxResponse("message", [
                         "type" => "error",
                         "message" => "<i class='icon fas fa-ban'></i> Oops! A imagem enviada excede o limite permitido. Por favor, informe uma imagem menor!"
@@ -205,7 +205,7 @@ class Blog extends Admin
                 }
 
                 $uploaded = $upload->upload($file, $post->id . "-" . str_slug($post->title), 730);
-                $cover = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+                $cover = substr($uploaded, strrpos($uploaded, "storage/") + 8);
                 $post->cover = $cover;
                 $post->save();
             }
@@ -238,13 +238,13 @@ class Blog extends Admin
                         return;
                     } else {
 
-                        ini_set('memory_limit', '-1');
-                        ini_set('max_execution_time', '0');
-                        ini_set('max_input_vars', 3000);
+                        ini_set("memory_limit", "-1");
+                        ini_set("max_execution_time", "0");
+                        ini_set("max_input_vars", 3000);
                         set_time_limit(0);
 
                         $uploaded = $upload->upload($file, pathinfo($data["post_id"] . "-" .$file["name"], PATHINFO_FILENAME), 730);
-                        $images = substr($uploaded, strrpos($uploaded, 'storage/') + 8);
+                        $images = substr($uploaded, strrpos($uploaded, "storage/") + 8);
 
                         $gallery = new BlogGallery();
                         $gallery->images = $images;
@@ -262,9 +262,9 @@ class Blog extends Admin
         }
 
         $head = $this->seo->render(
-            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
-            CONF_SITE['DESC'],
-            url('admin/blog/blog'),
+            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
+            CONF_SITE["DESC"],
+            url("admin/blog/blog"),
             asset("/assets/images/logo/logo.png")
         );
 
@@ -277,7 +277,6 @@ class Blog extends Admin
         echo $this->view->render("widgets/blog/blog", [
             "app" => "blog/blog",
             "head" => $head,
-            "csrf" => csrf_input(),
             "post" => $post,
             "gallery" => (!empty($data["post_id"]) ? (new BlogGallery())->find("post_id=:id","id={$data["post_id"]}")->fetch(true) : null),
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
@@ -307,9 +306,9 @@ class Blog extends Admin
 
     /**
      * DELETE BLOG
-     * @param int $data
+     * @param array|null $data
      */
-    public function delete($data): void
+    public function delete(?array $data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
 

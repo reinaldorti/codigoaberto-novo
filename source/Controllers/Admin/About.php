@@ -66,13 +66,15 @@ class About extends Admin
      * @param array $data
      */
     public function about(?array $data): void
-    { 
+    {
+        if (!empty($data["content"])) {
+            $content = $data["content"];
+        }
+
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
         //create
         if (!empty($data["action"]) && $data["action"] == "create") {
-
-            $content = $data["content"];
-
-            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             if (in_array("", $data)) {
                 echo Message::ajaxResponse("message", [
@@ -82,19 +84,10 @@ class About extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
-                ]);
-                return;
-            }
-
             $about = new \Source\Models\About();
             $about->title = $data["title"];
             $about->status = 1;
             $about->content = str_replace(["{title}"], [$about->title], $content);
-            $about->created_at = date("Y-m-d H:i:s");
             $about->save();
 
             flash("success", "<i class='icon fas fa-check'></i> Texto cadastrado com sucesso!");
@@ -107,9 +100,6 @@ class About extends Admin
         //update
         if (!empty($data["action"]) && $data["action"] == "update") {
 
-            $content = $data["content"];
-            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
             $form = [$data["title"], $data["status"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
@@ -119,19 +109,10 @@ class About extends Admin
                 return;
             }
 
-            if (!csrf_verify($data['csrf_token'])) {
-                echo Message::ajaxResponse("message", [
-                    "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
-                ]);
-                return;
-            }
-
             $about = (new \Source\Models\About())->findById("{$data["about_id"]}");
             $about->title = $data["title"];
             $about->status = $data["status"];
             $about->content = $content;
-            $about->updated_at = date("Y-m-d H:i:s");
             $about->save();
 
             echo Message::ajaxResponse("message", [
@@ -157,7 +138,6 @@ class About extends Admin
         echo $this->view->render("widgets/about/about", [
             "app" => "about/about",
             "head" => $head,
-            "csrf" => csrf_input(),
             "about" => $about
         ]);
     }
@@ -166,11 +146,11 @@ class About extends Admin
      * DELETE ABOUT
      * @param array $data
      */
-    public function delete(array $data): void
+    public function delete(?array $data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-        $about = (new \Source\Models\About())->findById("{$data["about_id"]}");
 
+        $about = (new \Source\Models\About())->findById("{$data["about_id"]}");
         if (!$about) {
             flash("error", "<i class='icon fas fa-ban'></i> Oops! Você tentou gerenciar um sobre que não existe!");
             redirect("admin/about/home");
