@@ -11,7 +11,7 @@
 
             <form action="<?= url("/admin/reset"); ?>" method="post">
                 <input type="hidden" name="action" value="reset"/>
-                <?= $csrf; ?>
+
                 <div class="login_form_callback">
                     <?= flash(); ?>
                 </div>
