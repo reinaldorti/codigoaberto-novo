@@ -71,10 +71,10 @@ class Slides extends Admin
      */
     public function slide(?array $data): void
     {
-        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
         //create
         if (!empty($data["action"]) && $data["action"] == "create") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
             $cover = (!empty($_FILES["cover"]) ? $_FILES["cover"] : null);
 
             $form = [$data["title"], $data["subtitle"], $data["status"]];
@@ -90,6 +90,14 @@ class Slides extends Admin
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, informe de destaque!"
+                ]);
+                return;
+            }
+
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -143,11 +151,21 @@ class Slides extends Admin
 
         //update
         if (!empty($data["action"]) && $data["action"] == "update") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
             $form = [$data["title"], $data["subtitle"], $data["status"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='icon fas fa-ban'></i> Oops! Por favor, preencha os campos com (*) para continuar!"
+                ]);
+                return;
+            }
+
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -158,6 +176,7 @@ class Slides extends Admin
             $slide->url = (!empty($data["url"]) ? str_slug($data["url"]) : str_slug($slide->title));
             $slide->status = $data["status"];
             $slide->slide_at = date_fmt($data["slide_at"]);
+            $slide->updated_at = date("Y-m-d H:i:s");
             $slide->save();
 
             if (!empty($_FILES["cover"])) {
@@ -214,6 +233,7 @@ class Slides extends Admin
         echo $this->view->render("widgets/slides/slide", [
             "app" => "slides/slide",
             "head" => $head,
+            "csrf" => csrf_input(),
             "slide" => $slide
         ]);
     }
@@ -236,13 +256,13 @@ class Slides extends Admin
 
     /**
      * DELETE SLIDE
-     * @param array|null $data
+     * @param int $data
      */
-    public function delete(?array $data): void
+    public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-
         $slide = (new Slide())->findById("{$data["slide_id"]}");
+
         if (!$slide) {
             flash("error", "<i class='icon fas fa-ban'></i> Oops! Você tentou gerenciar um slide que não existe!");
             redirect("admin/slides/home");

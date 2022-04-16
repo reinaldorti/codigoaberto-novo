@@ -1,5 +1,5 @@
 
-<?php $v->layout("_theme"); ?>
+<?php $this->layout("_theme"); ?>
 
 <?= $head; ?>
 

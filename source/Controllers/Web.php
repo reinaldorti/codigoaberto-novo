@@ -3,7 +3,6 @@
 namespace Source\Controllers;
 
 use CoffeeCode\Router\Router;
-use ElePHPant\Cookie\Cookie;
 use Source\Models\About;
 use Source\Models\Blog;
 use Source\Models\Slide;
@@ -18,9 +17,6 @@ use Source\Support\Pager;
  */
 class Web extends Controller
 {
-    /**
-     * @var
-     */
     protected $router;
 
     /**
@@ -29,11 +25,10 @@ class Web extends Controller
      */
     public function __construct(Router $router)
     {
-        parent::__construct(__DIR__ . "/../../public/" . CONF_VIEW["THEME"] . "/");
+        parent::__construct(__DIR__ . "/../../public/" . CONF_VIEW['THEME'] . "/");
 
         $this->view->data([
-            "router" => $router,
-            "csrf" => csrf_input()
+            "router" => $router
         ]);
     }
 
@@ -43,8 +38,8 @@ class Web extends Controller
     public function home(): void
     {
         $head = $this->seo->render(
-            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
-            CONF_SITE["DESC"],
+            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
@@ -63,8 +58,8 @@ class Web extends Controller
     public function about(): void
     {
         $head = $this->seo->render(
-            "Sobre - " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
+            "Sobre - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
             url("sobre"),
             asset("/assets/images/logo/logo.png")
         );
@@ -88,8 +83,8 @@ class Web extends Controller
         $pager = new Pager(url("/blog/"));
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
         $head = $this->seo->render(
-            "Blog - " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
+            "Blog - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
@@ -138,8 +133,8 @@ class Web extends Controller
         $pager->pager($posts->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
 
         $head = $this->seo->render(
-            "Blog - " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
+            "Blog - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
@@ -162,7 +157,7 @@ class Web extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        $post = (new Blog())->find("status = :status AND uri = :url AND post_at <= NOW() ", "status=1&url={$data["uri"]}")->fetch();
+        $post = (new Blog())->find("status = :status AND uri = :url AND post_at <= NOW() ", "status=1&url={$data['uri']}")->fetch();
         if (!$post) {
             redirect("/404");
         }
@@ -171,8 +166,8 @@ class Web extends Controller
         $post->save();
 
         $head = $this->seo->render(
-            "{$post->title} - " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
+            "{$post->title} - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
@@ -194,6 +189,7 @@ class Web extends Controller
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
         $search = null;
+
         $search = str_search($data["tag"]);
 
         $tag = (new Blog())->find("MATCH(tag) AGAINST(:s)", "s={$search}");
@@ -207,8 +203,8 @@ class Web extends Controller
         $pager->pager($tag->count(), 15, (!empty($data["page"]) ? $data["page"] : 1));
 
         $head = $this->seo->render(
-            "Blog - " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
+            "Blog - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
@@ -229,16 +225,26 @@ class Web extends Controller
      */
     public function contact(?array $data): void
     {
-        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
         //send contact
         if (!empty($data["action"]) && $data["action"] == "contact") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $form = [$data["name"], $data["email"], $data["subject"], $data["message"]];
             if (in_array("", $form)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='fa fa-warning'></i> Oops! Por favor, preencha todos os campos para continuar!",
+                    "top" => true,
+                ]);
+
+                return;
+            }
+
+            //VERIFY CSRF TOKEN
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "error",
+                    "message" => "<i class='fa fa-warning'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!",
                     "top" => true,
                 ]);
 
@@ -256,21 +262,15 @@ class Web extends Controller
                 return;
             }
 
-            $url = url();
-            $button = "ACESSAR SITE";
-            $subject = $data["subject"];
-
             $mail = new Email();
             $mail->add(
-                "{$subject}",
-                $this->view->render(__DIR__ . "/../../shared/views/email/web/contact", [
-                    "subject" => $subject,
-                    "data" => $data,
-                    "url" => $url,
-                    "button" => $button,
+                $data["subject"],
+                $this->view->render("../../shared/templates/contact", [
+                    "message" => $data["message"],
+                    "link" => url(),
                 ]),
-                CONF_MAIL["FROM_NAME"],
-                CONF_MAIL["FROM_EMAIL"]
+                CONF_MAIL['FROM_NAME'],
+                CONF_MAIL['FROM_EMAIL']
             )->send();
 
             echo Message::ajaxResponse("message", [
@@ -282,34 +282,26 @@ class Web extends Controller
         }
 
         $head = $this->seo->render(
-            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
-            CONF_SITE["DESC"],
+            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            CONF_SITE['DESC'],
             url(),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("contact", [
-            "head" => $head
+            "head" => $head,
+            "csrf" => csrf_input(),
+            //"siteKey" => CONF_GOOGLE_RECAPTCHA['SITE'],
         ]);
     }
 
-    /**
-     * SITE COOKIE POLICY
-     * @param array $data
-     */
-    public function cookieConsent(array $data): void
+    public function cookiePolicy(array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
-        Cookie::set("cookieConsent", $data["cookie"], (12 * 43200)); // 1 year
+        setcookie("cookiePolicy", $data["cookie"], time() + (12 * 43200), "/");
 
-        //ACCEPT
-        if ($data["cookie"] == "accept") {
-            $json["gtmHead"] = $this->view->render("gtm/gtm-head");
-            $json["gtmBody"] = $this->view->render("gtm/gtm-body");
-        }
-
-        $json["cookie"] = true;
+        $json["agree"] = true;
         echo json_encode($json);
         return;
     }
@@ -323,8 +315,8 @@ class Web extends Controller
         $error = filter_var($data["errcode"], FILTER_VALIDATE_INT);
 
         $head = $this->seo->render(
-            "Oops {$error}" . " | " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
+            "Oops {$error}" . " | " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
             url("/ops/{$error}"),
             asset("/assets/images/logo/logo.png"),
             false

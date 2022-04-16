@@ -1,4 +1,4 @@
-<?php $v->layout("_theme"); ?>
+<?php $this->layout("_theme"); ?>
 
 <div class="bradcam_area breadcam_bg">
     <div class="container">

@@ -1,5 +1,5 @@
 <?php
-$v->layout("dash"); ?>
+$this->layout("dash"); ?>
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <section class="content-header">
         <div class="container-fluid">
@@ -121,7 +121,7 @@ $v->layout("dash"); ?>
     </section>
 </div>
 
-<?php $v->start("scripts"); ?>
+<?php $this->start("scripts"); ?>
     <script>
         //######## DRAG AND DROP
         $("html").on('click', '.j_drag_active', function () {
@@ -180,4 +180,4 @@ $v->layout("dash"); ?>
             }
         });
     </script>
-<?php $v->end(); ?>
+<?php $this->end(); ?>

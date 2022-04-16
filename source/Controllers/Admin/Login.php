@@ -18,7 +18,7 @@ class Login extends Controller
      */
     public function __construct()
     {
-        parent::__construct(__DIR__ . "/../../../public/" . CONF_VIEW["ADMIN"] . "/");
+        parent::__construct(__DIR__ . "/../../../public/" . CONF_VIEW['ADMIN'] . "/");
 
         if (!empty($_SESSION["user"])) {
             redirect("/admin/dash");
@@ -31,16 +31,23 @@ class Login extends Controller
      */
     public function login(?array $data): void
     {
-        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
         //login
         if (!empty($data["action"]) && $data["action"] == "login") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $login = [$data["email"], $data["password"]];
             if (in_array("", $login)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='icon fas fa-ban'></i> Oops! Informe seu e-mail e senha para logar!"
+                ]);
+                return;
+            }
+
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -56,7 +63,7 @@ class Login extends Controller
             if (!is_passwd($data["password"])) {
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i>Oops! Sua senha deve ter entre " . CONF_PASSWD["MIN"] . " e " . CONF_PASSWD["MAX"] . " caracteres!"
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i>Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!"
                 ]);
                 return;
             }
@@ -70,7 +77,7 @@ class Login extends Controller
                 $admin->document = CONF_MAIL["FROM_DOCUMENT"];
                 $admin->email = $data["email"];
                 $admin->password = $data["password"];
-                $admin->ip = $_SERVER["REMOTE_ADDR"];
+                $admin->ip = $_SERVER['REMOTE_ADDR'];
                 $admin->level = 10;
                 $admin->status = 1;
                 $admin->genre = 1;
@@ -118,10 +125,10 @@ class Login extends Controller
 
                 if (!$user->user_cookie || time() > $LoginTimeFree || ($LoginCookieFree && $LoginCookieFree == $user->user_cookie)) {
                     $login_cookie = hash("sha512", time());
-                    $_SESSION["login_cookie"] = $login_cookie;
-                    setcookie("login_cookie", $login_cookie, time() + 2592000, "/");
+                    $_SESSION['login_cookie'] = $login_cookie;
+                    setcookie('login_cookie', $login_cookie, time() + 2592000, '/');
 
-                    $user->lastaccess = date("Y-m-d H:i:s");
+                    $user->lastaccess = date('Y-m-d H:i:s');
                     $user->user_login = time();
                     $user->user_cookie = $login_cookie;
                     $user->save();
@@ -135,32 +142,31 @@ class Login extends Controller
                     return;
                 }
             }
+            
 
             /** SAVE COOKIE **/
-            $Remember = (isset($data["remember"]) ? 1 : null);
+            $Remember = (isset($data['remember']) ? 1 : null);
             if ($Remember) {
-                setcookie("email", $data["email"], time() + 2592000, "/");
+                setcookie('email', $data["email"], time() + 2592000, '/');
             } else {
-                setcookie("email", "", 60, "/");
+                setcookie('email', '', 60, '/');
             }
 
             /** VERIFY IP **/
-            $ip = $_SERVER["REMOTE_ADDR"];
+            $ip = $_SERVER['REMOTE_ADDR'];
 
             if ($ip != $user->ip) {
-                $url = url("/admin");
+                $link = url('admin');
                 $button = "ACESSAR CONTA";
-                $subject = "Tudo certo {$user->first_name}? | " . CONF_SITE["NAME"];
 
                 $Mail = new Email();
                 $Mail->add(
-                    $subject,
-                    $this->view->render(__DIR__ . "/../../../shared/views/email/admin/login", [
+                    "Tudo certo {$user->first_name}? | " . CONF_SITE['NAME'],
+                    $this->view->render("templates/login", [
                         "user" => $user,
                         "ip" => $ip,
-                        "subject" => $subject,
                         "button" => $button,
-                        "url" => $url
+                        "link" => $link
                     ]),
                     "{$user->first_name} {$user->last_name}",
                     $user->email
@@ -171,8 +177,8 @@ class Login extends Controller
             $_SESSION["user"] = $user->id;
 
             /** SAVE IP **/
-            $user->ip = $_SERVER["REMOTE_ADDR"];
-            //$user->save();
+            $user->ip = $_SERVER['REMOTE_ADDR'];
+            $user->save();
 
             if ($LoginTrue) {
                 echo Message::ajaxResponse("redirect", [
@@ -182,16 +188,17 @@ class Login extends Controller
             }
         }
 
-        $email = filter_input(INPUT_COOKIE, "email", FILTER_VALIDATE_EMAIL);
+        $email = filter_input(INPUT_COOKIE, 'email', FILTER_VALIDATE_EMAIL);
         $head = $this->seo->render(
-            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
-            CONF_SITE["DESC"],
-            url("admin"),
+            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            CONF_SITE['DESC'],
+            url('admin'),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("widgets/login/login", [
             "head" => $head,
+            "csrf" => csrf_input(),
             "email" => $email
         ]);
     }
@@ -202,16 +209,23 @@ class Login extends Controller
      */
     public function forget(?array $data): void
     {
-        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
         //forget
         if (!empty($data["action"]) && $data["action"] == "forget") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $login = [$data["email"]];
             if (in_array("", $login)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
                     "message" => "<i class='icon fas fa-ban'></i> Oops! Informe seu e-mail para continuar!"
+                ]);
+                return;
+            }
+
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
                 ]);
                 return;
             }
@@ -246,21 +260,19 @@ class Login extends Controller
 
             $_SESSION["forget"] = $user->id;
 
-            $url = url("/admin/senha/{$user->email}/{$user->forget}");
+            $link = url("/admin/senha/{$user->email}/{$user->forget}");
             $button = "ALTERAR SENHA";
-            $subject = "Recupere sua senha | " . CONF_SITE["NAME"];
 
             $mail = new Email();
             $mail->add(
-                $subject,
-                $this->view->render(__DIR__ . "/../../../shared/views/email/admin/forget", [
-                    "subject" => $subject,
+                "Recupere sua senha | " . CONF_SITE["NAME"],
+                $this->view->render("templates/forget", [
+                    "user" => $user,
                     "button" => $button,
-                    "url" => $url,
-                    "user" => $user
+                    "link" => $link
                 ]),
                 "{$user->first_name} {$user->last_name}",
-                "{$user->email}"
+                $user->email
             )->send();
 
             echo Message::ajaxResponse("message", [
@@ -272,14 +284,15 @@ class Login extends Controller
         }
 
         $head = $this->seo->render(
-            "Recuperar Senha - " . CONF_SITE["NAME"],
-            CONF_SITE["DESC"],
-            url("admin/recuperar"),
+            "Recuperar Senha - " . CONF_SITE['NAME'],
+            CONF_SITE['DESC'],
+            url('admin/recuperar'),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("widgets/login/forget", [
-            "head" => $head
+            "head" => $head,
+            "csrf" => csrf_input(),
         ]);
     }
 
@@ -289,8 +302,6 @@ class Login extends Controller
      */
     public function reset(?array $data): void
     {
-        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-
         if (empty($_SESSION["forget"])) {
             flash("info", "<i class='icon fas fa-info'></i> Oops! Informe seu e-mail para continuar!");
             redirect("admin/recuperar");
@@ -298,7 +309,7 @@ class Login extends Controller
 
         //reset
         if (!empty($data["action"]) && $data["action"] == "reset") {
-
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
             if (in_array("", $data)) {
                 echo Message::ajaxResponse("message", [
                     "type" => "error",
@@ -307,10 +318,18 @@ class Login extends Controller
                 return;
             }
 
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
+                ]);
+                return;
+            }
+
             if (!is_passwd($data["password"])):
                 echo Message::ajaxResponse("message", [
                     "type" => "alert",
-                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Sua senha deve ter entre " . CONF_PASSWD["MIN"] . " e " . CONF_PASSWD["MAX"] . " caracteres!"
+                    "message" => "<i class='icon fas fa-exclamation-triangle'></i> Oops! Sua senha deve ter entre " . CONF_PASSWD['MIN'] . " e " . CONF_PASSWD['MAX'] . " caracteres!"
                 ]);
                 return;
             endif;
@@ -331,7 +350,8 @@ class Login extends Controller
                 return;
             }
 
-            $ip = $_SERVER["REMOTE_ADDR"];
+            $ip = $_SERVER['REMOTE_ADDR'];
+
             $user->password = $data["password"];
             $user->ip = $ip;
             $user->forget = null;
@@ -346,22 +366,20 @@ class Login extends Controller
                 return;
             }
 
-            $url = url("/admin");
+            $link = url("/admin");
             $button = "ACESSAR CONTA";
-            $subject = "Tudo certo {$user->first_name}! | " . CONF_SITE["NAME"];
 
             $mail = new Email();
             $mail->add(
-                "{$subject}",
-                $this->view->render(__DIR__ . "/../../../shared/views/email/admin/reset", [
-                    "subject" => $subject,
+                "Tudo certo {$user->first_name}! | " . CONF_SITE['NAME'],
+                $this->view->render("templates/reset", [
+                    "user" => $user,
                     "button" => $button,
-                    "url" => $url,
-                    "ip" => $ip,
-                    "user" => $user
+                    "link" => $link,
+                    "ip" => $ip
                 ]),
                 "{$user->first_name} {$user->last_name}",
-                "{$user->email}"
+                $user->email
             )->send();
 
             unset($_SESSION["forget"]);
@@ -387,14 +405,15 @@ class Login extends Controller
         }
 
         $head = $this->seo->render(
-            CONF_SITE["NAME"] . " - " . CONF_SITE["TITLE"],
-            CONF_SITE["DESC"],
-            url("admin/senha"),
+            CONF_SITE['NAME'] . " - " . CONF_SITE['TITLE'],
+            CONF_SITE['DESC'],
+            url('admin/senha'),
             asset("/assets/images/logo/logo.png")
         );
 
         echo $this->view->render("widgets/login/reset", [
-            "head" => $head
+            "head" => $head,
+            "csrf" => csrf_input(),
         ]);
     }
 }
