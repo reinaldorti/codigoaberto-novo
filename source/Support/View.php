@@ -20,7 +20,7 @@ class View
      */
     public function __construct(string $path = CONF_VIEW['PATH'], string $ext = CONF_VIEW['EXT'])
     {
-        $this->engine = Engine::create($path, $ext);
+        $this->engine = new Engine($path, $ext);
     }
 
     /**
@@ -49,9 +49,10 @@ class View
      * @param array $data
      * @return string
      */
-    public function render(string $templateName, array $data = []): string
+    public function render(string $templateName, array $data): string
     {
-        return $this->engine->render($templateName, $data);
+        $this->engine->addData($data);
+        return $this->engine->render($templateName);
     }
 
     /**

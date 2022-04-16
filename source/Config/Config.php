@@ -1,12 +1,12 @@
 <?php
 
 // DATABASE CONNECT
-if (strpos($_SERVER["HTTP_HOST"], "localhost")) {
+if (strpos($_SERVER['HTTP_HOST'], "localhost")) {
     define("DATA_LAYER_CONFIG", [
         "driver" => "mysql",
         "host" => "localhost",
         "port" => "3306",
-        "dbname" => "codigoaberto-novo",
+        "dbname" => "codigoaberto",
         "username" => "root",
         "passwd" => "",
         "options" => [
@@ -34,10 +34,7 @@ if (strpos($_SERVER["HTTP_HOST"], "localhost")) {
 }
 
 // COOKIE POLICY
-define("COOKIE_CONSENT", filter_input(INPUT_COOKIE, "cookieConsent", FILTER_SANITIZE_STRIPPED));
-
-define("APP_COOKIE", 1); //COOKIE
-define("APP_TREATMENT", 1); //Atendimento
+define("COOKIEPOLICY", filter_input(INPUT_COOKIE, "cookiePolicy", FILTER_SANITIZE_STRIPPED));
 
 // VIEW
 define("CONF_VIEW", [
@@ -49,7 +46,7 @@ define("CONF_VIEW", [
 
 // PROJECT URLs
 define("CONF_URl", [
-    "TEST" => "https://www.localhost/cursos/codigoaberto-novo",
+    "TEST" => "https://www.localhost/codaberto",
     "BASE" => "https://www.seudominio.com.br"
 ]);
 
@@ -73,16 +70,17 @@ define("CONF_SITE", [
     "TITLE" => "Código aberto - Auth em MVC com php",
     "DESC" => "Aprenda a construir uma plicação de autenticação em MVC com php do Jeito Certo",
     "LANG" => "pt_BR",
-    "DOMAIN" => "www.dortistudio.com.br",
-    "ADDR_STREET" => "Votuporanga",
-    "ADDR_NUMBER" => "2562",
-    "ADDR_DISTRICT" => "Eldorado",
+    "DOMAIN" => "www.ra3.ao",
+    "ADDR_STREET" => "Projecto Nova Vida ",
+    "ADDR_NUMBER" => "14",
+    "ADDR_DISTRICT" => "Belas",
     "ADDR_COMPLEMENT" => "Casa",
-    "ADDR_CITY" => "São José do Rio Preto",
-    "ADDR_STATE" => "SP",
-    "ADDR_ZIPCODE" => "15.043-040",
-    "ADDR_TELEPHONE" => "(17) 99624-7870",
-    "ADDR_WHATSAPP" => "5517996247870"
+    "ADDR_CITY" => "Luanda",
+    "ADDR_STATE" => "LA",
+    "ADDR_ZIPCODE" => "244",
+    "ADDR_TELEPHONE" => "991696254",
+    "ADDR_WHATSAPP" => "929667246",
+    "ADDR_CODE" => "244"
 ]);
 
 // SOCIAL
@@ -114,14 +112,21 @@ define("CONF_MAIL", [
     "HOST" => "smtp.sendgrid.net",
     "PORT" => "587",
     "USER" => "apikey",
-    "PASSWD" => "",
+    "PASSWD" => "**********",
     "MODE" => "tls",
-    "FROM_NAME" => "Reinaldo",
-    "FROM_LASTNAME" => "Dorti",
-    "FROM_EMAIL" => "reinaldorti@gmail.com",
-    "FROM_DOCUMENT" => "653.041.910-13",
-    "FROM_TELEPHONE" => "+55 (99) 9999-9999",
-    "FROM_WHATSAPP" => "5599999999999"
+    "FROM_NAME" => "Revista APosta",
+    "FROM_LASTNAME" => "Revista Aposta",
+    "FROM_EMAIL" => "info@ra3.ao",
+    "FROM_DOCUMENT_NIF" => "5454510217",
+    "FROM_TELEPHONE" => "+55 (99) 99999-9999",
+    "FROM_WHATSAPP" => "5599999999999",
+    "SENDER", ["name" => "Robson V. Leite", "address" => "email@email.com"],
+    "SUPPORT" => "email@email.com",
+    "LANG" => "br",
+    "HTML" => true,
+    "AUTH" => true,
+    "SECURE" => "tls",
+    "CHARSET" => "utf-8",
 ]);
 
 // SOCIAL LOGIN: FACEBOOK
@@ -144,3 +149,19 @@ define("CONF_GOOGLE_RECAPTCHA", [
     "SITE" => "",
     "SERET" => ""
 ]);
+
+/**
+ * ALERTS
+ */
+define("CONF_ALERT_MESSAGE", "alert");
+define("CONF_ALERT_SUCCESS", ["class" => "alert-success", "icon" => "fas fa-fw fa-check-circle"]);
+define("CONF_ALERT_DANGER", ["class" => "alert-danger", "icon" => "fas fa-fw fa-times-circle"]);
+define("CONF_ALERT_WARNING", ["class" => "alert-warning", "icon" => "fas fa-fw fa-exclamation-circle"]);
+define("CONF_ALERT_INFO", ["class" => "alert-info", "icon" => "fas fa-fw fa-info-circle"]);
+
+/**
+ * IMAGES
+ */
+define("CONF_IMAGE_DEFAULT_AVATAR", "/assets/images/webp/default-avatar.webp");
+define("CONF_IMAGE_NO_AVAILABLE_1BY1", "/assets/images/webp/no-image-available-1by1.webp");
+define("CONF_IMAGE_NO_AVAILABLE_16BY9", "/assets/images/webp/no-image-available-16by9.webp");

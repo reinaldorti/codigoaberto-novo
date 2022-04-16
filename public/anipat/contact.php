@@ -1,5 +1,5 @@
 
-<?php $v->layout("_theme"); ?>
+<?php $this->layout("_theme"); ?>
 
 <div class="bradcam_area breadcam_bg">
     <div class="container">
@@ -22,7 +22,7 @@
             <div class="col-lg-8" >
                 <form class="form-contact contact_form" action="<?= $router->route("web.contact"); ?>" method="post">
                     <input type="hidden" name="action" value="contact"/>
-
+                    <?= $csrf; ?>
                     <div class="login_form_callback">
                         <?= flash(); ?>
                     </div>
@@ -90,6 +90,6 @@
     </div>
 </section>
 
-<?php $v->start("recaptcha"); ?>
+<?php $this->start("recaptcha"); ?>
     <scripts src="https://www.google.com/recaptcha/api.js" async defer></scripts>
-<?php $v->end(); ?>
+<?php $this->end(); ?>

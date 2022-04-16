@@ -22,15 +22,6 @@ function image(?string $image): ?string
 }
 
 /**
- * @param $string
- * @return string
- */
-function is_number($string): string
-{
-    return preg_replace("/[^0-9]/", "", $string);
-}
-
-/**
  * @param $cpf
  * @return string
  */
