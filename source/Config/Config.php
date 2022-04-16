@@ -46,7 +46,7 @@ define("CONF_VIEW", [
 
 // PROJECT URLs
 define("CONF_URl", [
-    "TEST" => "https://www.localhost/codaberto",
+    "TEST" => "https://www.localhost/codigoaberto",
     "BASE" => "https://www.seudominio.com.br"
 ]);
 

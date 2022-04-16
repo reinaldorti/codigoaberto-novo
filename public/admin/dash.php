@@ -66,11 +66,11 @@
     </a>
 
     <div class="sidebar">
-        <?php $v->insert("menu"); ?>
+        <?php $this->insert("menu"); ?>
     </div>
   </aside>
 
-  <?= $v->section("content"); ?>
+  <?= $this->section("content"); ?>
 
     <footer class="main-footer">
         <strong>
@@ -126,7 +126,7 @@
 }, 1000 * 10);
 </script>
 
-<?= $v->section("scripts"); ?>
+<?= $this->section("scripts"); ?>
 
 </body>
 </html>

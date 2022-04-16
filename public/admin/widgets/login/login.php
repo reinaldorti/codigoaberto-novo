@@ -1,4 +1,4 @@
-<?php $v->layout("login"); ?>
+<?php $this->layout("login"); ?>
 
 <div class="login-box">
     <div class="login-logo">
@@ -11,6 +11,7 @@
 
             <form action="<?= url("/admin/login"); ?>" method="post">
                 <input type="hidden" name="action" value="login"/>
+                <?= $csrf; ?>
 
                 <div class="login_form_callback">
                     <?= flash(); ?>

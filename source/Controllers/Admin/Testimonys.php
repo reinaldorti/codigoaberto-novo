@@ -85,11 +85,20 @@ class Testimonys extends Admin
                 return;
             }
 
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
+                ]);
+                return;
+            }
+
             $testimony = new Testimony();
             $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
             $testimony->content = str_replace(["{name}"], [$testimony->name], $content);
+            $testimony->created_at = date("Y-m-d H:i:s");
             $testimony->save();
 
             if (!empty($_FILES["cover"])) {
@@ -144,11 +153,20 @@ class Testimonys extends Admin
                 return;
             }
 
+            if (!csrf_verify($data['csrf_token'])) {
+                echo Message::ajaxResponse("message", [
+                    "type" => "alert",
+                    "message" => "Oops! Erro ao enviar o formulário! Por favor, atualize a página e tente novamente!"
+                ]);
+                return;
+            }
+
             $testimony = (new Testimony())->findById("{$data["testimony_id"]}");
             $testimony->name = $data["name"];
             $testimony->status = $data["status"];
             $testimony->author = $data["author"];
             $testimony->content = str_replace(["{name}"], [$testimony->name], $content);
+            $testimony->updated_at = date("Y-m-d H:i:s");
             $testimony->save();
 
             if (!empty($_FILES["cover"])) {
@@ -205,6 +223,7 @@ class Testimonys extends Admin
         echo $this->view->render("widgets/testimony/testimony", [
             "app" => "testimony/testimony",
             "head" => $head,
+            "csrf" => csrf_input(),
             "testimony" => $testimony,
             "authors" => (new User())->find("level >= :level", "level=6")->fetch(true)
         ]);
@@ -228,13 +247,13 @@ class Testimonys extends Admin
 
     /**
      * DELETE COMMENTS
-     * @param array $data
+     * @param int $data
      */
-    public function delete(?array $data): void
+    public function delete($data): void
     {
         $data = filter_var_array($data, FILTER_VALIDATE_INT);
-
         $testimony = (new Testimony())->findById("{$data["testimony_id"]}");
+
         if (!$testimony) {
             flash("error", "Oops! Você tentou gerenciar um depoimento que não existe!");
             redirect("admin/testimony/home");

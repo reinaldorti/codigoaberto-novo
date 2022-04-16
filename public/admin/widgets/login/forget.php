@@ -1,4 +1,4 @@
-<?php $v->layout("login"); ?>
+<?php $this->layout("login"); ?>
 
 <div class="login-box">
     <div class="login-logo">
@@ -11,7 +11,7 @@
 
             <form action="<?= url("/admin/forget"); ?>" method="post">
                 <input type="hidden" name="action" value="forget"/>
-
+                <?= $csrf; ?>
                 <div class="login_form_callback">
                     <?= flash(); ?>
                 </div>

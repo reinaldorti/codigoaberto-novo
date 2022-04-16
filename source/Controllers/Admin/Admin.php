@@ -25,20 +25,19 @@ class Admin extends Controller
      */
     public function __construct(Router $router)
     {
-        parent::__construct(__DIR__ . "/../../../public/" . CONF_VIEW["ADMIN"] . "/");
+        parent::__construct(__DIR__ . "/../../../public/" . CONF_VIEW['ADMIN'] . "/");
 
         $this->router = $router;
 
         $this->view->data([
-            "router" => $this->router,
-            "csrf" => csrf_input()
+            "router" => $this->router
         ]);
 
         if (empty($_SESSION["user"])) {
             unset(
                 $_SESSION["user"],
-                $_SESSION["start_login"],
-                $_SESSION["logout_time"]
+                $_SESSION['start_login'],
+                $_SESSION['logout_time']
             );
 
             flash("error", "<i class='icon fas fa-ban'></i> Oops! Acesso negado! Por favor, faça o login!");
@@ -46,10 +45,11 @@ class Admin extends Controller
         }
 
         //GERA O TEMPO PARA NAO DESLOGAR O USUARIO
-        $_SESSION["start_login"] = time();
-        $_SESSION["logout_time"] = $_SESSION["start_login"] + 30 * 60;
+        $_SESSION['start_login'] = time();
+        $_SESSION['logout_time'] = $_SESSION['start_login'] + 30 * 60;
 
         $user = (new User())->find("id=:id", "id={$_SESSION["user"]}")->fetch();
+
         if ($user->level < 6) {
             unset($_SESSION["user"]);
             flash("error", "<i class='icon fas fa-ban'></i>Oops! Esse nível de acesso não tem permissão para logar!");
@@ -63,7 +63,7 @@ class Admin extends Controller
         }
 
         $user->user_login = time();
-        $user->lastaccess = date("Y-m-d H:i:s");
+        $user->lastaccess = date('Y-m-d H:i:s');
         $user->save();
     }
 
@@ -75,11 +75,11 @@ class Admin extends Controller
     {
         $user = (new User())->find("id=:id", "id={$_SESSION["user"]}")->fetch();
 
-        if (time() >= $_SESSION["logout_time"]) {
+        if (time() >= $_SESSION['logout_time']) {
             unset(
                 $_SESSION["user"],
-                $_SESSION["start_login"],
-                $_SESSION["logout_time"]
+                $_SESSION['start_login'],
+                $_SESSION['logout_time']
             );
 
             flash("success", "<i class='fa fa-info-circle'></i> Oops, {$user->first_name}! Sua sessão expirou!");
