@@ -1,10 +1,10 @@
 <?php
 
 namespace Source\Controllers\Admin;
+
 use Source\Models\Blog;
 use Source\Models\Slide;
 use Source\Models\User;
-use Source\Support\Message;
 use Source\Models\Testimony;
 
 /**
@@ -54,7 +54,7 @@ class Dash extends Admin
 
         flash("success", "<i class='icon fas fa-check'></i> Você saiu com sucesso, volte logo {$user->first_name}!");
 
-        unset($_SESSION["user"], $_SESSION["start_login"], $_SESSION["logout_time"]);
-        redirect("admin");
+        unset($_SESSION["user"], $_SESSION['start_login'], $_SESSION['logout_time']);
+        redirect('admin');
     }
 }

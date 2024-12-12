@@ -1,4 +1,4 @@
-<?php $v->layout("dash"); ?>
+<?php $this->layout("dash"); ?>
 
 <div class="content-wrapper">
     <div class="content-header">

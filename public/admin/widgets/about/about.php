@@ -1,5 +1,5 @@
 <?php
-$v->layout("dash"); ?>
+$this->layout("dash"); ?>
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <section class="content-header">
         <div class="container-fluid">
@@ -134,11 +134,11 @@ $v->layout("dash"); ?>
     </section>
 </div>
 
-<?php $v->start("scripts"); ?>
+<?php $this->start("scripts"); ?>
     <script>
         //SELECT 2
         $(document).ready(function () {
             $('.js-example-basic-single').select2();
         });
     </script>
-<?php $v->end(); ?>
+<?php $this->end(); ?>

@@ -22,15 +22,6 @@ function image(?string $image): ?string
 }
 
 /**
- * @param $string
- * @return string
- */
-function is_number($string): string
-{
-    return preg_replace("/[^0-9]/", "", $string);
-}
-
-/**
  * @param $cpf
  * @return string
  */
@@ -117,13 +108,21 @@ function str_search(?string $search): string
  */
 function str_slug(string $string): string
 {
-    $string = filter_var(mb_strtolower($string), FILTER_SANITIZE_STRIPPED);
+    $string = filter_var(mb_strtolower($string), FILTER_UNSAFE_RAW);
     $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
     $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
 
-    $slug = str_replace(["-----", "----", "---", "--"], "-",
-        str_replace(" ", "-",
-            trim(strtr(utf8_decode($string), utf8_decode($formats), $replace))
+    $slug = str_replace(
+        ["-----", "----", "---", "--"],
+        "-",
+        str_replace(
+            " ",
+            "-",
+            trim(strtr(
+                mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($formats, 'ISO-8859-1', 'UTF-8'),
+                $replace
+            ))
         )
     );
     return $slug;

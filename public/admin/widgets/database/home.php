@@ -1,4 +1,4 @@
-<?php $v->layout("dash"); ?>
+<?php $this->layout("dash"); ?>
 
 <div class="content-wrapper" style="min-height: 1200.88px;">
     <section class="content-header">

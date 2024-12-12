@@ -3,7 +3,6 @@
 namespace Source\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
-use Exception;
 
 /**
  * Class Blog
@@ -11,6 +10,7 @@ use Exception;
  */
 class Blog extends DataLayer
 {
+    public $author;
     /**
      * User constructor.
      */
@@ -26,7 +26,7 @@ class Blog extends DataLayer
     {
         $uri = (new Blog())->find("uri = :uri AND id != :id", "uri={$this->uri}&id={$this->id}");
         if ($uri->count()) {
-            $this->uri = "{$this->uri}-". time();
+            $this->uri = "{$this->uri}-" . time();
         }
 
         return parent::save();
@@ -35,7 +35,7 @@ class Blog extends DataLayer
     /**
      * @return null|User
      */
-    public function author(): ?User
+    public function author(): ?DataLayer
     {
         if ($this->author) {
             return (new User())->find("id = :id", "id={$this->author}")->fetch();

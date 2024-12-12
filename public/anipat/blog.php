@@ -1,5 +1,5 @@
 
-<?php $v->layout("_theme"); ?>
+<?php $this->layout("_theme"); ?>
 
 <div class="bradcam_area breadcam_bg">
     <div class="container">
@@ -70,7 +70,7 @@
                     ?>
                 </div>
             </div>
-            <?= $v->insert("blog-sidebar"); ?>
+            <?php $this->insert("blog-sidebar"); ?>
         </div>
     </div>
 </section>
